@@ -8,7 +8,12 @@ class WidgetsController < ApplicationController
     end    
 
     def show
+
     end    
+
+    def create
+        
+    end
 
     private
 
@@ -19,7 +24,8 @@ class WidgetsController < ApplicationController
     end
   
     def fecthYoutubeApi
-        url = "https://www.googleapis.com/youtube/v3/videos?id=Fd0neo9rppk&key=" + ENV["GOOGLE_API_KEY"] + "&part=snippet,contentDetails,statistics,status"
+        input_video_id = youtube_id("https://www.youtube.com/watch?v=Fd0neo9rppk")
+        url = "https://www.googleapis.com/youtube/v3/videos?id=#{input_video_id}&key=#{ENV["GOOGLE_API_KEY"]}&part=snippet,contentDetails,statistics,status"
         result_serialized = URI.open(url).read
         result = JSON.parse(result_serialized)
         video_result = { 
