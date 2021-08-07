@@ -12,6 +12,12 @@ class WidgetsController < ApplicationController
 
     private
 
+    def youtube_id(youtube_url)
+      regex = %r{(?:youtube(?:-nocookie)?\.com/(?:[^/\n\s]+/\S+/|(?:v|e(?:mbed)?)/|\S*?[?&]v=)|youtu\.be/)([a-zA-Z0-9_-]{11})}
+      match = regex.match(youtube_url)
+      match[1] if match && !match[1].blank?
+    end
+  
     def fecthYoutubeApi
         url = "https://www.googleapis.com/youtube/v3/videos?id=Fd0neo9rppk&key=" + ENV["GOOGLE_API_KEY"] + "&part=snippet,contentDetails,statistics,status"
         result_serialized = URI.open(url).read
@@ -33,4 +39,6 @@ class WidgetsController < ApplicationController
         video_result["channel_pic"] = JSON.parse(URI.open(channel_url).read)["items"][0]["snippet"]["thumbnails"]["default"]["url"]
         return video_result
     end    
+
+  
 end
