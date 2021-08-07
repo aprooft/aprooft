@@ -2,12 +2,15 @@ require 'json'
 require 'open-uri'
 
 class WidgetsController < ApplicationController
+
     def index
-        @youtube_data =  fecthYoutubeApi();
+        #@widgets = policy_scope(Widget)
+        #authorize @widgets
+        @widgets = Widget.all
     end    
 
     def show
-
+       @youtube_data =  fecthYoutubeApi();
     end    
 
     def create
@@ -44,6 +47,5 @@ class WidgetsController < ApplicationController
         video_result["channel_pic"] = JSON.parse(URI.open(channel_url).read)["items"][0]["snippet"]["thumbnails"]["default"]["url"]
         return video_result
     end    
-
   
 end
