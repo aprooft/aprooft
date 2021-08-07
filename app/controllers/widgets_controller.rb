@@ -3,8 +3,7 @@ require 'open-uri'
 
 class WidgetsController < ApplicationController
     def index
-        @result =  fecthYoutubeApi();
-        raise
+        @youtube_data =  fecthYoutubeApi();
     end    
 
     def show
@@ -24,7 +23,7 @@ class WidgetsController < ApplicationController
     end
   
     def fecthYoutubeApi
-        input_video_id = youtube_id("https://www.youtube.com/watch?v=Fd0neo9rppk")
+        input_video_id = youtube_id("https://www.youtube.com/watch?v=NBhxtnYvB64&t=25s")
         url = "https://www.googleapis.com/youtube/v3/videos?id=#{input_video_id}&key=#{ENV["GOOGLE_API_KEY"]}&part=snippet,contentDetails,statistics,status"
         result_serialized = URI.open(url).read
         result = JSON.parse(result_serialized)
