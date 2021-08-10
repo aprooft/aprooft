@@ -4,7 +4,7 @@ require 'open-uri'
 class WidgetsController < ApplicationController
 
     def index
-        #@widgets = policy_scope(Widget)
+        @widgets = policy_scope(Widget)
         #authorize @widgets
         @widgets = Widget.all
     end    
