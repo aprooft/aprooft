@@ -5,4 +5,5 @@ class Widget < ApplicationRecord
   validates :user_id, presence: true
   validates :product_title, presence: true
   validates :product_pic, presence: true
+  validates :product_id, presence: true, uniqueness: true
 end
