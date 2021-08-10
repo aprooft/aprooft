@@ -13,6 +13,9 @@ class WidgetsController < ApplicationController
   def create
   end
 
+  def edit
+  end  
+
   private
 
   def youtube_id(youtube_url)
