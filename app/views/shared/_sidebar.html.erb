@@ -38,17 +38,23 @@
         </a>
       </li>
     </ul>
-    <div class="profile-content">
-      <div class="profile">
-        <div class="profile-details">
-          <img src="profile.jpg" alt="profile-pic">
-          <div class="name-job">
-            <div class="name">John Doe</div>
-            <div class="job">Marketer</div>
+    <div class="profile-content">  
+      <% if user_signed_in? %>  
+        <div class="profile">
+          <div class="profile-details">
+            <img src="profile.jpg" alt="profile-pic">
+            <div class="name-job">
+              <div class="name">John Doe</div>
+              <div class="job">Marketer</div>
+            </div>
           </div>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="bx bx-log-out" id="log-out"></i>
+          <% end %>  
         </div>
-        <i class="bx bx-log-out" id="log-out"></i>
-      </div>
+      <% else %>
+        <%= link_to "Login", new_user_session_path %>
+      <% end %>
     </div>
   </div>
   <div class="home-content">
