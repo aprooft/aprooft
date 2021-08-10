@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 74px;
+  background: #11101d;
+  padding: 6px 14px;
+  transition: all 0.5s ease;
+}
+
+.sidebar.active {
+  width: 240px;
+}
+
+.sidebar .logo-content .logo {
+  color: aliceblue;
+  display: flex;
+  height: 50px;
+  width: 100%;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+
+.sidebar.active .logo-content .logo {
+  opacity: 1;
+  pointer-events: none;
+}
+
+.logo-content .logo i {
+  font-size: 28px;
+  margin-right: 5px;
+}
+
+.logo-content .logo .logo-name {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.sidebar #btn {
+  position: absolute;
+  color: aliceblue;
+  left: 50%;
+  top: 6px;
+  font-size: 20px;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  line-height: 50px;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.sidebar.active #btn {
+  left: 90%;
+}
+
+.sidebar ul {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar ul li {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin: 0 5px;
+  list-style: none;
+  line-height: 50px;
+}
+
+.sidebar ul li input {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 12px;
+  outline: none;
+  border: none;
+  background: #1d1b31;
+  padding-left: 50px;
+  font-size: 18px;
+  color: aliceblue;
+}
+
+.sidebar ul li .bx-search {
+  z-index: 99;
+  color: aliceblue;
+  font-size: 22px;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.sidebar ul li .bx-search:hover {
+  background: aliceblue;
+  color: #1d1b31;
+}
+
+.sidebar ul li a {
+  color: aliceblue;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.sidebar ul li a:hover {
+  color: #11101d;
+  background: aliceblue;
+}
+
+.sidebar ul li i {
+  height: 50px;
+  min-width: 50px;
+  border-radius: 12px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.sidebar .links-name {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar.active .links-name {
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.5s ease;
+}
+
+.sidebar .profile-content {
+  position: absolute;
+  color: aliceblue;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.sidebar .profile-content .profile {
+  position: relative;
+  padding: 10px 6px;
+  height: 60px;
+  background: none;
+  transition: all 0.4s ease;
+}
+
+.sidebar.active .profile-content .profile {
+  background: #1d1b31;
+}
+
+.profile-content .profile .profile-details {
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.sidebar.active .profile .profile-details {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.profile .profile-details img {
+  height: 45px;
+  width: 45px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.profile .profile-details .name-job {
+  margin-left: 10px;
+}
+
+.profile .profile-details .name {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.profile .profile-details .job {
+  font-size: 12px;
+}
+
+.profile #log-out {
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+  transform: translateX(-50%);
+  min-width: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.4s ease;
+  background: #1d1b31;
+}
+
+.sidebar.active .profile #log-out {
+  left: 88%;
+  background: none;
+}
+
+.home-content {
+  position: absolute;
+  height: 100%;
+  width: calc(100% - 78px);
+  left: 78px;
+  transition: all 0.5s ease;
+}
+
+.home-content .text {
+  font-size: 25px;
+  font-weight: 500;
+  color: #1d1b31;
+  margin: 12px;
+}
+
+.sidebar.active ~ .home-content {
+  width: calc(100% - 240px);
+  left: 240px;
+}
