@@ -14,6 +14,8 @@ class WidgetsController < ApplicationController
   end
 
   def edit
+    @widget = Widget.find(params[:id])
+    authorize @widget
   end  
 
   private
