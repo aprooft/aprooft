@@ -16,12 +16,11 @@
 }
 
 .nav-btn {
-    padding-right: 18px;
-    padding-left: 5px;
+    padding-right: 12px;
     img {
-        padding: 5px;
-        border-radius: 50%;
-        box-shadow: 0 0 5px 3px rgb(235, 239, 245);
+        // padding: 5px;
+        // border-radius: 50%;
+        // box-shadow: 0 0 5px 3px rgb(235, 239, 245);
     }
 } 
 
@@ -31,20 +30,44 @@
     .input-box {
         height: 60px;
         border-radius: 3px;
-        border: 0.1em solid #32a1ce;
-        background-color: #ffffff;
-        box-shadow: 3px 3px 2px 2px rgba(121, 120, 122, 0.2);
+        // border: 0.1em solid #32a1ce;
+        // background-color: #ffffff;
+        // box-shadow: 3px 3px 2px 2px rgba(121, 120, 122, 0.2);
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
 }
 
-.sf-input-box {
+.input-box-form {
+    display: flex;
+    height: 80%;
+    width: 100%;
     input { 
-        max-width: 400px;
+        width: 100%;
+        // flex-grow: 1;
+        padding: 8px;
+        border: 1px solid rgb(95, 96, 100);
+        border-radius: 3px;
     }
 }
+
+.input-box-icon {
+    float: right;
+    position: relative;
+
+    i {
+        font-size: 1.2em;
+        opacity: 0.5;
+        padding-left: 5px;
+        padding-top: 4px;
+    }
+
+    :first-child {
+        margin-left: -62px;
+    }
+}
+
     
 
 
