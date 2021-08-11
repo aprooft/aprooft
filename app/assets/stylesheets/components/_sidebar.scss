@@ -245,6 +245,13 @@ body {
   cursor: pointer;
 }
 
+.style.focus {
+  background: aliceblue;
+  & svg path {
+    fill: #11101d;
+  }
+}
+
 .style-options-wrapper {
   position: absolute;
   padding: 130px 0;
