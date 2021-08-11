@@ -3,6 +3,7 @@ require 'open-uri'
 
 class WidgetsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:update]
+  before_action :set_widget, only: %i[update edit]
 
   def index
     @widgets = policy_scope(Widget)
@@ -16,19 +17,19 @@ class WidgetsController < ApplicationController
   end
 
   def edit
-    @widget = Widget.find(params[:id])
-    authorize @widget
   end  
 
   def update
-    @widget = Widget.find(params[:id].to_i)
-    authorize @widget
-    puts params["youtube-link"]
+    # puts  params["youtube-link"]
     redirect_to edit_widget_path(@widget)
   end   
 
   private
 
+  def set_widget
+    @widget = Widget.find(params[:id].to_i)
+    authorize @widget
+  end
   
   def youtube_id(youtube_url)
     regex = %r{(?:youtube(?:-nocookie)?\.com/(?:[^/\n\s]+/\S+/|(?:v|e(?:mbed)?)/|\S*?[?&]v=)|youtu\.be/)([a-zA-Z0-9_-]{11})}
