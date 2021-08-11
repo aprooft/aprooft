@@ -15,10 +15,11 @@ function EditWidget(){
             <div class="content-dev">
                 <div class="input-box">
                     <div class="sf-input-box">
-                        <input type="text" id="youtube-link" name="youtube-link" size="30" placeholder="youtube video url" />
+                        <input type="text" id="youtube-link" name="youtube-link" placeholder="youtube video url" />
                     </div>
                     <div class="edit-icon">
-                        <img src="https://img.icons8.com/ios-glyphs/32/fa314a/edit--v1.png"/>
+                        <img src="https://img.icons8.com/ios-glyphs/30/409ae2/visible--v1.png"/>
+                        <img src="https://img.icons8.com/ios-glyphs/30/fa314a/edit--v1.png"/>
                     </div>
                 </div>
             </div>
