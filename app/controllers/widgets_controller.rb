@@ -20,7 +20,11 @@ class WidgetsController < ApplicationController
   end  
 
   def update
-    # puts  params["youtube-link"]
+    youtube_links = params["youtube-link"].reject{ |link| link=="" }
+    youtube_data = youtube_links.map{ |link| fecthYoutubeApi(link) } 
+    puts '-------------'
+    p youtube_data
+    puts '-------------'
     redirect_to edit_widget_path(@widget)
   end   
 
@@ -37,8 +41,8 @@ class WidgetsController < ApplicationController
     match[1] if match && !match[1].blank?
   end
 
-  def fecthYoutubeApi
-    input_video_id = youtube_id("https://www.youtube.com/watch?v=NBhxtnYvB64&t=25s")
+  def fecthYoutubeApi(youtube_url)
+    input_video_id = youtube_id(youtube_url)
     url = "https://www.googleapis.com/youtube/v3/videos?id=#{input_video_id}&key=#{ENV['GOOGLE_API_KEY']}&part=snippet,contentDetails,statistics,status"
     result_serialized = URI.open(url).read
     result = JSON.parse(result_serialized)
