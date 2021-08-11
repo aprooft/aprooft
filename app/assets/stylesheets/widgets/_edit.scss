@@ -1,12 +1,11 @@
 .widget-dev {
-   max-height: 700px;
-   max-width: 620px;
-   min-height: 650px;
-   border-radius: 8px;
-   box-shadow: 0 0 10px 3px rgb(187, 185, 185); 
+    min-height: 80vh;
+    max-width: 620px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 3px rgb(187, 185, 185); 
     .topbar-dev {
         width: 100%;
-        min-height:100px;
+        height:100px;
         background-color: #11101D;
         border-radius: 8px 8px 0 0;
         display: flex;
@@ -28,8 +27,7 @@
     max-width: 80%;
     margin: 30px auto;
     .input-box {
-        height: 60px;
-        border-radius: 3px;
+        height: 88px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -38,22 +36,18 @@
 
 .input-box-form {
     display: flex;
-    height: 80%;
+    height: 65%;
     width: 100%;
     input { 
         width: 100%;
-        // flex-grow: 1;
         padding: 8px;
-        border: 1px solid rgb(95, 96, 100);
+        border: 1px solid rgb(118, 120, 125);
         border-radius: 3px;
         box-shadow: 3px 3px 5px lightgrey;
     }
 }
 
 .input-box-icon {
-    float: right;
-    position: relative;
-
     i {
         font-size: 1.2em;
         opacity: 0.5;
@@ -62,7 +56,7 @@
     }
 
     :first-child {
-        margin-left: -62px;
+        margin-left: -37px;
     }
 }
 

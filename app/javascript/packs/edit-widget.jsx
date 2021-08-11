@@ -1,6 +1,21 @@
 import { h, render } from "preact";
 import register from 'preact-custom-element'
 
+function InputBox(){
+    return (
+        <div class="input-box">
+            <div class="input-box-form">
+                <input type="text" id="youtube-link" name="youtube-link" placeholder="youtube video url" />
+            </div>
+            <div class="input-box-icon">
+                <i class="fas fa-eye"></i>
+                {/* <i class="fas fa-pencil-alt"></i> */}
+            </div>
+            
+        </div>
+    )
+}
+
 function EditWidget(){
     return (
         <div class="widget-dev">
@@ -13,16 +28,7 @@ function EditWidget(){
                 </div>
             </div>
             <div class="content-dev">
-                <div class="input-box">
-                    <div class="input-box-form">
-                        <input type="text" id="youtube-link" name="youtube-link" placeholder="youtube video url" />
-                    </div>
-                    <div class="input-box-icon">
-                        <i class="fas fa-eye"></i>
-                        <i class="fas fa-pencil-alt"></i>
-                    </div>
-                    
-                </div>
+                <InputBox /><InputBox /><InputBox /><InputBox /><InputBox /> 
             </div>
         </div>
     );    
