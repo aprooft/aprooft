@@ -462,3 +462,36 @@ body {
 }
 
 // BACKGROUND
+.style-options-content.background {
+  padding: 0 40px;
+}
+
+.colorPicker {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 26px;
+}
+
+.title {
+  font-family: sans-serif;
+  line-height: 24px;
+  display: block;
+  padding: 8px 0;
+  color: aliceblue;
+  font-size: 18px;
+  margin-right: 26px;
+}
+
+.hex-input-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+#hexInput {
+  width: 30%;
+  border: none;
+  background: #1d1b31;
+  color: aliceblue;
+  padding: 8px 16px;
+  border-radius: 12px;
+}
