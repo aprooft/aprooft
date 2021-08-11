@@ -12,7 +12,9 @@ function EditWidget(){
                     <img src="https://img.icons8.com/ios-glyphs/55/ffffff/reddit.png"/>           
                 </div>
             </div>
-            <p>3</p>
+            <div class="content-dev">
+                <div class="input-box"></div>
+            </div>
         </div>
     );    
 }
