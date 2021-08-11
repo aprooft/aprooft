@@ -6,10 +6,10 @@ function EditWidget(){
         <div class="widget-dev">
             <div class="topbar-dev">
                 <div class="nav-btn">
-                    <img src="https://img.icons8.com/material-outlined/55/ffffff/youtube--v1.png"/>                
+                    <i class="fab fa-youtube"></i>
                 </div>
                 <div class="nav-btn">
-                    <img src="https://img.icons8.com/ios-glyphs/55/ffffff/reddit.png"/>           
+                     <i class="fab fa-reddit"></i>
                 </div>
             </div>
             <div class="content-dev">
