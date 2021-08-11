@@ -13,7 +13,14 @@ function EditWidget(){
                 </div>
             </div>
             <div class="content-dev">
-                <div class="input-box"></div>
+                <div class="input-box">
+                    <div class="sf-input-box">
+                        <input type="text" id="youtube-link" name="youtube-link" size="30" placeholder="youtube video url" />
+                    </div>
+                    <div class="edit-icon">
+                        <img src="https://img.icons8.com/ios-glyphs/32/fa314a/edit--v1.png"/>
+                    </div>
+                </div>
             </div>
         </div>
     );    

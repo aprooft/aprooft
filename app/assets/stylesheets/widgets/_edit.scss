@@ -34,6 +34,9 @@
         border: 0.1em solid #32a1ce;
         background-color: #ffffff;
         box-shadow: 3px 3px 2px 2px rgba(121, 120, 122, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 }
 
