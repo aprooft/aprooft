@@ -5,7 +5,8 @@ function InputBox(){
     return (
         <div class="input-box">
             <div class="input-box-form">
-                <input type="text" id="youtube-link" name="youtube-link" placeholder="youtube video url" />
+                <input type="text" id="youtube-link" name="youtube-link[]" placeholder="youtube video url" />
+
             </div>
             <div class="input-box-icon">
                 <i class="fas fa-eye"></i>
@@ -17,6 +18,7 @@ function InputBox(){
 }
 
 function EditWidget(){
+    const formUrl = window.location.href.split("/").slice(0, -1).join("/");
     return (
         <div class="widget-dev">
             <div class="topbar-dev">
@@ -27,12 +29,14 @@ function EditWidget(){
                      <i class="fab fa-reddit"></i>
                 </div>
             </div>
-            <div class="content-dev">
-                <InputBox /><InputBox /><InputBox /><InputBox /><InputBox /> 
-            </div>
-            <div class="submit-dev">
-                <a class="submit-dev-btn" href="#">Save</a>
-            </div>
+            <form action={formUrl} method="POST">
+                <div class="content-dev">
+                    <InputBox /><InputBox /><InputBox /><InputBox /><InputBox /> 
+                </div>
+                <div class="submit-dev">
+                    <input type="submit" class="submit-dev-btn" >Save</input>
+                </div>
+            </form>
         </div>
     );    
 }
