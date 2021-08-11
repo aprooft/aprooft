@@ -3,11 +3,12 @@ require 'open-uri'
 
 class WidgetsController < ApplicationController
   def index
+    @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
     @widgets = policy_scope(Widget)
   end
 
   def show
-    @youtube_data = fecthYoutubeApi
+    @youtube_data = fetchYoutubeApi
   end
 
   def create
@@ -21,7 +22,7 @@ class WidgetsController < ApplicationController
     match[1] if match && !match[1].blank?
   end
 
-  def fecthYoutubeApi
+  def fetchYoutubeApi
     input_video_id = youtube_id("https://www.youtube.com/watch?v=NBhxtnYvB64&t=25s")
     url = "https://www.googleapis.com/youtube/v3/videos?id=#{input_video_id}&key=#{ENV['GOOGLE_API_KEY']}&part=snippet,contentDetails,statistics,status"
     result_serialized = URI.open(url).read

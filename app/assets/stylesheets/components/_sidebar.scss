@@ -94,34 +94,6 @@ body {
   line-height: 50px;
 }
 
-.sidebar ul li input {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  border-radius: 12px;
-  outline: none;
-  border: none;
-  background: #1d1b31;
-  padding-left: 50px;
-  font-size: 18px;
-  color: aliceblue;
-}
-
-.sidebar ul li .bx-search {
-  z-index: 99;
-  color: aliceblue;
-  font-size: 22px;
-  transition: all 0.5s ease;
-  cursor: pointer;
-}
-
-.sidebar ul li .bx-search:hover {
-  background: aliceblue;
-  color: #1d1b31;
-}
-
 .sidebar ul li .nav-btn {
   color: aliceblue;
   display: flex;
@@ -133,7 +105,12 @@ body {
   cursor: pointer;
 }
 
-.sidebar ul li a:hover {
+.sidebar ul li .nav-btn.focus {
+  color: #11101d;
+  background: aliceblue;
+}
+
+.sidebar ul li .nav-btn:hover {
   color: #11101d;
   background: aliceblue;
 }
@@ -275,7 +252,7 @@ body {
   height: 100%;
   left: 170px;
   transition: all 0.5s ease;
-  opacity: 0;
+  opacity: 1;
 }
 
 .style-options-wrapper.active {
@@ -309,3 +286,179 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.style-options-content {
+  width: 100%;
+  height: calc(100% - 70px);
+}
+
+// LAYOUT
+.style-options-content.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 40px;
+  grid-gap: 70px;
+}
+
+.layout-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  height: 120px;
+  width: 120px;
+  background: #1d1b31;
+  border-radius: 12px;
+  & p {
+    margin: 0;
+    font-size: 24px;
+    color: aliceblue;
+  }
+}
+
+//SIZE
+
+.style-options-content.size {
+  padding: 0 40px 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.size-options {
+  display: flex;
+}
+
+.size-square-wrapper {
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.size-square {
+  background: #1d1b31;
+  border-radius: 12px;
+}
+
+.size-square.big {
+  height: 120px;
+  width: 120px;
+}
+
+.size-square.medium {
+  height: 80px;
+  width: 80px;
+}
+
+.size-square.small {
+  height: 60px;
+  width: 60px;
+}
+
+.sizes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: aliceblue;
+  & p {
+    margin: 0;
+  }
+}
+
+.size-letter {
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 26px;
+}
+.size-pixels {
+  font-size: 18px;
+}
+
+//FONTS
+.style-options-content.font {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.font-styles-wrapper h3,
+.font-size-wrapper h3,
+.font-color-wrapper h3 {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: aliceblue;
+}
+
+.select-font-wrapper select {
+  width: 100%;
+  background: #1d1b31;
+  border: none;
+  border-radius: 12px;
+  color: aliceblue;
+  height: 48px;
+  font-size: 18px;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.font-size-slider {
+  display: flex;
+  justify-content: space-between;
+  & p {
+    margin: 0;
+    font-size: 18px;
+    color: aliceblue;
+  }
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 10px;
+  margin: 0.5em 0;
+  background: aliceblue;
+  border-radius: 12px;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #1d1b31; /* Green background */
+  border-radius: 50%;
+  cursor: grab; /* Cursor on hover */
+  line-height: 1;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #1d1b31; /* Green background */
+  cursor: grab; /* Cursor on hover */
+  border-radius: 50%;
+  border: 1px solid lightgray;
+  line-height: 1;
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.08), 1px 1px 2px rgba(0, 0, 0, 0.15);
+
+}
+
+.slider::-moz-range-thumb:active {
+  cursor: grabbing;
+}
+
+.slider::-webkit-slider-thumb:active {
+  cursor: grabbing;
+}
+
+.basic-color-picker {
+  cursor: pointer;
+  appearance: none;
+  border: none;
+}
+
+// BACKGROUND
