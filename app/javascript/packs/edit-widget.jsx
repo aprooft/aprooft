@@ -34,6 +34,7 @@ function EditWidget(){
                     <InputBox /><InputBox /><InputBox /><InputBox /><InputBox /> 
                 </div>
                 <div class="submit-dev">
+                    <input type="hidden" name="_method" value="PATCH" />
                     <input type="submit" class="submit-dev-btn" >Save</input>
                 </div>
             </form>

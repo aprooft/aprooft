@@ -2,6 +2,8 @@ require 'json'
 require 'open-uri'
 
 class WidgetsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:update]
+
   def index
     @widgets = policy_scope(Widget)
   end
@@ -18,8 +20,16 @@ class WidgetsController < ApplicationController
     authorize @widget
   end  
 
+  def update
+    @widget = Widget.find(params[:id].to_i)
+    authorize @widget
+    puts params["youtube-link"]
+    redirect_to edit_widget_path(@widget)
+  end   
+
   private
 
+  
   def youtube_id(youtube_url)
     regex = %r{(?:youtube(?:-nocookie)?\.com/(?:[^/\n\s]+/\S+/|(?:v|e(?:mbed)?)/|\S*?[?&]v=)|youtu\.be/)([a-zA-Z0-9_-]{11})}
     match = regex.match(youtube_url)
