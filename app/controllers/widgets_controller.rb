@@ -21,10 +21,16 @@ class WidgetsController < ApplicationController
 
   def update
     youtube_links = params["youtube-link"].reject{ |link| link=="" }
-    youtube_data = youtube_links.map{ |link| fecthYoutubeApi(link) } 
+    youtube_datas = youtube_links.map{ |link| fecthYoutubeApi(link) } 
     puts '-------------'
-    p youtube_data
+    p youtube_datas
     puts '-------------'
+    youtube_datas.each do |youtube_content|
+      @youtube_row = Youtube.new(youtube_content)
+      @youtube_row.widget = @widget
+      @youtube_row.save
+    end
+
     redirect_to edit_widget_path(@widget)
   end   
 
@@ -60,8 +66,7 @@ class WidgetsController < ApplicationController
     }
     channel_id = video_result[:channel_id]
     channel_url = "https://www.googleapis.com/youtube/v3/channels?part=snippet&fields=items%2Fsnippet%2Fthumbnails%2Fdefault&id=#{channel_id}&key=#{ENV['GOOGLE_API_KEY']}"
-    video_result["channel_pic"] =
-      JSON.parse(URI.open(channel_url).read)["items"][0]["snippet"]["thumbnails"]["default"]["url"]
-    return video_result
+    video_result["channel_pic"] = JSON.parse(URI.open(channel_url).read)["items"][0]["snippet"]["thumbnails"]["default"]["url"]
+    return video_result.except(:channel_id)
   end
 end
