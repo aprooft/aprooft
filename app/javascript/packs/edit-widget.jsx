@@ -30,6 +30,9 @@ function EditWidget(){
             <div class="content-dev">
                 <InputBox /><InputBox /><InputBox /><InputBox /><InputBox /> 
             </div>
+            <div class="submit-dev">
+                <a class="submit-dev-btn" href="#">Save</a>
+            </div>
         </div>
     );    
 }

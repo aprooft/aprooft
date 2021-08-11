@@ -27,7 +27,7 @@
     max-width: 80%;
     margin: 30px auto;
     .input-box {
-        height: 88px;
+        height: 75px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -36,7 +36,7 @@
 
 .input-box-form {
     display: flex;
-    height: 65%;
+    height: 72%;
     width: 100%;
     input { 
         width: 100%;
@@ -59,8 +59,24 @@
         margin-left: -37px;
     }
 }
-
     
+.submit-dev {
+    text-align: center;
+    padding-top: 20px;
+}
 
+.submit-dev-btn {
+    color: #20EFE3;
+    padding: 12px 38px;
+    border-radius: 3px;
+    transition: background 0.3s ease;
+    background: #11101D;
+}
+
+.submit-dev-btn:hover {
+    background: #20EFE3;
+    color: #11101D;
+    text-decoration: none;
+}
 
 
