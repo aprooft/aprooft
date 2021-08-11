@@ -22,9 +22,9 @@ class WidgetsController < ApplicationController
   def update
     youtube_links = params["youtube-link"].reject{ |link| link=="" }
     youtube_datas = youtube_links.map{ |link| fecthYoutubeApi(link) } 
-    puts '-------------'
-    p youtube_datas
-    puts '-------------'
+    # puts '-------------'
+    # p youtube_datas
+    # puts '-------------'
     youtube_datas.each do |youtube_content|
       @youtube_row = Youtube.new(youtube_content)
       @youtube_row.widget = @widget
