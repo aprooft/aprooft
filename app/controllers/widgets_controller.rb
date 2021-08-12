@@ -9,7 +9,11 @@ class WidgetsController < ApplicationController
     def index
         @widgets = policy_scope(Widget)
         #authorize @widgets
-        @widgets = Widget.all
+        if params[:query].present?
+          @widgets = Widget.search_by_title(params[:query])
+        else
+          @widgets = Widget.all
+        end
     end
 
   def show
@@ -18,6 +22,11 @@ class WidgetsController < ApplicationController
 
   def create
   end
+
+  def edit
+    @widget = Widget.find(params[:id])
+    authorize @widget
+  end  
 
   private
 
