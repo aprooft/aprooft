@@ -2,28 +2,43 @@ require 'json'
 require 'open-uri'
 
 class WidgetsController < ApplicationController
-  def index
-    @widgets = policy_scope(Widget)
-  end
 
-    def index
-        @widgets = policy_scope(Widget)
-        #authorize @widgets
-        if params[:query].present?
-          @widgets = Widget.search_by_title(params[:query])
-        else
-          @widgets = Widget.all
-        end
-    end
+
+  def index
+      @widgets = policy_scope(Widget)
+       authorize @widgets
+      if params[:query].present?
+        @widgets = Widget.search_by_title(params[:query])
+      else
+        @widgets = Widget.all
+      end
+  end
 
   def show
     @youtube_data = fecthYoutubeApi
   end
 
+  def new
+    @widget = Widget.new
+    authorize @widget
+  end
+
   def create
+    @widget = Widget.new(widget_params)
+    @widget.user_id = current_user.id
+    if @widget.save
+      redirect_to widgets_path
+    else
+      render :new
+    end
+    authorize @widget
   end
 
   private
+
+  def widget_params
+    params.require(:widget).permit(:user_id, :product_title, :product_pic)
+  end
 
   def youtube_id(youtube_url)
     regex = %r{(?:youtube(?:-nocookie)?\.com/(?:[^/\n\s]+/\S+/|(?:v|e(?:mbed)?)/|\S*?[?&]v=)|youtu\.be/)([a-zA-Z0-9_-]{11})}
