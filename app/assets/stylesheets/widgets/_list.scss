@@ -2,3 +2,20 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.main-content {
+    display: flex;
+    height: 100vh;
+}
+
+.left-column-sidebar {
+    height: 100%;
+    display: flex;
+}
+
+.right-column-sidebar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}

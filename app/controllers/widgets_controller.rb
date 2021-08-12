@@ -6,17 +6,18 @@ class WidgetsController < ApplicationController
   before_action :set_widget, only: %i[update edit preview]
 
   def index
-      @widgets = policy_scope(Widget)
-      #authorize @widgets
-      if params[:query].present?
-        @widgets = Widget.search_by_title(params[:query])
-      else
-        @widgets = Widget.all
-      end
+    @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
+    @widgets = policy_scope(Widget)
+
+    if params[:query].present?
+      @widgets = Widget.search_by_title(params[:query])
+    else
+      @widgets = Widget.all
+    end
   end
 
   def show
-    @youtube_data = fecthYoutubeApi
+    @youtube_data = fetchYoutubeApi
   end
 
   def create
@@ -27,7 +28,7 @@ class WidgetsController < ApplicationController
 
   def preview
     youtube_links_result = params["youtube_links"].reject{ |link| link=="" }
-    render json: youtube_links_result.map{ |link| fecthYoutubeApi(link) }
+    render json: youtube_links_result.map{ |link| fetchYoutubeApi(link) }
   end  
 
   def update
@@ -47,7 +48,7 @@ class WidgetsController < ApplicationController
     match[1] if match && !match[1].blank?
   end
 
-  def fecthYoutubeApi(youtube_url)
+  def fetchYoutubeApi(youtube_url)
     input_video_id = youtube_id(youtube_url)
     url = "https://www.googleapis.com/youtube/v3/videos?id=#{input_video_id}&key=#{ENV['GOOGLE_API_KEY']}&part=snippet,contentDetails,statistics,status"
     result_serialized = URI.open(url).read

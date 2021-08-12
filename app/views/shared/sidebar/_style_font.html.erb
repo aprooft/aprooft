@@ -1,0 +1,26 @@
+<div class="style-options-content font">
+  <div class="font-styles-wrapper">
+    <h3>Style</h3>
+    <div class="select-font-wrapper">
+      <select id="select-font"> %>
+        <% @fonts.each do |key, value| %>
+          <option value=<%= value %>><%= key.capitalize %>
+          </option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+  <div class="font-size-wrapper">
+    <h3>Size</h3>
+    <div class="font-size-slider">
+      <input type="range" min="8" max="42" value="18" class="slider" id="font-size-slider">
+      <p class="input-result" id="font-size-value">18px</p>
+    </div>
+  </div>
+  <div class="font-color-wrapper">
+    <h3>Color</h3>
+    <div class="font-color-picker">
+      <input type="color" class="basic-color-picker">
+    </div>
+  </div>
+</div>
