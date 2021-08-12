@@ -6,6 +6,16 @@ class WidgetsController < ApplicationController
     @widgets = policy_scope(Widget)
   end
 
+    def index
+        @widgets = policy_scope(Widget)
+        #authorize @widgets
+        if params[:query].present?
+          @widgets = Widget.search_by_title(params[:query])
+        else
+          @widgets = Widget.all
+        end
+    end
+
   def show
     @youtube_data = fecthYoutubeApi
   end
