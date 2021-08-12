@@ -1,0 +1,62 @@
+<div class="sidebar">
+    <div class="logo-content">
+      <div class="logo">
+        <i class='bx bxs-widget'></i>
+        <div class="logo-name">Aprooft</div>
+      </div>
+      <i class="bx bx-menu" id="btn"></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+        <a href="#">
+          <i class="bx bx-search"></i>
+          <input type="text" placeholder="Search...">
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-user"></i>
+          <span class="links-name">User</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-pie-chart-alt-2"></i>
+          <span class="links-name">Analytics</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-folder"></i>
+          <span class="links-name">Files</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-cog"></i>
+          <span class="links-name">Settings</span>
+        </a>
+      </li>
+    </ul>
+    <div class="profile-content">  
+      <% if user_signed_in? %>  
+        <div class="profile">
+          <div class="profile-details">
+            <img src="profile.jpg" alt="profile-pic">
+            <div class="name-job">
+              <div class="name">John Doe</div>
+              <div class="job">Marketer</div>
+            </div>
+          </div>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="bx bx-log-out" id="log-out"></i>
+          <% end %>  
+        </div>
+      <% else %>
+        <%= link_to "Login", new_user_session_path %>
+      <% end %>
+    </div>
+  </div>
+  <div class="home-content">
+    <div class="text">Home Content</div>
+  </div>
