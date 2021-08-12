@@ -1,5 +1,6 @@
 import { h, render } from "preact";
 import register from 'preact-custom-element'
+import {useState} from 'preact/hooks'
 
 function InputBox(){
     return (
@@ -18,6 +19,8 @@ function InputBox(){
 }
 
 function EditWidget(){
+    let [previewData, setPreviewData] = useState([]);
+
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
 
     function preview(){
@@ -38,7 +41,7 @@ function EditWidget(){
         }).then(response => {
             response
                 .json()
-                .then(res => console.log(res));
+                .then(res => setPreviewData(res));
         })
     }
     
@@ -54,6 +57,7 @@ function EditWidget(){
             </div>
             <form action={formUrl} method="POST">
                 <div class="content-dev">
+                    { previewData && previewData.map(d => <p>{d.video_id}</p>) }
                     <InputBox /><InputBox /><InputBox /><InputBox /><InputBox /> 
                 </div>
                 <div class="submit-dev">
