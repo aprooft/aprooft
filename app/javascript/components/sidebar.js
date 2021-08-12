@@ -9,20 +9,6 @@ const sideBar = () => {
 
   const styleOptionContents = document.querySelectorAll(".style-options-content")
 
-  const layoutStyle = document.querySelector("#layout-style");
-  const layoutContent = document.querySelector(".style-options-content.layout")
-
-  const sizeStyle = document.querySelector("#size-style");
-  const sizeContent = document.querySelector(".style-options-content.size")
-
-  const fontStyle = document.querySelector("#font-style");
-  const fontContent = document.querySelector(".style-options-content.font")
-
-  const colors = document.querySelector("#colors-style");
-
-  const backgroundStyle = document.querySelector("#background-style");
-  const backgroundContent = document.querySelector(".style-options-content.background")
-
   const styleOptionsWrapper = document.querySelector(".style-options-wrapper");
   const styleSectionName = document.querySelector(".style-section-name");
 
@@ -73,39 +59,34 @@ const sideBar = () => {
     })
   })
 
-  layoutStyle.addEventListener("click", () => {
-    clearStyleOptionContent();
-    styleOptionsWrapper.classList.add("active");
-    styleSectionName.innerText = "Layout";
-    layoutContent.classList.add("active");
+
+  const styleKeys = ["size", "layout", "background", "font", "colors"];
+
+  const styleElement = (key) => {
+    return document.getElementById(`${key}-style`)
+  }
+
+  const contentElement = (key) => {
+    return document.querySelector(`.style-options-content.${key}`)
+  }
+
+  styleKeys.forEach((key) => {
+    styleElement(key).addEventListener("click", () => {
+      addToggle(key);
+    })
   })
 
-  sizeStyle.addEventListener("click", () => {
-    clearStyleOptionContent();
-    styleOptionsWrapper.classList.add("active");
-    styleSectionName.innerText = "Size";
-    sizeContent.classList.add("active");
-  })
-
-  fontStyle.addEventListener("click", () => {
-    clearStyleOptionContent();
-    styleOptionsWrapper.classList.add("active");
-    styleSectionName.innerText = "Font";
-    fontContent.classList.add("active");
-  })
-
-  colors.addEventListener("click", () => {
-    clearStyleOptionContent();
-    styleOptionsWrapper.classList.add("active");
-    styleSectionName.innerText = "Colors"
-  })
-
-  backgroundStyle.addEventListener("click", () => {
-    clearStyleOptionContent();
-    styleOptionsWrapper.classList.add("active");
-    styleSectionName.innerText = "Background";
-    backgroundContent.classList.add("active");
-  })
+  const addToggle = (key) => {
+    if (!contentElement(key).classList.contains("active")) {
+      clearStyleOptionContent();
+      styleOptionsWrapper.classList.add("active");
+      styleSectionName.innerText = key;
+      contentElement(key).classList.add("active");
+    } else {
+      styleOptionsWrapper.classList.remove("active");
+      contentElement(key).classList.remove("active")
+    }
+  }
 }
 
 export { sideBar };
