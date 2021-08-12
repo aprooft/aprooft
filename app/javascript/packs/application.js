@@ -7,6 +7,7 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import iro from '@jaames/iro';
 
 Rails.start()
 Turbolinks.start()
@@ -28,5 +29,30 @@ import { sideBar } from "../components/sidebar"
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  // Create a new color picker instance
+  // https://iro.js.org/guide.html#getting-started
+  var colorPicker = new iro.ColorPicker(".colorPicker", {
+    // color picker options
+    // Option guide: https://iro.js.org/guide.html#color-picker-options
+    width: 200,
+    color: "rgb(255, 0, 0)",
+    borderWidth: 1,
+    borderColor: "#fff",
+  });
+
+  var hexInput = document.getElementById("hexInput");
+
+  // https://iro.js.org/guide.html#color-picker-events
+  colorPicker.on(["color:init", "color:change"], function (color) {
+    // Show the current color in different formats
+    // Using the selected color: https://iro.js.org/guide.html#selected-color-api
+    hexInput.value = color.hexString;
+  });
+
+  hexInput.addEventListener('change', function () {
+    colorPicker.color.hexString = this.value;
+  });
+
+
   sideBar();
 });
