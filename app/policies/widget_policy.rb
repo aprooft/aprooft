@@ -12,4 +12,8 @@ class WidgetPolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def preview?
+    true
+  end  
 end

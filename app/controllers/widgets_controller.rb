@@ -3,21 +3,17 @@ require 'open-uri'
 
 class WidgetsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:update]
-  before_action :set_widget, only: %i[update edit]
+  before_action :set_widget, only: %i[update edit preview]
 
   def index
-    @widgets = policy_scope(Widget)
+      @widgets = policy_scope(Widget)
+      #authorize @widgets
+      if params[:query].present?
+        @widgets = Widget.search_by_title(params[:query])
+      else
+        @widgets = Widget.all
+      end
   end
-
-    def index
-        @widgets = policy_scope(Widget)
-        #authorize @widgets
-        if params[:query].present?
-          @widgets = Widget.search_by_title(params[:query])
-        else
-          @widgets = Widget.all
-        end
-    end
 
   def show
     @youtube_data = fecthYoutubeApi
@@ -27,6 +23,10 @@ class WidgetsController < ApplicationController
   end
 
   def edit
+  end  
+
+  def preview
+
   end  
 
   def update
