@@ -26,18 +26,24 @@
       </div>
     </li>
   </ul>
-  <div class="profile-content">
-    <div class="profile">
-      <div class="profile-details">
-        <img src="profile.png" alt="profile-pic">
-        <div class="name-job">
-          <div class="name">John Doe</div>
-          <div class="job">Marketer</div>
+  <div class="profile-content">  
+      <% if user_signed_in? %>  
+        <div class="profile">
+          <div class="profile-details">
+            <img src="profile.jpg" alt="profile-pic">
+            <div class="name-job">
+              <div class="name">John Doe</div>
+              <div class="job">Marketer</div>
+            </div>
+          </div>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="bx bx-log-out" id="log-out"></i>
+          <% end %>  
         </div>
-      </div>
-      <i class="bx bx-log-out" id="log-out"></i>
+      <% else %>
+        <%= link_to "Login", new_user_session_path %>
+      <% end %>
     </div>
-  </div>
 </div>
 <div class="stylebar-wrapper">
   <div class="stylebar">
@@ -55,7 +61,6 @@
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 5.33325V9.33325H18.6667V25.3333H22.6667V9.33325H29.3333V5.33325H12ZM4 15.9999H8V25.3333H12V15.9999H16V11.9999H4V15.9999Z" fill="#F0F8FF"/>
       </svg>
-    </div>
     <div class="style" id="colors-style">
     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#clip0)">
