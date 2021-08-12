@@ -12,4 +12,5 @@ class Youtube < ApplicationRecord
   validates :channel_pic, presence: true
   validates :description, presence: true
   validates :etag, presence: true
+  validates :video_id, uniqueness: { scope: :widget_id }
 end

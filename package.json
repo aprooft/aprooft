@@ -2,11 +2,13 @@
   "name": "aprooft",
   "private": true,
   "dependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.14.9",
     "@jaames/iro": "^5.5.2",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.0",
+    "babel": "^6.23.0",
     "bootstrap": "4.6",
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
@@ -18,7 +20,6 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "@babel/plugin-transform-react-jsx": "^7.14.9",
     "webpack-dev-server": "^3.11.2"
   }
 }
