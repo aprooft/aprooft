@@ -5,17 +5,13 @@ class WidgetsController < ApplicationController
   def index
     @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
     @widgets = policy_scope(Widget)
-  end
 
-    def index
-        @widgets = policy_scope(Widget)
-        #authorize @widgets
-        if params[:query].present?
-          @widgets = Widget.search_by_title(params[:query])
-        else
-          @widgets = Widget.all
-        end
+    if params[:query].present?
+      @widgets = Widget.search_by_title(params[:query])
+    else
+      @widgets = Widget.all
     end
+  end
 
   def show
     @youtube_data = fetchYoutubeApi
