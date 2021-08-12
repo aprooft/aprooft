@@ -1,17 +1,30 @@
 const sideBar = () => {
-  const btn = document.getElementById("btn");
   const sidebar = document.querySelector('.sidebar');
-  const stylesBtn = document.getElementById('btn-styles');
   const styleBar = document.querySelector(".stylebar-wrapper");
+
+  const hamburgerMenu = document.getElementById("sidebar-hamburger-menu");
+  const navBtns = document.querySelectorAll(".nav-btn");
+  const stylesBtn = document.getElementById('btn-styles');
   const styles = document.querySelectorAll(".style");
-  const layout = document.querySelector("#layout-style");
-  const size = document.querySelector("#size-style");
-  const font = document.querySelector("#font-style");
+
+  const styleOptionContents = document.querySelectorAll(".style-options-content")
+
+  const layoutStyle = document.querySelector("#layout-style");
+  const layoutContent = document.querySelector(".style-options-content.layout")
+
+  const sizeStyle = document.querySelector("#size-style");
+  const sizeContent = document.querySelector(".style-options-content.size")
+
+  const fontStyle = document.querySelector("#font-style");
+  const fontContent = document.querySelector(".style-options-content.font")
+
   const colors = document.querySelector("#colors-style");
-  const background = document.querySelector("#background-style");
+
+  const backgroundStyle = document.querySelector("#background-style");
+  const backgroundContent = document.querySelector(".style-options-content.background")
+
   const styleOptionsWrapper = document.querySelector(".style-options-wrapper");
   const styleSectionName = document.querySelector(".style-section-name");
-  const navBtns = document.querySelectorAll(".nav-btn");
 
   // const styleOptionsContent = document.querySelector(".style-options-content");
 
@@ -23,24 +36,28 @@ const sideBar = () => {
   //   fontSizeValue.innerText = `${e.target.value}px`;
   // });
 
+  const clearStyleOptionContent = () => {
+    styleOptionContents.forEach((styleOptionContent) => {
+      styleOptionContent.classList.remove("active");
+    })
+  }
+
   navBtns.forEach((navBtn) => {
-    navBtn.addEventListener("click", () => {
-      sidebar.classList.toggle("active");
-      if (styleBar.classList.contains("active")) {
-        styleBar.classList.remove("active");
-      }
-      navBtns.forEach((navBtn) => {
-        navBtn.classList.remove("focus");
-      })
-      navBtn.classList.add("focus");
+    navBtn.addEventListener("click", (e) => {
+      styleOptionsWrapper.classList.remove("active");
+      sidebar.classList.add("active");
+      navBtns.forEach((navBtn) => { navBtn.classList.remove("focus") })
+      e.currentTarget.classList.toggle("focus");
     })
   })
 
-  btn.addEventListener("click", () => {
+  hamburgerMenu.addEventListener("click", () => {
     sidebar.classList.toggle("active");
+    styleOptionsWrapper.classList.remove("active");
     if (styleBar.classList.contains("active")) {
       styleBar.classList.remove("active");
     }
+    navBtns.forEach((navBtn) => { navBtn.classList.remove("focus") })
   })
 
   stylesBtn.addEventListener("click", () => {
@@ -58,28 +75,38 @@ const sideBar = () => {
     })
   })
 
-  layout.addEventListener("click", () => {
-    styleSectionName.innerText = "Layout"
+  layoutStyle.addEventListener("click", () => {
+    clearStyleOptionContent();
+    styleOptionsWrapper.classList.add("active");
+    styleSectionName.innerText = "Layout";
+    layoutContent.classList.add("active");
   })
 
-  size.addEventListener("click", () => {
+  sizeStyle.addEventListener("click", () => {
+    clearStyleOptionContent();
     styleOptionsWrapper.classList.add("active");
-    styleSectionName.innerText = "Size"
+    styleSectionName.innerText = "Size";
+    sizeContent.classList.add("active");
   })
 
-  font.addEventListener("click", () => {
+  fontStyle.addEventListener("click", () => {
+    clearStyleOptionContent();
     styleOptionsWrapper.classList.add("active");
-    styleSectionName.innerText = "Font"
+    styleSectionName.innerText = "Font";
+    fontContent.classList.add("active");
   })
 
   colors.addEventListener("click", () => {
+    clearStyleOptionContent();
     styleOptionsWrapper.classList.add("active");
     styleSectionName.innerText = "Colors"
   })
 
-  background.addEventListener("click", () => {
+  backgroundStyle.addEventListener("click", () => {
+    clearStyleOptionContent();
     styleOptionsWrapper.classList.add("active");
-    styleSectionName.innerText = "Background"
+    styleSectionName.innerText = "Background";
+    backgroundContent.classList.add("active");
   })
 }
 

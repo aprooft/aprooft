@@ -7,12 +7,12 @@
   font-family: "Poppins", sans-serif;
 }
 
-body {
-  position: relative;
-  min-height: 100vh;
-  width: 100%;
-  overflow: hidden;
-}
+// body {
+//   position: relative;
+//   min-height: 100vh;
+//   width: 100%;
+//   overflow: hidden;
+// }
 
 .sidebar {
   position: fixed;
@@ -56,7 +56,7 @@ body {
   font-weight: 400;
 }
 
-.sidebar #btn {
+.sidebar #sidebar-hamburger-menu {
   position: absolute;
   color: aliceblue;
   left: 50%;
@@ -70,7 +70,7 @@ body {
   cursor: pointer;
 }
 
-.sidebar.active #btn {
+.sidebar.active #sidebar-hamburger-menu {
   left: 90%;
 }
 
@@ -259,7 +259,7 @@ body {
   height: 100%;
   left: 170px;
   transition: all 0.5s ease;
-  opacity: 1;
+  opacity: 0;
 }
 
 .style-options-wrapper.active {
@@ -301,10 +301,14 @@ body {
 
 // LAYOUT
 .style-options-content.layout {
-  display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 40px;
   grid-gap: 70px;
+  display: none;
+}
+
+.style-options-content.layout.active {
+  display: grid;
 }
 
 .layout-options {
@@ -327,9 +331,13 @@ body {
 
 .style-options-content.size {
   padding: 0 40px 60px 40px;
-  display: flex;
   flex-direction: column;
   justify-content: space-between;
+  display: none;
+}
+
+.style-options-content.size.active {
+  display: flex;
 }
 
 .size-options {
@@ -388,6 +396,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  display: none;
+}
+
+.style-options-content.font.active {
+  display: flex;
 }
 
 .font-styles-wrapper h3,
@@ -432,21 +445,21 @@ body {
 }
 
 .slider::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
+  -webkit-appearance: none;
   appearance: none;
-  width: 25px; /* Set a specific slider handle width */
-  height: 25px; /* Slider handle height */
-  background: #1d1b31; /* Green background */
+  width: 25px;
+  height: 25px;
+  background: #1d1b31;
   border-radius: 50%;
-  cursor: grab; /* Cursor on hover */
+  cursor: grab;
   line-height: 1;
 }
 
 .slider::-moz-range-thumb {
-  width: 25px; /* Set a specific slider handle width */
-  height: 25px; /* Slider handle height */
-  background: #1d1b31; /* Green background */
-  cursor: grab; /* Cursor on hover */
+  width: 25px;
+  height: 25px;
+  background: #1d1b31;
+  cursor: grab;
   border-radius: 50%;
   border: 1px solid lightgray;
   line-height: 1;
@@ -470,7 +483,12 @@ body {
 
 // BACKGROUND
 .style-options-content.background {
-  padding: 0 40px;
+  padding: 40px;
+  display: none;
+}
+
+.style-options-content.background.active {
+  display: block;
 }
 
 .colorPicker {
