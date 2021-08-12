@@ -26,8 +26,6 @@ function EditWidget(){
         for (let i of input) {
             url.push(i.value);
         }
-        console.log(input);
-
 
         fetch(formUrl + '/preview', {
             method:'POST',
@@ -37,7 +35,11 @@ function EditWidget(){
                 'content-type': 'application/json'
             },
             mode: 'cors',
-        }).then(response => {})
+        }).then(response => {
+            response
+                .json()
+                .then(res => console.log(res));
+        })
     }
     
     return (

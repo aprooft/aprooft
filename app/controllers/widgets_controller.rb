@@ -26,20 +26,11 @@ class WidgetsController < ApplicationController
   end  
 
   def preview
-    p '-----------'
-    p 'hello'
-    p '-----------'
+    youtube_links_result = params["youtube_links"].reject{ |link| link=="" }
+    render json: youtube_links_result.map{ |link| fecthYoutubeApi(link) }
   end  
 
   def update
-    # youtube_links = params["youtube-link"].reject{ |link| link=="" }
-    # youtube_datas = youtube_links.map{ |link| fecthYoutubeApi(link) } 
-    # youtube_datas.each do |youtube_content|
-    #   @youtube_row = Youtube.new(youtube_content)
-    #   @youtube_row.widget = @widget
-    #   @youtube_row.save
-    # end
-
     # redirect_to edit_widget_path(@widget)
   end   
 
