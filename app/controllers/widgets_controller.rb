@@ -23,6 +23,11 @@ class WidgetsController < ApplicationController
   def create
   end
 
+  def edit
+    @widget = Widget.find(params[:id])
+    authorize @widget
+  end  
+
   private
 
   def youtube_id(youtube_url)
