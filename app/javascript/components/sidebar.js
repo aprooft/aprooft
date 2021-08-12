@@ -26,15 +26,13 @@ const sideBar = () => {
   const styleOptionsWrapper = document.querySelector(".style-options-wrapper");
   const styleSectionName = document.querySelector(".style-section-name");
 
-  // const styleOptionsContent = document.querySelector(".style-options-content");
+  const fontSizeSlider = document.getElementById("font-size-slider");
+  const fontSizeValue = document.getElementById("font-size-value");
 
-  // const fontSizeSlider = document.getElementById("font-size-slider");
-  // const fontSizeValue = document.getElementById("font-size-value");
-
-  // fontSizeSlider.addEventListener("input", e => {
-  //   // demoText.style.fontSize = `${e.target.value}px`;
-  //   fontSizeValue.innerText = `${e.target.value}px`;
-  // });
+  fontSizeSlider.addEventListener("input", e => {
+    // demoText.style.fontSize = `${e.target.value}px`;
+    fontSizeValue.innerText = `${e.target.value}px`;
+  });
 
   const clearStyleOptionContent = () => {
     styleOptionContents.forEach((styleOptionContent) => {

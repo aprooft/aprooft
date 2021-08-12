@@ -245,9 +245,16 @@
   cursor: pointer;
 }
 
+.style:hover {
+  background: aliceblue;
+  & path {
+    fill: #11101d;
+  }
+}
+
 .style.focus {
   background: aliceblue;
-  & svg path {
+  & path {
     fill: #11101d;
   }
 }
@@ -320,11 +327,22 @@
   width: 120px;
   background: #1d1b31;
   border-radius: 12px;
+  cursor: pointer;
   & p {
     margin: 0;
     font-size: 24px;
     color: aliceblue;
   }
+}
+
+.layout-options:hover {
+  background: aliceblue;
+    & p {
+      color: #11101d;
+    }
+    & path {
+      fill: #11101d;
+    }
 }
 
 //SIZE
@@ -342,6 +360,15 @@
 
 .size-options {
   display: flex;
+  cursor: pointer;
+}
+
+.size-options:hover {
+  background-color: aliceblue;
+  border-radius: 12px;
+  & .sizes p {
+    color: #11101d;
+  }
 }
 
 .size-square-wrapper {
@@ -513,7 +540,7 @@
 }
 
 #hexInput {
-  width: 30%;
+  width: 100px;
   border: none;
   background: #1d1b31;
   color: aliceblue;
