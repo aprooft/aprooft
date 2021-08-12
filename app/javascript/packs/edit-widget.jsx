@@ -48,10 +48,10 @@ function EditWidget(){
     return (
         <div class="widget-dev">
             <div class="topbar-dev">
-                <div class="nav-btn">
+                <div class="widget-nav-btn">
                     <i class="fab fa-youtube"></i>
                 </div>
-                <div class="nav-btn">
+                <div class="widget-nav-btn">
                      <i class="fab fa-reddit"></i>
                 </div>
             </div>
