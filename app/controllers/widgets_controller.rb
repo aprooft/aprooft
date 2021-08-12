@@ -2,7 +2,7 @@ require 'json'
 require 'open-uri'
 
 class WidgetsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:update]
+  skip_before_action :verify_authenticity_token, only: %i[update preview]
   before_action :set_widget, only: %i[update edit preview]
 
   def index
@@ -26,22 +26,21 @@ class WidgetsController < ApplicationController
   end  
 
   def preview
-
+    p '-----------'
+    p 'hello'
+    p '-----------'
   end  
 
   def update
-    youtube_links = params["youtube-link"].reject{ |link| link=="" }
-    youtube_datas = youtube_links.map{ |link| fecthYoutubeApi(link) } 
-    # puts '-------------'
-    # p youtube_datas
-    # puts '-------------'
-    youtube_datas.each do |youtube_content|
-      @youtube_row = Youtube.new(youtube_content)
-      @youtube_row.widget = @widget
-      @youtube_row.save
-    end
+    # youtube_links = params["youtube-link"].reject{ |link| link=="" }
+    # youtube_datas = youtube_links.map{ |link| fecthYoutubeApi(link) } 
+    # youtube_datas.each do |youtube_content|
+    #   @youtube_row = Youtube.new(youtube_content)
+    #   @youtube_row.widget = @widget
+    #   @youtube_row.save
+    # end
 
-    redirect_to edit_widget_path(@widget)
+    # redirect_to edit_widget_path(@widget)
   end   
 
   private
