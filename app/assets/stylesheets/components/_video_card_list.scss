@@ -4,21 +4,56 @@
     background: white;
     box-shadow: 0 0 1px rgba(0,0,0,0.2);
     display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
     align-items: center;
     margin-bottom: 15px;
-    img {
+    .video-card-list-thumbnail {
+        align-items: center;
+        flex-direction: row;
+        border-radius: 5px;
+        box-sizing: border-box;
+        display: flex;
+        overflow: hidden;
+        position: relative;
         height: 100%;
-        width: 40%;
-        object-fit: cover;
+        width: 155px;
+        flex-shrink: 0;
+        flex-grow: 0;
     }
+    
     .video-card-list-info {
+        display: flex;
         flex-direction: column;
-        flex-grow: 1;
+        // flex-grow: 1;
         justify-content: space-between;
         box-sizing: border-box;
         padding: 10px 8px;
     }
 
+}
+
+.list-info-thumbnail {
+    display: block;
+    img {
+        height: 144px;
+        width: 190px;
+        // aspect-ratio: auto 158 / 137;
+        position: relative;
+        top: 2px;
+        left: -3px;
+    }
+}
+
+.list-info-playicon {
+    color: #fff;  
+    opacity: 0.87;
+    position: absolute;
+    left: 43%;
+    top: 27%;
+    font-size: 39px;
+    // transform: translate(-50%,-50%);
 }
 
 .list-info-title {

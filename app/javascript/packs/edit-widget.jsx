@@ -23,7 +23,14 @@ function YoutubePreview(props) {
 
     return (
         <div class="video-card-list">
-            <img src={d.thumbnail} />
+            <div class="video-card-list-thumbnail">
+                <div class="list-info-thumbnail">
+                    <img src={d.thumbnail} />
+                </div>
+                <div class="list-info-playicon">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+            </div>
             <div class="video-card-list-info">
                 <div class="list-info-title">
                     <div class="list-info-title-insidebox">
