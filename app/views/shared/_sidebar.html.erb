@@ -8,26 +8,26 @@
   </div>
   <ul class="nav-list">
     <li>
-      <div class="nav-btn">
+      <div class="nav-btn" id="nav-btn-products">
         <i class='bx bx-spreadsheet'></i>
         <span class="links-name">Products</span>
       </div>
     </li>
     <li>
-      <div class="nav-btn" id="btn-styles">
+      <div class="nav-btn" id="nav-btn-styles">
         <i class='bx bx-brush' ></i>
         <span class="links-name">Styles</span>
       </div>
     </li>
     <li>
-      <div class="nav-btn">
+      <div class="nav-btn" id="nav-btn-analytics">
         <i class="bx bx-pie-chart-alt-2"></i>
         <span class="links-name">Analytics</span>
       </div>
     </li>
   </ul>
-  <div class="profile-content">  
-      <% if user_signed_in? %>  
+  <div class="profile-content">
+      <% if user_signed_in? %>
         <div class="profile">
           <div class="profile-details">
             <img src="profile.jpg" alt="profile-pic">
@@ -38,8 +38,8 @@
           </div>
           <%= link_to destroy_user_session_path, method: :delete do %>
             <i class="bx bx-log-out" id="log-out"></i>
-            
-          <% end %>  
+
+          <% end %>
         </div>
       <% else %>
         <%= link_to "Login", new_user_session_path %>

@@ -4,10 +4,13 @@ const sideBar = () => {
 
   const hamburgerMenu = document.getElementById("sidebar-hamburger-menu");
   const navBtns = document.querySelectorAll(".nav-btn");
-  const stylesBtn = document.getElementById('btn-styles');
+  const productsBtn = document.getElementById("nav-btn-products");
+  const stylesBtn = document.getElementById('nav-btn-styles');
   const styles = document.querySelectorAll(".style");
 
-  const styleOptionContents = document.querySelectorAll(".style-options-content")
+  const styleOptionContents = document.querySelectorAll(".style-options-content");
+
+  const productViewWrapper = document.querySelector(".products-view-wrapper");
 
   const styleOptionsWrapper = document.querySelector(".style-options-wrapper");
   const styleSectionName = document.querySelector(".style-section-name");
@@ -45,8 +48,14 @@ const sideBar = () => {
   })
 
   stylesBtn.addEventListener("click", () => {
+    productViewWrapper.classList.remove("active");
     sidebar.classList.add("active");
     styleBar.classList.toggle("active");
+  })
+
+  productsBtn.addEventListener("click", () => {
+    styleBar.classList.remove("active");
+    productViewWrapper.classList.toggle("active");
   })
 
   styles.forEach((style) => {

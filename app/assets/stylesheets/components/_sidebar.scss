@@ -17,11 +17,9 @@
   display: flex;
 }
 
-.right-column-sidebar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.right-column-content {
   flex-grow: 1;
+  padding: 80px;
 }
 
 .sidebar {
