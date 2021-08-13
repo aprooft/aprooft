@@ -158,6 +158,7 @@ function EditWidget() {
                                     <input type="button" class="submit-dev-btn" value="Preview" onClick={preview}/>
                                     <input type="hidden" name="_method" value="PATCH" />
                                     <input type="submit" class="submit-dev-btn" value="Save" />
+                                    <input type="button" class="submit-dev-btn" value="Generate Widget" onClick={()=>setDisplay("generate")}/>
                                 </div>
                             </form>
                         }
@@ -167,8 +168,23 @@ function EditWidget() {
                                     { previewData && previewData.map(d => <YoutubePreview youtubeData={d} />) }   
                                 </div>
                                 <div class="submit-dev">
-                                    <input type="button" class="submit-dev-btn-back" value="Edit" onClick={()=>{setDisplay("forms")}}/>
+                                    <input type="button" class="submit-dev-btn-back" value="Edit" onClick={()=>setDisplay("forms")}/>
                                 </div>                    
+                            </div>
+                        }  
+                        { display==="generate" &&
+                            <div>
+                                <pre>
+                                    { 
+                                        `<script>
+    ((i, s, o, g, r, a, m)=>{
+        i['aprooft']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)};
+        a=s.createElement(o);m=document.getElementsByTagName(o)[0];a.async=1;
+        a.src=g;m.parentNode.insertBefore(a,m)})(window, document, 'script', 'https://aprooft.com/widget.js', 'spa');
+    spa('widgetId');
+</script>`
+                                    }
+                                </pre>             
                             </div>
                         }  
                     </>
