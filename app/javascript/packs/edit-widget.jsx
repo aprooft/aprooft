@@ -2,11 +2,11 @@ import { h, render } from "preact";
 import register from 'preact-custom-element'
 import {useState} from 'preact/hooks'
 
-function InputBox(){
+function InputBox(props) {
     return (
         <div class="input-box">
             <div class="input-box-form">
-                <input type="text" class="youtube-link" name="youtube-link[]" placeholder="youtube video url" />
+                <input type="text" class="youtube-link" name="youtube-link[]" placeholder="youtube video url" value={props.value} onChange={props.onChange} />
 
             </div>
             <div class="input-box-icon">
@@ -56,6 +56,7 @@ function YoutubePreview(props) {
 function EditWidget(){
     let [previewData, setPreviewData] = useState([]);
     let [display, setDisplay] = useState("forms");
+    let [formData, setFormData] = useState(["", "", "", "", ""]);
 
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
 
@@ -84,6 +85,14 @@ function EditWidget(){
                 );
         })
     }
+
+    function onInputChange(i, e) {
+        // copy the formData array
+        let data = formData.slice();
+        data[i] = e.target.value;
+
+        setFormData(data);
+    }
     
     return (
         <div class="widget-dev">
@@ -98,7 +107,9 @@ function EditWidget(){
             { display==="forms" &&  
                 <form action={formUrl} method="POST">
                     <div class="content-dev">
-                        <InputBox /><InputBox /><InputBox /><InputBox /><InputBox /> 
+                        { formData.map((url, i) => 
+                            <InputBox key={i} value={url} onChange={(e) => onInputChange(i, e)} />
+                        ) }
                     </div>
                     <div class="submit-dev">
                         <input type="button" class="submit-dev-btn" value="Preview" onClick={preview}/>
