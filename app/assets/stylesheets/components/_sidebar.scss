@@ -7,21 +7,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-.main-content {
-  display: flex;
-  height: 100vh;
-}
-
-.left-column-sidebar {
-  height: 100%;
-  display: flex;
-}
-
-.right-column-content {
-  flex-grow: 1;
-  padding: 80px;
-}
-
 .sidebar {
   position: relative;
   height: 100%;
@@ -168,6 +153,14 @@
   white-space: nowrap;
 }
 
+.profile-content .profile a {
+  color: aliceblue;
+  & :visited {
+    text-decoration: none;
+    color: aliceblue;
+  }
+}
+
 .sidebar.active .profile .profile-details {
   opacity: 1;
   pointer-events: auto;
@@ -272,11 +265,11 @@
   height: 100%;
   left: 170px;
   transition: all 0.5s ease;
-  opacity: 0;
+  display: none;
 }
 
 .style-options-wrapper.active {
-  opacity: 1;
+  display: block;
 }
 
 .sidebar.active ~ .style-options-wrapper {

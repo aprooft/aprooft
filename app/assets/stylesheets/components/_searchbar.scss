@@ -29,13 +29,16 @@
   background-color: #DBDFE2;
 }
 
-
-
 .product-searchbar-wrapper {
     margin-bottom: 32px;
 }
 
 
-input[type=text]:focus {
+.product-searchbar input[type=text]:focus {
   background-color: #DBDFE2;
+}
+
+.product-searchbar-field .form-control:focus {
+  border: none;
+  box-shadow: 0 0 0 0.2rem rgba(7, 11, 45, 0.25);
 }

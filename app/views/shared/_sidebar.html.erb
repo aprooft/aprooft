@@ -30,7 +30,8 @@
       <% if user_signed_in? %>
         <div class="profile">
           <div class="profile-details">
-            <img src="profile.jpg" alt="profile-pic">
+            <%# <img src="profile.jpg" alt="profile-pic"> %>
+            <%= image_tag "profile.png", alt: "profile-pic" %>
             <div class="name-job">
               <div class="name">John Doe</div>
               <div class="job">Marketer</div>
@@ -38,7 +39,6 @@
           </div>
           <%= link_to destroy_user_session_path, method: :delete do %>
             <i class="bx bx-log-out" id="log-out"></i>
-
           <% end %>
         </div>
       <% else %>

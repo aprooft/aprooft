@@ -1,17 +1,18 @@
-.card-pick {
+.product-card {
   /*fixed*/
   display: flex;
   flex-direction: column;
   /*customizable*/
   height: 320px;
   width: 300px;
-  border-radius: 4px;
+  border-radius: 12px;
   background-color: white;
   box-shadow: 5px 7px 15px 6px rgba(0,0,0,0.2);
   margin: 20px;
+  cursor: pointer;
 }
 
-.card-pick img {
+.product-card img {
   /*fixed*/
   width: 100%;
   min-height: 100px;
@@ -22,17 +23,17 @@
   border-radius: 4px 4px 0 0;
 }
 
-.card-pick-info {
+.product-card-info {
   /*customizable*/
   padding: 16px;
 }
 
-.card-pick-info h2 {
+.product-card-info h2 {
   /*customizable*/
   margin: 16px 0;
 }
 
-.card-pick:hover {
+.product-card:hover {
   /*customizable*/
   transition: 0.2s ease-out;
   transform: translateY(-8px);
