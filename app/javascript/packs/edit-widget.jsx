@@ -10,7 +10,7 @@ function InputBox(props) {
 
             </div>
             <div class="input-box-icon">
-                <i class="fas fa-eye"></i>
+                <i class="fas fa-eye eyeicon" onClick={props.onPreview}></i>
                 {/* <i class="fas fa-pencil-alt"></i> */}
             </div>
             
@@ -56,7 +56,7 @@ function YoutubePreview(props) {
 function EditWidget(){
     let [previewData, setPreviewData] = useState([]);
     let [display, setDisplay] = useState("forms");
-    let [formData, setFormData] = useState(["", "", "", "", ""]);
+    let [formData, setFormData] = useState(["", "", ""]);
 
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
 
@@ -108,7 +108,7 @@ function EditWidget(){
                 <form action={formUrl} method="POST">
                     <div class="content-dev">
                         { formData.map((url, i) => 
-                            <InputBox key={i} value={url} onChange={(e) => onInputChange(i, e)} />
+                            <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(i, e)} />
                         ) }
                     </div>
                     <div class="submit-dev">

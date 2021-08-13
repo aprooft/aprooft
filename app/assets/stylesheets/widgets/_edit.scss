@@ -53,10 +53,16 @@
         opacity: 0.5;
         padding-left: 5px;
         padding-top: 4px;
+        transition: 0.3s ease;
     }
 
     :first-child {
         margin-left: -37px;
+    }
+
+    .eyeicon:hover {
+        cursor: pointer;
+        opacity: 1;
     }
 }
     
