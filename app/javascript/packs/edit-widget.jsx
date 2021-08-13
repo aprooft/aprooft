@@ -2,15 +2,16 @@ import { h, render } from "preact";
 import register from 'preact-custom-element'
 import { useState } from 'preact/hooks'
 
-function InputBox() {
+
+function InputBox(props) {
     return (
         <div class="input-box">
             <div class="input-box-form">
-                <input type="text" class="youtube-link" name="youtube-link[]" placeholder="youtube video url" />
+                <input type="text" class="youtube-link" name="youtube-link[]" placeholder="youtube video url" value={props.value} onChange={props.onChange} />
 
             </div>
             <div class="input-box-icon">
-                <i class="fas fa-eye"></i>
+                <i class="fas fa-eye eyeicon" onClick={props.onPreview}></i>
                 {/* <i class="fas fa-pencil-alt"></i> */}
             </div>
 
@@ -19,13 +20,13 @@ function InputBox() {
 }
 
 function YoutubePreview(props) {
-    const d = props.youtubeData;
+    const videoData = props.youtubeData;
 
     return (
         <div class="video-card-list">
             <div class="video-card-list-thumbnail">
                 <div class="list-info-thumbnail">
-                    <img src={d.thumbnail} />
+                    <img src={videoData.thumbnail} />
                 </div>
                 <div class="list-info-playicon">
                     <i class="fas fa-play-circle"></i>
@@ -34,18 +35,18 @@ function YoutubePreview(props) {
             <div class="video-card-list-info">
                 <div class="list-info-title">
                     <div class="list-info-title-insidebox">
-                        {d.title}
+                        {videoData.title}
                     </div>
                 </div> 
                 <div class="list-info-details">          
                     <span class="list-info-channel">
-                        <img src={d.channel_pic} />
-                        <span>{d.channel_name}</span>
+                        <img src={videoData.channel_pic} />
+                        <span>{videoData.channel_name}</span>
                     </span>
                     <div class="list-info-number">
-                        <span><i class="fas fa-eye"></i> {d.view_count}</span> 
-                        <span><i class="fas fa-thumbs-up"></i> {d.like_count}</span>
-                        <span><i class="fas fa-thumbs-down"></i> {d.dislike_count}</span>
+                        <span><i class="fas fa-eye"></i> {videoData.view_count}</span> 
+                        <span><i class="fas fa-thumbs-up"></i> {videoData.like_count}</span>
+                        <span><i class="fas fa-thumbs-down"></i> {videoData.dislike_count}</span>
                     </div>
                 </div> 
             </div>
@@ -55,6 +56,9 @@ function YoutubePreview(props) {
 
 function EditWidget() {
     let [previewData, setPreviewData] = useState([]);
+    let [display, setDisplay] = useState("forms");
+    let [formData, setFormData] = useState(["", "", ""]);
+    let [loading, setLoading] = useState(true);
 
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
 
@@ -76,8 +80,26 @@ function EditWidget() {
         }).then(response => {
             response
                 .json()
-                .then(res => setPreviewData(res));
+                .then(res => {
+                    setPreviewData(res)
+                    setDisplay("preview")
+                    }
+                );
         })
+    }
+
+    function onInputChange(i, e) {
+        // copy the formData array
+        let data = formData.slice();
+        data[i] = e.target.value;
+
+        setFormData(data);
+    }
+
+    function addInputBox() {
+        let data = formData.slice();
+        data.push("");
+        setFormData(data)     
     }
 
     return (
@@ -90,16 +112,39 @@ function EditWidget() {
                     <i class="fab fa-reddit"></i>
                 </div>
             </div>
-            <form action={formUrl} method="POST">
-                <div class="content-dev">
-                    { previewData && previewData.map(d => <YoutubePreview youtubeData={d} />) }
-                    <InputBox /><InputBox /><InputBox /><InputBox /><InputBox /> 
-                </div>
-                <div class="submit-dev">
-                    {/* <input type="hidden" name="_method" value="PATCH" /> */}
-                    <input type="button" class="submit-dev-btn" value="Preview" onClick={preview} />
-                </div>
-            </form>
+            <div class="widget-content-dev">
+                
+                        { display==="forms" &&  
+                            <form action={formUrl} method="POST">
+                                <div class="content-dev">
+                                    { formData.map((url, i) => 
+                                        <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(i, e)} />
+                                    ) }
+                                </div>
+                                <div class="add-input-dev"  onClick={addInputBox}>
+                                    {/* <i class="fas fa-plus-circle"></i> */}
+                                    <div class="plus-box">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                </div>
+                                <div class="submit-dev">
+                                    <input type="button" class="submit-dev-btn" value="Preview" onClick={preview}/>
+                                    <input type="hidden" name="_method" value="PATCH" />
+                                    <input type="submit" class="submit-dev-btn" value="Save" />
+                                </div>
+                            </form>
+                        }
+                        { display==="preview" &&
+                            <div>
+                                <div class="content-dev">
+                                    { previewData && previewData.map(d => <YoutubePreview youtubeData={d} />) }   
+                                </div>
+                                <div class="submit-dev">
+                                    <input type="button" class="submit-dev-btn-back" value="Back" onClick={()=>{setDisplay("forms")}}/>
+                                </div>                    
+                            </div>
+                        }  
+            </div>   
         </div>
     );
 }
