@@ -52,14 +52,14 @@ const sideBar = () => {
   })
 
   stylesBtn.addEventListener("click", () => {
-    productViewWrapper.classList.remove("active");
+    // productViewWrapper.classList.remove("active");
     sidebar.classList.add("active");
     styleBar.classList.toggle("active");
   })
 
   productsBtn.addEventListener("click", () => {
     styleBar.classList.remove("active");
-    productViewWrapper.classList.toggle("active");
+    // productViewWrapper.classList.toggle("active");
   })
 
   styles.forEach((style) => {

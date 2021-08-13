@@ -53,8 +53,6 @@ function YoutubePreview(props) {
     );
 }
 
-function EditWidget(){
-
 function EditWidget() {
     let [previewData, setPreviewData] = useState([]);
 
