@@ -4,10 +4,13 @@ const sideBar = () => {
 
   const hamburgerMenu = document.getElementById("sidebar-hamburger-menu");
   const navBtns = document.querySelectorAll(".nav-btn");
-  const stylesBtn = document.getElementById('btn-styles');
+  const productsBtn = document.getElementById("nav-btn-products");
+  const stylesBtn = document.getElementById('nav-btn-styles');
   const styles = document.querySelectorAll(".style");
 
-  const styleOptionContents = document.querySelectorAll(".style-options-content")
+  const styleOptionContents = document.querySelectorAll(".style-options-content");
+
+  const productViewWrapper = document.querySelector(".products-view-wrapper");
 
   const styleOptionsWrapper = document.querySelector(".style-options-wrapper");
   const styleSectionName = document.querySelector(".style-section-name");
@@ -19,6 +22,10 @@ const sideBar = () => {
     // demoText.style.fontSize = `${e.target.value}px`;
     fontSizeValue.innerText = `${e.target.value}px`;
   });
+
+  const capitalize = (string) => {
+    return string[0].toUpperCase() + string.slice(1).toLowerCase();
+  }
 
   const clearStyleOptionContent = () => {
     styleOptionContents.forEach((styleOptionContent) => {
@@ -45,8 +52,14 @@ const sideBar = () => {
   })
 
   stylesBtn.addEventListener("click", () => {
+    productViewWrapper.classList.remove("active");
     sidebar.classList.add("active");
     styleBar.classList.toggle("active");
+  })
+
+  productsBtn.addEventListener("click", () => {
+    styleBar.classList.remove("active");
+    productViewWrapper.classList.toggle("active");
   })
 
   styles.forEach((style) => {
@@ -80,7 +93,7 @@ const sideBar = () => {
     if (!contentElement(key).classList.contains("active")) {
       clearStyleOptionContent();
       styleOptionsWrapper.classList.add("active");
-      styleSectionName.innerText = key;
+      styleSectionName.innerText = capitalize(key);
       contentElement(key).classList.add("active");
     } else {
       styleOptionsWrapper.classList.remove("active");
