@@ -1,4 +1,4 @@
-import { h, render } from "preact";
+import { h, render, Fragment } from "preact";
 import register from 'preact-custom-element'
 import { useState } from 'preact/hooks'
 
@@ -54,15 +54,17 @@ function YoutubePreview(props) {
     );
 }
 
+
 function EditWidget() {
     let [previewData, setPreviewData] = useState([]);
     let [display, setDisplay] = useState("forms");
     let [formData, setFormData] = useState(["", "", ""]);
-    let [loading, setLoading] = useState(true);
+    let [loading, setLoading] = useState(false);
 
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
 
     function preview() {
+        setLoading(true);
         const input = document.querySelectorAll('.youtube-link');
         let url = [];
         for (let i of input) {
@@ -81,8 +83,9 @@ function EditWidget() {
             response
                 .json()
                 .then(res => {
-                    setPreviewData(res)
-                    setDisplay("preview")
+                    setPreviewData(res);
+                    setDisplay("preview");
+                    setLoading(false);
                     }
                 );
         })
@@ -147,7 +150,7 @@ function EditWidget() {
                         }  
                     </>
                 }   
-                { 
+                { loading &&
                     <div class="loading-show">
                         <i class="fas fa-spinner fa-pulse"></i>
                     </div>
