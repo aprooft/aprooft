@@ -8,20 +8,19 @@
         <div class="flex" style=" width: 50%">
             <div style=" width: 100%">
               <%= form_tag widgets_path, method: :get do %>
-              <%= text_field_tag :query,
-              params[:query],
-              class: "form-control",
-              placeholder: "Type your product here..."%>
+                <%= text_field_tag :query,
+                params[:query],
+                class: "form-control",
+                placeholder: "Type your product here..."%>
+              <% end %>
             </div>
             <div>
               <%= button_tag(:class => "search-button") do %>
-              <i class="fas fa-search fa-2x"></i>
-              <% end %>
-              <% end %>
+                <i class="fas fa-search fa-2x"></i>
+              <% end %> 
            </div>
          </div>
       </div>
-
       <div class="container">
         <h1> Your products</h1>
         <div class="widgets-all-list">
