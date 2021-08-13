@@ -15,12 +15,13 @@
 }
 
 .right-column-content {
-  flex-grow: 1;
-  padding: 80px;
+    flex-grow: 1;
+    padding: 80px;
 }
 
 .right-column-content.show-view {
   flex-grow: 1;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
