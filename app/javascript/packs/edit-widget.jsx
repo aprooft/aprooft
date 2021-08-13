@@ -1,6 +1,6 @@
-import { h, render } from "preact";
+import { h, render, Fragment } from "preact";
 import register from 'preact-custom-element'
-import { useState } from 'preact/hooks'
+import { useEffect, useState } from 'preact/hooks'
 
 
 function InputBox(props) {
@@ -54,15 +54,40 @@ function YoutubePreview(props) {
     );
 }
 
+
 function EditWidget() {
     let [previewData, setPreviewData] = useState([]);
     let [display, setDisplay] = useState("forms");
-    let [formData, setFormData] = useState(["", "", ""]);
+    let [formData, setFormData] = useState([""]);
     let [loading, setLoading] = useState(true);
 
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
 
+    function existVideosShow() {
+        setLoading(true);
+        fetch(formUrl)
+            .then(response => {
+                response
+                    .json()
+                    .then(res => {
+                        let urls = res.map(video => "https://www.youtube.com/watch?v=" + video.video_id )
+                        setPreviewData(res);
+                        if (urls.length > 0) {
+                            setFormData(urls);
+                            setDisplay("preview");
+                        }  
+                        setLoading(false);
+                    });
+            })
+    }
+
+    // Run existVideosShow when this component is created
+    useEffect(() => {
+        existVideosShow();
+    }, []);
+
     function preview() {
+        setLoading(true);
         const input = document.querySelectorAll('.youtube-link');
         let url = [];
         for (let i of input) {
@@ -81,8 +106,9 @@ function EditWidget() {
             response
                 .json()
                 .then(res => {
-                    setPreviewData(res)
-                    setDisplay("preview")
+                    setPreviewData(res);
+                    setDisplay("preview");
+                    setLoading(false);
                     }
                 );
         })
@@ -113,7 +139,8 @@ function EditWidget() {
                 </div>
             </div>
             <div class="widget-content-dev">
-                
+                { !loading &&
+                    <>
                         { display==="forms" &&  
                             <form action={formUrl} method="POST">
                                 <div class="content-dev">
@@ -140,11 +167,18 @@ function EditWidget() {
                                     { previewData && previewData.map(d => <YoutubePreview youtubeData={d} />) }   
                                 </div>
                                 <div class="submit-dev">
-                                    <input type="button" class="submit-dev-btn-back" value="Back" onClick={()=>{setDisplay("forms")}}/>
+                                    <input type="button" class="submit-dev-btn-back" value="Edit" onClick={()=>{setDisplay("forms")}}/>
                                 </div>                    
                             </div>
                         }  
-            </div>   
+                    </>
+                }   
+                { loading &&
+                    <div class="loading-show">
+                        <i class="fas fa-spinner fa-pulse"></i>
+                    </div>
+                } 
+            </div>
         </div>
     );
 }

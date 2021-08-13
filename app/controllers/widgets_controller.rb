@@ -4,7 +4,7 @@ $fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif
 
 class WidgetsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i[update preview]
-  before_action :set_widget, only: %i[update edit preview]
+  before_action :set_widget, only: %i[update edit preview show]
 
   def index
     # @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
@@ -18,7 +18,7 @@ class WidgetsController < ApplicationController
   end
 
   def show
-    @youtube_data = fetchYoutubeApi("https://www.youtube.com/watch?v=fFgM8mSVjq8")
+    render json: Youtube.where(widget: @widget)
   end
 
   def create
