@@ -59,7 +59,7 @@ const sideBar = () => {
 
   productsBtn.addEventListener("click", () => {
     styleBar.classList.remove("active");
-    productViewWrapper.classList.toggle("active");
+    // productViewWrapper.classList.toggle("active");
   })
 
   styles.forEach((style) => {
