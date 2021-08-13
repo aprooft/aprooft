@@ -27,7 +27,6 @@ const widgetStyling = () => {
   const highlightColor = document.getElementById("highlight-color");
   const widgetNavBtnActive = document.querySelector(".widget-nav-btn.active");
   console.log(widgetNavBtnActive)
-  topbarDev.style.backgroundColor = "#11101D"
 
   topbarColor.addEventListener('change', () => {
     topbarDev.style.backgroundColor = topbarColor.value;
@@ -35,7 +34,7 @@ const widgetStyling = () => {
 
   highlightColor.addEventListener('change', () => {
     widgetNavBtnActive.style.background =
-      `linear-gradient(0deg, ${topbarDev.style.backgroundColor.value} 30%, ${highlightColor.value} 90%)`
+      `linear-gradient(0deg, ${topbarDev.style.backgroundColor} 30%, ${highlightColor.value} 90%)`
     widgetNavBtnActive.style.borderBottom = `10px solid ${highlightColor.value}`
   })
 
