@@ -66,15 +66,19 @@ function EditWidget() {
     function existVideosShow() {
         setLoading(true);
         fetch(formUrl)
-        .then(response => {
-            response
-                .json()
-                .then(res => {
-                    let urls = res.map(video => "https://www.youtube.com/watch?v=" + video.video_id )
-                    setFormData(urls);
-                    setLoading(false);
-                });
-        })
+            .then(response => {
+                response
+                    .json()
+                    .then(res => {
+                        let urls = res.map(video => "https://www.youtube.com/watch?v=" + video.video_id )
+                        setFormData(urls);
+                        setPreviewData(res);
+                        if (urls.length > 0) {
+                            setDisplay("preview");
+                        }
+                        setLoading(false);
+                    });
+            })
     }
 
     // Run existVideosShow when this component is created
