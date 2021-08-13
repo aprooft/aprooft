@@ -1,6 +1,6 @@
 import { h, render, Fragment } from "preact";
 import register from 'preact-custom-element'
-import { useState } from 'preact/hooks'
+import { useEffect, useState } from 'preact/hooks'
 
 
 function InputBox(props) {
@@ -59,9 +59,28 @@ function EditWidget() {
     let [previewData, setPreviewData] = useState([]);
     let [display, setDisplay] = useState("forms");
     let [formData, setFormData] = useState(["", "", ""]);
-    let [loading, setLoading] = useState(false);
+    let [loading, setLoading] = useState(true);
 
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
+
+    function existVideosShow() {
+        setLoading(true);
+        fetch(formUrl)
+        .then(response => {
+            response
+                .json()
+                .then(res => {
+                    let urls = res.map(video => "https://www.youtube.com/watch?v=" + video.video_id )
+                    setFormData(urls);
+                    setLoading(false);
+                });
+        })
+    }
+
+    // Run existVideosShow when this component is created
+    useEffect(() => {
+        existVideosShow();
+    }, []);
 
     function preview() {
         setLoading(true);
