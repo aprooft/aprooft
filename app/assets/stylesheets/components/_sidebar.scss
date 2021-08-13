@@ -265,11 +265,13 @@
   height: 100%;
   left: 170px;
   transition: all 0.5s ease;
-  display: none;
+  // display: none;
+  opacity: 0;
 }
 
 .style-options-wrapper.active {
-  display: block;
+  // display: block;
+  opacity: 1;
 }
 
 .sidebar.active ~ .style-options-wrapper {
@@ -357,12 +359,12 @@
   display: flex;
 }
 
-.size-options {
+.size-option {
   display: flex;
   cursor: pointer;
 }
 
-.size-options:hover {
+.size-option:hover {
   background-color: aliceblue;
   border-radius: 12px;
   & .sizes p {
@@ -505,6 +507,17 @@
   cursor: pointer;
   appearance: none;
   border: none;
+}
+
+// COLORS
+
+.style-options-content.colors {
+  padding: 40px;
+  display: none;
+}
+
+.style-options-content.active {
+  display: block;
 }
 
 // BACKGROUND
