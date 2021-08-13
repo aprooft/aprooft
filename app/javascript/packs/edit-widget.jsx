@@ -58,7 +58,7 @@ function YoutubePreview(props) {
 function EditWidget() {
     let [previewData, setPreviewData] = useState([]);
     let [display, setDisplay] = useState("forms");
-    let [formData, setFormData] = useState(["", "", ""]);
+    let [formData, setFormData] = useState([""]);
     let [loading, setLoading] = useState(true);
 
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
@@ -71,11 +71,11 @@ function EditWidget() {
                     .json()
                     .then(res => {
                         let urls = res.map(video => "https://www.youtube.com/watch?v=" + video.video_id )
-                        setFormData(urls);
                         setPreviewData(res);
                         if (urls.length > 0) {
+                            setFormData(urls);
                             setDisplay("preview");
-                        }
+                        }  
                         setLoading(false);
                     });
             })
@@ -167,7 +167,7 @@ function EditWidget() {
                                     { previewData && previewData.map(d => <YoutubePreview youtubeData={d} />) }   
                                 </div>
                                 <div class="submit-dev">
-                                    <input type="button" class="submit-dev-btn-back" value="Back" onClick={()=>{setDisplay("forms")}}/>
+                                    <input type="button" class="submit-dev-btn-back" value="Edit" onClick={()=>{setDisplay("forms")}}/>
                                 </div>                    
                             </div>
                         }  
