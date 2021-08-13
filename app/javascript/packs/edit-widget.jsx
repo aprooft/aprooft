@@ -43,7 +43,9 @@ function YoutubePreview(props) {
                         <span>{d.channel_name}</span>
                     </span>
                     <div class="list-info-number">
-                        {d.view_count}-{d.like_count}-{d.dislike_count}
+                        <span><i class="fas fa-eye"></i> {d.view_count}</span> 
+                        <span><i class="fas fa-thumbs-up"></i> {d.like_count}</span>
+                        <span><i class="fas fa-thumbs-down"></i> {d.dislike_count}</span>
                     </div>
                 </div> 
             </div>
