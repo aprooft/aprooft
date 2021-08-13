@@ -1,12 +1,13 @@
 require 'json'
 require 'open-uri'
+$fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
 
 class WidgetsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i[update preview]
   before_action :set_widget, only: %i[update edit preview]
 
   def index
-    @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
+    # @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
     @widgets = policy_scope(Widget)
 
     if params[:query].present?
