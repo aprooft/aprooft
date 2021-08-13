@@ -23,6 +23,10 @@ const sideBar = () => {
     fontSizeValue.innerText = `${e.target.value}px`;
   });
 
+  const capitalize = (string) => {
+    return string[0].toUpperCase() + string.slice(1).toLowerCase();
+  }
+
   const clearStyleOptionContent = () => {
     styleOptionContents.forEach((styleOptionContent) => {
       styleOptionContent.classList.remove("active");
@@ -89,7 +93,7 @@ const sideBar = () => {
     if (!contentElement(key).classList.contains("active")) {
       clearStyleOptionContent();
       styleOptionsWrapper.classList.add("active");
-      styleSectionName.innerText = key;
+      styleSectionName.innerText = capitalize(key);
       contentElement(key).classList.add("active");
     } else {
       styleOptionsWrapper.classList.remove("active");
