@@ -55,6 +55,7 @@ function YoutubePreview(props) {
 
 function EditWidget(){
     let [previewData, setPreviewData] = useState([]);
+    let [display, setDisplay] = useState("forms");
 
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
 
@@ -76,11 +77,13 @@ function EditWidget(){
         }).then(response => {
             response
                 .json()
-                .then(res => setPreviewData(res));
+                .then(res => {
+                    setPreviewData(res)
+                    setDisplay("preview")
+                    }
+                );
         })
     }
-
-
     
     return (
         <div class="widget-dev">
@@ -92,17 +95,24 @@ function EditWidget(){
                      <i class="fab fa-reddit"></i>
                 </div>
             </div>
-            <form action={formUrl} method="POST">
+            { display==="forms" &&  
+                <form action={formUrl} method="POST">
+                    <div class="content-dev">
+                        <InputBox /><InputBox /><InputBox /><InputBox /><InputBox /> 
+                    </div>
+                    <div class="submit-dev">
+                        <input type="button" class="submit-dev-btn" value="Preview" onClick={preview}/>
+                        <input type="hidden" name="_method" value="PATCH" />
+                        <input type="submit" class="submit-dev-btn" value="Save" />
+                    </div>
+                </form>
+            }
+            { display==="preview" &&
                 <div class="content-dev">
-                    { previewData && previewData.map(d => <YoutubePreview youtubeData={d} />) }
-                    <InputBox /><InputBox /><InputBox /><InputBox /><InputBox /> 
+                    { previewData && previewData.map(d => <YoutubePreview youtubeData={d} />) }   
+                    <input type="button" class="submit-dev-btn-back" value="Back" onClick={()=>{setDisplay("forms")}}/>
                 </div>
-                <div class="submit-dev">
-                    <input type="button" class="submit-dev-btn" value="Preview" onClick={preview}/>
-                    <input type="hidden" name="_method" value="PATCH" />
-                    <input type="submit" class="submit-dev-btn" value="Save" />
-                </div>
-            </form>
+            }
         </div>
     );    
 }
