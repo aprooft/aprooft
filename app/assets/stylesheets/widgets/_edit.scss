@@ -59,7 +59,7 @@
         opacity: 0.5;
         padding-left: 5px;
         padding-top: 4px;
-        color: #3bb6ca;
+        // color: #3bb6ca;
         transition: 0.3s ease;
     }
 
@@ -81,7 +81,7 @@
 }
 
 .submit-dev-btn {
-    color: #20EFE3;
+    color: hsl(177, 87%, 53%);
     height: 50px;
     width: 140px;
     border-radius: 3px;
@@ -107,6 +107,34 @@
         background: #20EFE3;
         color: #11101D;
         text-decoration: none;
+    }
+}
+
+.add-input-dev {
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+    .plus-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 38px;
+        width: 38px;
+        border-radius: 50%;
+        background-color: #20EFE3;
+        box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        transition: 0.3s ease;
+    }
+    .plus-box i {
+        font-size: 20px;
+    }
+}
+
+.plus-box:hover {
+    cursor: pointer;
+    background-color: black;
+    i {
+        color: #20EFE3;
     }
 }
 

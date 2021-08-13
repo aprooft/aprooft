@@ -112,6 +112,12 @@ function EditWidget(){
                                 <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(i, e)} />
                             ) }
                         </div>
+                        <div class="add-input-dev">
+                            {/* <i class="fas fa-plus-circle"></i> */}
+                            <div class="plus-box">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
                         <div class="submit-dev">
                             <input type="button" class="submit-dev-btn" value="Preview" onClick={preview}/>
                             <input type="hidden" name="_method" value="PATCH" />
