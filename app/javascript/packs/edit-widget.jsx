@@ -93,6 +93,12 @@ function EditWidget(){
 
         setFormData(data);
     }
+
+    function addInputBox() {
+        let data = formData.slice();
+        data.push("");
+        setFormData(data)     
+    }
     
     return (
         <div class="widget-dev">
@@ -115,7 +121,7 @@ function EditWidget(){
                         <div class="add-input-dev">
                             {/* <i class="fas fa-plus-circle"></i> */}
                             <div class="plus-box">
-                                <i class="fas fa-plus"></i>
+                                <i class="fas fa-plus" onClick={addInputBox}></i>
                             </div>
                         </div>
                         <div class="submit-dev">
