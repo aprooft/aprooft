@@ -1,0 +1,61 @@
+.video-card-list {
+    overflow: hidden;
+    height: 100px;
+    background: white;
+    box-shadow: 0 0 1px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    img {
+        height: 100%;
+        width: 40%;
+        object-fit: cover;
+    }
+    .video-card-list-info {
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: space-between;
+        box-sizing: border-box;
+        padding: 10px 8px;
+    }
+
+}
+
+.list-info-title {
+    align-items: center;
+    display: flex;
+    margin-bottom: 10px;
+    .list-info-title-insidebox {
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        flex-grow: 1;
+        display: -webkit-box;
+        font-size: 16px;
+        height: auto;
+        line-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.list-info-details {
+    font-size: 14px;
+    color: #70757a;
+    .list-info-channel {
+        display: block;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .list-info-number {
+        font-size: 13px;
+    }
+}
+
+.list-info-channel img {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 2px;
+}

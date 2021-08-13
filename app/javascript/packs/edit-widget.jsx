@@ -18,6 +18,32 @@ function InputBox(){
     )
 }
 
+function YoutubePreview(props) {
+    const d = props.youtubeData;
+
+    return (
+        <div class="video-card-list">
+            <img src={d.thumbnail} />
+            <div class="video-card-list-info">
+                <div class="list-info-title">
+                    <div class="list-info-title-insidebox">
+                        {d.title}
+                    </div>
+                </div> 
+                <div class="list-info-details">          
+                    <span class="list-info-channel">
+                        <img src={d.channel_pic} />
+                        <span>{d.channel_name}</span>
+                    </span>
+                    <div class="list-info-number">
+                        {d.view_count}-{d.like_count}-{d.dislike_count}
+                    </div>
+                </div> 
+            </div>
+        </div>       
+    );
+}
+
 function EditWidget(){
     let [previewData, setPreviewData] = useState([]);
 
@@ -57,7 +83,7 @@ function EditWidget(){
             </div>
             <form action={formUrl} method="POST">
                 <div class="content-dev">
-                    { previewData && previewData.map(d => <p>{d.video_id}</p>) }
+                    { previewData && previewData.map(d => <YoutubePreview youtubeData={d} />) }
                     <InputBox /><InputBox /><InputBox /><InputBox /><InputBox /> 
                 </div>
                 <div class="submit-dev">
