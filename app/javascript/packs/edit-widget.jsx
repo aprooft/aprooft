@@ -57,6 +57,7 @@ function EditWidget(){
     let [previewData, setPreviewData] = useState([]);
     let [display, setDisplay] = useState("forms");
     let [formData, setFormData] = useState(["", "", ""]);
+    let [loading, setLoading] = useState(true);
 
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
 
@@ -111,36 +112,39 @@ function EditWidget(){
                 </div>
             </div>
             <div class="widget-content-dev">
-                { display==="forms" &&  
-                    <form action={formUrl} method="POST">
-                        <div class="content-dev">
-                            { formData.map((url, i) => 
-                                <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(i, e)} />
-                            ) }
-                        </div>
-                        <div class="add-input-dev"  onClick={addInputBox}>
-                            {/* <i class="fas fa-plus-circle"></i> */}
-                            <div class="plus-box">
-                                <i class="fas fa-plus"></i>
+                
+                        { display==="forms" &&  
+                            <form action={formUrl} method="POST">
+                                <div class="content-dev">
+                                    { formData.map((url, i) => 
+                                        <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(i, e)} />
+                                    ) }
+                                </div>
+                                <div class="add-input-dev"  onClick={addInputBox}>
+                                    {/* <i class="fas fa-plus-circle"></i> */}
+                                    <div class="plus-box">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                </div>
+                                <div class="submit-dev">
+                                    <input type="button" class="submit-dev-btn" value="Preview" onClick={preview}/>
+                                    <input type="hidden" name="_method" value="PATCH" />
+                                    <input type="submit" class="submit-dev-btn" value="Save" />
+                                </div>
+                            </form>
+                        }
+                        { display==="preview" &&
+                            <div>
+                                <div class="content-dev">
+                                    { previewData && previewData.map(d => <YoutubePreview youtubeData={d} />) }   
+                                </div>
+                                <div class="submit-dev">
+                                    <input type="button" class="submit-dev-btn-back" value="Back" onClick={()=>{setDisplay("forms")}}/>
+                                </div>                    
                             </div>
-                        </div>
-                        <div class="submit-dev">
-                            <input type="button" class="submit-dev-btn" value="Preview" onClick={preview}/>
-                            <input type="hidden" name="_method" value="PATCH" />
-                            <input type="submit" class="submit-dev-btn" value="Save" />
-                        </div>
-                    </form>
-                }
-                { display==="preview" &&
-                    <div>
-                        <div class="content-dev">
-                            { previewData && previewData.map(d => <YoutubePreview youtubeData={d} />) }   
-                        </div>
-                        <div class="submit-dev">
-                            <input type="button" class="submit-dev-btn-back" value="Back" onClick={()=>{setDisplay("forms")}}/>
-                        </div>                    
-                    </div>
-                }
+                        }
+                
+                
             </div>   
         </div>
     );    
