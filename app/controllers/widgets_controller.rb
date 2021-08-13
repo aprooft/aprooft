@@ -18,23 +18,23 @@ class WidgetsController < ApplicationController
   end
 
   def show
-    @youtube_data = fetchYoutubeApi
+    @youtube_data = fetchYoutubeApi("https://www.youtube.com/watch?v=fFgM8mSVjq8")
   end
 
   def create
   end
 
   def edit
-  end  
+  end
 
   def preview
     youtube_links_result = params["youtube_links"].reject{ |link| link=="" }
     render json: youtube_links_result.map{ |link| fetchYoutubeApi(link) }
-  end  
+  end
 
   def update
     # redirect_to edit_widget_path(@widget)
-  end   
+  end
 
   private
 
@@ -42,7 +42,7 @@ class WidgetsController < ApplicationController
     @widget = Widget.find(params[:id].to_i)
     authorize @widget
   end
-  
+
   def youtube_id(youtube_url)
     regex = %r{(?:youtube(?:-nocookie)?\.com/(?:[^/\n\s]+/\S+/|(?:v|e(?:mbed)?)/|\S*?[?&]v=)|youtu\.be/)([a-zA-Z0-9_-]{11})}
     match = regex.match(youtube_url)

@@ -7,23 +7,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-.main-content {
-  display: flex;
-  height: 100vh;
-}
-
-.left-column-sidebar {
-  height: 100%;
-  display: flex;
-}
-
-.right-column-sidebar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
 .sidebar {
   position: relative;
   height: 100%;
@@ -170,6 +153,14 @@
   white-space: nowrap;
 }
 
+.profile-content .profile a {
+  color: aliceblue;
+  & :visited {
+    text-decoration: none;
+    color: aliceblue;
+  }
+}
+
 .sidebar.active .profile .profile-details {
   opacity: 1;
   pointer-events: auto;
@@ -274,10 +265,12 @@
   height: 100%;
   left: 170px;
   transition: all 0.5s ease;
+  // display: none;
   opacity: 0;
 }
 
 .style-options-wrapper.active {
+  // display: block;
   opacity: 1;
 }
 
@@ -366,12 +359,12 @@
   display: flex;
 }
 
-.size-options {
+.size-option {
   display: flex;
   cursor: pointer;
 }
 
-.size-options:hover {
+.size-option:hover {
   background-color: aliceblue;
   border-radius: 12px;
   & .sizes p {
@@ -514,6 +507,17 @@
   cursor: pointer;
   appearance: none;
   border: none;
+}
+
+// COLORS
+
+.style-options-content.colors {
+  padding: 40px;
+  display: none;
+}
+
+.style-options-content.active {
+  display: block;
 }
 
 // BACKGROUND
