@@ -25,6 +25,7 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { sideBar } from "../components/sidebar"
+import { widgetStyling } from "../components/widget_styling"
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -53,6 +54,6 @@ document.addEventListener('turbolinks:load', () => {
     colorPicker.color.hexString = this.value;
   });
 
-
   sideBar();
+  widgetStyling();
 });

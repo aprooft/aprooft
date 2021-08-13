@@ -1,6 +1,7 @@
 import { h, render } from "preact";
 import register from 'preact-custom-element'
-import {useState} from 'preact/hooks'
+import { useState } from 'preact/hooks'
+
 
 function InputBox(props) {
     return (
@@ -13,7 +14,7 @@ function InputBox(props) {
                 <i class="fas fa-eye eyeicon" onClick={props.onPreview}></i>
                 {/* <i class="fas fa-pencil-alt"></i> */}
             </div>
-            
+
         </div>
     )
 }
@@ -53,7 +54,7 @@ function YoutubePreview(props) {
     );
 }
 
-function EditWidget(){
+function EditWidget() {
     let [previewData, setPreviewData] = useState([]);
     let [display, setDisplay] = useState("forms");
     let [formData, setFormData] = useState(["", "", ""]);
@@ -61,7 +62,7 @@ function EditWidget(){
 
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
 
-    function preview(){
+    function preview() {
         const input = document.querySelectorAll('.youtube-link');
         let url = [];
         for (let i of input) {
@@ -69,9 +70,9 @@ function EditWidget(){
         }
 
         fetch(formUrl + '/preview', {
-            method:'POST',
-            body: JSON.stringify({"youtube_links": url}),
-            credentials: 'same-origin', 
+            method: 'POST',
+            body: JSON.stringify({ "youtube_links": url }),
+            credentials: 'same-origin',
             headers: {
                 'content-type': 'application/json'
             },
@@ -100,15 +101,15 @@ function EditWidget(){
         data.push("");
         setFormData(data)     
     }
-    
+
     return (
         <div class="widget-dev">
             <div class="topbar-dev">
-                <div class="widget-nav-btn">
+                <div class="widget-nav-btn active">
                     <i class="fab fa-youtube"></i>
                 </div>
                 <div class="widget-nav-btn">
-                     <i class="fab fa-reddit"></i>
+                    <i class="fab fa-reddit"></i>
                 </div>
             </div>
             <div class="widget-content-dev">
@@ -142,12 +143,10 @@ function EditWidget(){
                                     <input type="button" class="submit-dev-btn-back" value="Back" onClick={()=>{setDisplay("forms")}}/>
                                 </div>                    
                             </div>
-                        }
-                
-                
+                        }  
             </div>   
         </div>
-    );    
+    );
 }
 
 register(EditWidget, 'edit-widget', [])
