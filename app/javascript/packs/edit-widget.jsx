@@ -104,26 +104,32 @@ function EditWidget(){
                      <i class="fab fa-reddit"></i>
                 </div>
             </div>
-            { display==="forms" &&  
-                <form action={formUrl} method="POST">
-                    <div class="content-dev">
-                        { formData.map((url, i) => 
-                            <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(i, e)} />
-                        ) }
+            <div class="widget-content-dev">
+                { display==="forms" &&  
+                    <form action={formUrl} method="POST">
+                        <div class="content-dev">
+                            { formData.map((url, i) => 
+                                <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(i, e)} />
+                            ) }
+                        </div>
+                        <div class="submit-dev">
+                            <input type="button" class="submit-dev-btn" value="Preview" onClick={preview}/>
+                            <input type="hidden" name="_method" value="PATCH" />
+                            <input type="submit" class="submit-dev-btn" value="Save" />
+                        </div>
+                    </form>
+                }
+                { display==="preview" &&
+                    <div>
+                        <div class="content-dev">
+                            { previewData && previewData.map(d => <YoutubePreview youtubeData={d} />) }   
+                        </div>
+                        <div class="submit-dev">
+                            <input type="button" class="submit-dev-btn-back" value="Back" onClick={()=>{setDisplay("forms")}}/>
+                        </div>                    
                     </div>
-                    <div class="submit-dev">
-                        <input type="button" class="submit-dev-btn" value="Preview" onClick={preview}/>
-                        <input type="hidden" name="_method" value="PATCH" />
-                        <input type="submit" class="submit-dev-btn" value="Save" />
-                    </div>
-                </form>
-            }
-            { display==="preview" &&
-                <div class="content-dev">
-                    { previewData && previewData.map(d => <YoutubePreview youtubeData={d} />) }   
-                    <input type="button" class="submit-dev-btn-back" value="Back" onClick={()=>{setDisplay("forms")}}/>
-                </div>
-            }
+                }
+            </div>   
         </div>
     );    
 }

@@ -12,6 +12,11 @@
         justify-content: flex-end;
         align-items: center;
     }
+    .widget-content-dev {
+        // display: flex;
+        // justify-content: space-between;
+        // height: 80%;
+    }
 }
 
 .widget-nav-btn {
@@ -26,6 +31,7 @@
 .content-dev {
     max-width: 80%;
     margin: 30px auto;
+    flex-grow: 1;
     .input-box {
         height: 75px;
         display: flex;
@@ -53,6 +59,7 @@
         opacity: 0.5;
         padding-left: 5px;
         padding-top: 4px;
+        color: #3bb6ca;
         transition: 0.3s ease;
     }
 
@@ -70,7 +77,7 @@
     height: 120px;
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-end;
 }
 
 .submit-dev-btn {
@@ -95,7 +102,6 @@
     border-radius: 3px;
     transition: background 0.3s ease;
     background: #11101D;
-    margin-left: 34%;
     margin-top: 15px;
     &:hover {
         background: #20EFE3;
