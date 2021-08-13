@@ -98,6 +98,7 @@ function EditWidget(){
                 <div class="submit-dev">
                     {/* <input type="hidden" name="_method" value="PATCH" /> */}
                     <input type="button" class="submit-dev-btn" value="Preview" onClick={preview}/>
+                    <input type="button" class="submit-dev-btn" value="Save" />
                 </div>
             </form>
         </div>
