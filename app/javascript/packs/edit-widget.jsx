@@ -79,6 +79,8 @@ function EditWidget(){
                 .then(res => setPreviewData(res));
         })
     }
+
+
     
     return (
         <div class="widget-dev">
@@ -96,9 +98,9 @@ function EditWidget(){
                     <InputBox /><InputBox /><InputBox /><InputBox /><InputBox /> 
                 </div>
                 <div class="submit-dev">
-                    {/* <input type="hidden" name="_method" value="PATCH" /> */}
                     <input type="button" class="submit-dev-btn" value="Preview" onClick={preview}/>
-                    <input type="button" class="submit-dev-btn" value="Save" />
+                    <input type="hidden" name="_method" value="PATCH" />
+                    <input type="submit" class="submit-dev-btn" value="Save" />
                 </div>
             </form>
         </div>
