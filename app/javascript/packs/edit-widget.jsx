@@ -19,13 +19,13 @@ function InputBox(props) {
 }
 
 function YoutubePreview(props) {
-    const d = props.youtubeData;
+    const videoData = props.youtubeData;
 
     return (
         <div class="video-card-list">
             <div class="video-card-list-thumbnail">
                 <div class="list-info-thumbnail">
-                    <img src={d.thumbnail} />
+                    <img src={videoData.thumbnail} />
                 </div>
                 <div class="list-info-playicon">
                     <i class="fas fa-play-circle"></i>
@@ -34,18 +34,18 @@ function YoutubePreview(props) {
             <div class="video-card-list-info">
                 <div class="list-info-title">
                     <div class="list-info-title-insidebox">
-                        {d.title}
+                        {videoData.title}
                     </div>
                 </div> 
                 <div class="list-info-details">          
                     <span class="list-info-channel">
-                        <img src={d.channel_pic} />
-                        <span>{d.channel_name}</span>
+                        <img src={videoData.channel_pic} />
+                        <span>{videoData.channel_name}</span>
                     </span>
                     <div class="list-info-number">
-                        <span><i class="fas fa-eye"></i> {d.view_count}</span> 
-                        <span><i class="fas fa-thumbs-up"></i> {d.like_count}</span>
-                        <span><i class="fas fa-thumbs-down"></i> {d.dislike_count}</span>
+                        <span><i class="fas fa-eye"></i> {videoData.view_count}</span> 
+                        <span><i class="fas fa-thumbs-up"></i> {videoData.like_count}</span>
+                        <span><i class="fas fa-thumbs-down"></i> {videoData.dislike_count}</span>
                     </div>
                 </div> 
             </div>
@@ -118,10 +118,10 @@ function EditWidget(){
                                 <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(i, e)} />
                             ) }
                         </div>
-                        <div class="add-input-dev">
+                        <div class="add-input-dev"  onClick={addInputBox}>
                             {/* <i class="fas fa-plus-circle"></i> */}
                             <div class="plus-box">
-                                <i class="fas fa-plus" onClick={addInputBox}></i>
+                                <i class="fas fa-plus"></i>
                             </div>
                         </div>
                         <div class="submit-dev">
