@@ -113,7 +113,8 @@ function EditWidget() {
                 </div>
             </div>
             <div class="widget-content-dev">
-                
+                { !loading &&
+                    <>
                         { display==="forms" &&  
                             <form action={formUrl} method="POST">
                                 <div class="content-dev">
@@ -144,7 +145,14 @@ function EditWidget() {
                                 </div>                    
                             </div>
                         }  
-            </div>   
+                    </>
+                }   
+                { 
+                    <div class="loading-show">
+                        <i class="fas fa-spinner fa-pulse"></i>
+                    </div>
+                } 
+            </div>
         </div>
     );
 }
