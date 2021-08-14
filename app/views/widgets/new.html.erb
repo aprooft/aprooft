@@ -1,8 +1,10 @@
+<div class="container form-container">
 
+  <%= simple_form_for(@widget) do |f| %>
+   <%= f.input :product_title %>
+   <%= f.input :product_pic, as: :file %>
+      <p>Add picture</p>
+    <%= f.submit "Add product", class: "btn btn-primary" %>
+  <% end %>
 
-<%= simple_form_for(@widget) do |f| %>
- <%= f.input :product_title %>
- <%= f.input :product_pic, as: :file %>
-    <p>Add picture</p>
-  <%= f.submit "Add product", class: "btn btn-primary" %>
-<% end %>
+</div>
