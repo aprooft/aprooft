@@ -1,6 +1,6 @@
 require 'json'
 require 'open-uri'
-$fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
+$fonts = { "arial" => "Arial", "verdana" => "Verdana" }
 
 class WidgetsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i[update preview]
@@ -51,9 +51,9 @@ class WidgetsController < ApplicationController
       youtube = Youtube.new(fetchYoutubeApi(link))
       youtube.widget = @widget
       youtube.save
-    end  
+    end
     redirect_to edit_widget_path(@widget)
-  end   
+  end
 
   private
 

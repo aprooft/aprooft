@@ -21,23 +21,57 @@ const widgetStyling = () => {
     })
   })
 
+  //fonts section
+  const fontSizeSlider = document.getElementById("font-size-slider");
+  const fontColor = document.querySelector(".basic-color-picker");
+  const fontStyle = document.getElementById("select-font");
+
+  fontColor.addEventListener('change', () => {
+    const youtubeTitles = document.querySelectorAll(".list-info-title-insidebox");
+    youtubeTitles.forEach((youtubeTitle) => {
+      youtubeTitle.style.color = fontColor.value;
+    })
+  })
+
+  fontSizeSlider.addEventListener("input", e => {
+    const youtubeTitles = document.querySelectorAll(".list-info-title-insidebox");
+    youtubeTitles.forEach((youtubeTitle) => {
+      youtubeTitle.style.fontSize = `${e.target.value}px`;
+    });
+  })
+
+  fontStyle.addEventListener("input", (e) => {
+    const youtubeTitles = document.querySelectorAll(".list-info-title-insidebox");
+    youtubeTitles.forEach((youtubeTitle) => {
+      youtubeTitle.style.fontFamily = `${e.target.value}, sans-serif`;
+    });
+  })
+
   //colors section
   const topbarColor = document.getElementById("top-bar-color");
   const topbarDev = document.querySelector(".topbar-dev");
   const highlightColor = document.getElementById("highlight-color");
   const widgetNavBtnActive = document.querySelector(".widget-nav-btn.active");
   console.log(widgetNavBtnActive)
-  topbarDev.style.backgroundColor = "#11101D"
 
   topbarColor.addEventListener('change', () => {
     topbarDev.style.backgroundColor = topbarColor.value;
+    setHighlight();
   })
 
   highlightColor.addEventListener('change', () => {
-    widgetNavBtnActive.style.background =
-      `linear-gradient(0deg, ${topbarDev.style.backgroundColor.value} 30%, ${highlightColor.value} 90%)`
+    if (topbarDev.style.backgroundColor === "") {
+      topbarDev.style.backgroundColor = "#11101D";
+    }
+    setHighlight();
     widgetNavBtnActive.style.borderBottom = `10px solid ${highlightColor.value}`
+
   })
+
+  const setHighlight = () => {
+    widgetNavBtnActive.style.background =
+      `linear-gradient(0deg, ${topbarDev.style.backgroundColor} 30%, ${highlightColor.value} 90%)`
+  }
 
   // background section
   const IroColorPicker = document.querySelector(".IroColorPicker");

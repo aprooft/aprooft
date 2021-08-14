@@ -33,6 +33,12 @@ const sideBar = () => {
     })
   }
 
+  const clearStyle = () => {
+    styles.forEach((style) => {
+      style.classList.remove("focus");
+    })
+  }
+
   navBtns.forEach((navBtn) => {
     navBtn.addEventListener("click", (e) => {
       styleOptionsWrapper.classList.remove("active");
@@ -63,12 +69,13 @@ const sideBar = () => {
   })
 
   styles.forEach((style) => {
-    style.addEventListener("click", (e) => {
-      styles.forEach((style) => {
-        style.classList.remove("focus");
-      })
-      e.currentTarget.classList.add("focus");
-      styleOptionsWrapper.classList.add("active");
+    style.addEventListener("click", () => {
+      if (!style.classList.contains("focus")) {
+        clearStyle();
+        style.classList.add("focus")
+      } else {
+        style.classList.remove("focus")
+      }
     })
   })
 
@@ -97,7 +104,8 @@ const sideBar = () => {
       contentElement(key).classList.add("active");
     } else {
       styleOptionsWrapper.classList.remove("active");
-      contentElement(key).classList.remove("active")
+      console.log(contentElement(key).classList)
+      contentElement(key).classList.remove("active");
     }
   }
 }
