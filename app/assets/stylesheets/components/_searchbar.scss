@@ -1,28 +1,38 @@
+.products-view-wrapper {
+  display: none;
+}
+
+.products-view-wrapper.active {
+  display: block;
+}
+
 .search-button {
     background-color: transparent;
     border-color: transparent;
     position: relative;
-    left: -49px;
+    right: 130%;
 }
 
-.flex {
+.product-searchbar {
   display: flex;
   align-items: center;
-  & input {
-    width: 100%;
+  position: relative;
+  width: 100%;
+  & .product-searchbar-field {
+    width: 50%;
   }
 }
 
 .form-control {
-  border-radius: 5px;
+  border-radius: 12px;
   height: 60px;
   background-color: #DBDFE2;
 }
 
+
 .form-control:focus {
     background-color: #DBDFE2;
-
-    }
+ }
 
 
 
@@ -30,10 +40,18 @@
     display: flex;
     justify-content: center;
     margin-top: 32px;
+}
+
+.product-searchbar-wrapper {
     margin-bottom: 32px;
 }
 
 
-input[type=text]:focus {
+.product-searchbar input[type=text]:focus {
   background-color: #DBDFE2;
+}
+
+.product-searchbar-field .form-control:focus {
+  border: none;
+  box-shadow: 0 0 0 0.2rem rgba(7, 11, 45, 0.25);
 }

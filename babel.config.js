@@ -56,7 +56,9 @@ module.exports = function(api) {
       [
         '@babel/plugin-transform-runtime',
         {
-          helpers: false
+          helpers: false,
+          regenerator: true,
+          corejs: false
         }
       ],
       [
@@ -64,7 +66,11 @@ module.exports = function(api) {
         {
           async: false
         }
-      ]
+      ],
+      ["@babel/plugin-transform-react-jsx", {
+        "pragma": "h",
+        "pragmaFrag": "Fragment",
+      }]
     ].filter(Boolean)
   }
 }
