@@ -1,12 +1,13 @@
 require 'json'
 require 'open-uri'
+$fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
 
 class WidgetsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i[update preview]
-  before_action :set_widget, only: %i[update edit preview]
+  before_action :set_widget, only: %i[update edit preview show]
 
   def index
-    @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
+    # @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
     @widgets = policy_scope(Widget)
 
     if params[:query].present?
@@ -17,7 +18,7 @@ class WidgetsController < ApplicationController
   end
 
   def show
-    @youtube_data = fetchYoutubeApi("https://www.youtube.com/watch?v=fFgM8mSVjq8")
+    render json: Youtube.where(widget: @widget)
   end
 
   def create
@@ -32,8 +33,14 @@ class WidgetsController < ApplicationController
   end
 
   def update
-    # redirect_to edit_widget_path(@widget)
-  end
+    urls = params["youtube-link"].reject{ |link| link=="" }
+    urls.each do |link|
+      youtube = Youtube.new(fetchYoutubeApi(link))
+      youtube.widget = @widget
+      youtube.save
+    end  
+    redirect_to edit_widget_path(@widget)
+  end   
 
   private
 
