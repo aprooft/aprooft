@@ -21,7 +21,20 @@ class WidgetsController < ApplicationController
     render json: Youtube.where(widget: @widget)
   end
 
+  def new
+    @widget = Widget.new
+    authorize @widget
+  end
+
   def create
+    @widget = Widget.new(widget_params)
+    @widget.user_id = current_user.id
+    if @widget.save
+      redirect_to widgets_path
+    else
+      render :new
+    end
+    authorize @widget
   end
 
   def edit
@@ -43,6 +56,10 @@ class WidgetsController < ApplicationController
   end   
 
   private
+
+  def widget_params
+    params.require(:widget).permit(:user_id, :product_title, :product_pic)
+  end   
 
   def set_widget
     @widget = Widget.find(params[:id].to_i)
