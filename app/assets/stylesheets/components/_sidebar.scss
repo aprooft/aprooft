@@ -171,6 +171,7 @@
   width: 45px;
   object-fit: cover;
   border-radius: 12px;
+  background: aliceblue;
 }
 
 .profile .profile-details .name-job {
@@ -212,10 +213,12 @@
   left: 80px;
   transition: all 0.5s ease;
   opacity: 0;
+  pointer-events: none;
 }
 
 .stylebar-wrapper.active {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .sidebar.active ~ .stylebar-wrapper {
