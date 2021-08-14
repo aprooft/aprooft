@@ -147,13 +147,12 @@ function EditWidget() {
                                     { formData.map((url, i) => 
                                         <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(i, e)} />
                                     ) }
-                                </div>
-                                <div class="add-input-dev"  onClick={addInputBox}>
-                                    {/* <i class="fas fa-plus-circle"></i> */}
-                                    <div class="plus-box">
-                                        <i class="fas fa-plus"></i>
+                                    <div class="add-input-dev"  onClick={addInputBox}>
+                                        <div class="plus-box">
+                                            <i class="fas fa-plus"></i>
+                                        </div>
                                     </div>
-                                </div>
+                                </div>       
                                 <div class="submit-dev">
                                     <input type="button" class="submit-dev-btn" value="Preview" onClick={preview}/>
                                     <input type="hidden" name="_method" value="PATCH" />
@@ -163,28 +162,40 @@ function EditWidget() {
                             </form>
                         }
                         { display==="preview" &&
-                            <div>
+                            <>
                                 <div class="content-dev">
                                     { previewData && previewData.map(d => <YoutubePreview youtubeData={d} />) }   
                                 </div>
                                 <div class="submit-dev">
                                     <input type="button" class="submit-dev-btn-back" value="Edit" onClick={()=>setDisplay("forms")}/>
                                 </div>                    
-                            </div>
+                            </>
                         }  
                         { display==="generate" &&
-                            <div>
-                                <pre>
-                                    { 
-                                        `<script>
-    ((i, s, o, g, r, a, m)=>{
-        i['aprooft']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)};
-        a=s.createElement(o);m=document.getElementsByTagName(o)[0];a.async=1;
-        a.src=g;m.parentNode.insertBefore(a,m)})(window, document, 'script', 'https://aprooft.com/widget.js', 'spa');
-    spa('widgetId');
-</script>`
-                                    }
-                                </pre>             
+                            <div class="generate-dev">
+                                <textarea rows="6" cols="65" class="generate-dev-box">
+                                   working局地的な大雨の影響で、広島県内を流れる江の川（ごうのかわ）が増水して「氾濫危険水位」に到達し、氾濫危険情報【警戒レベル4相当】が発表されました。
+
+氾濫危険水位に到達したのは安芸高田市の吉田水位観測所と粟屋水位観測所で、浸水のおそれがある地域は安芸高田市、三次市となっています。
+
+越水や堤防決壊のおそれがあるため、早めに避難の判断をしてください。局地的な大雨の影響で、広島県内を流れる江の川（ごうのかわ）が増水して「氾濫危険水位」に到達し、氾濫危険情報【警戒レベル4相当】が発表されました。
+
+氾濫危険水位に到達したのは安芸高田市の吉田水位観測所と粟屋水位観測所で、浸水のおそれがある地域は安芸高田市、三次市となっています。
+
+越水や堤防決壊のおそれがあるため、早めに避難の判断をしてください。局地的な大雨の影響で、広島県内を流れる江の川（ごうのかわ）が増水して「氾濫危険水位」に到達し、氾濫危険情報【警戒レベル4相当】が発表されました。
+
+氾濫危険水位に到達したのは安芸高田市の吉田水位観測所と粟屋水位観測所で、浸水のおそれがある地域は安芸高田市、三次市となっています。
+
+越水や堤防決壊のおそれがあるため、早めに避難の判断をしてください。局地的な大雨の影響で、広島県内を流れる江の川（ごうのかわ）が増水して「氾濫危険水位」に到達し、氾濫危険情報【警戒レベル4相当】が発表されました。
+
+氾濫危険水位に到達したのは安芸高田市の吉田水位観測所と粟屋水位観測所で、浸水のおそれがある地域は安芸高田市、三次市となっています。
+
+越水や堤防決壊のおそれがあるため、早めに避難の判断をしてください。局地的な大雨の影響で、広島県内を流れる江の川（ごうのかわ）が増水して「氾濫危険水位」に到達し、氾濫危険情報【警戒レベル4相当】が発表されました。
+
+氾濫危険水位に到達したのは安芸高田市の吉田水位観測所と粟屋水位観測所で、浸水のおそれがある地域は安芸高田市、三次市となっています。
+
+越水や堤防決壊のおそれがあるため、早めに避難の判断をしてください。
+                                </textarea>            
                             </div>
                         }  
                     </>
