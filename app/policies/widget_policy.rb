@@ -8,4 +8,12 @@ class WidgetPolicy < ApplicationPolicy
   def update?
     true
   end 
+
+  def show?
+    true
+  end
+
+  def preview?
+    true
+  end  
 end
