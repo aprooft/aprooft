@@ -26,6 +26,7 @@ import "bootstrap";
 // import { initSelect2 } from '../components/init_select2';
 import { sideBar } from "../components/sidebar"
 import { widgetStyling } from "../components/widget_styling"
+import { copyFinialCode } from "../components/copy_code"
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
