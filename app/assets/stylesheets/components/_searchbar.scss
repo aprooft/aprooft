@@ -29,6 +29,19 @@
   background-color: #DBDFE2;
 }
 
+
+.form-control:focus {
+    background-color: #DBDFE2;
+ }
+
+
+
+.searchbar-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
 .product-searchbar-wrapper {
     margin-bottom: 32px;
 }
