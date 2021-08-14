@@ -58,7 +58,7 @@ class WidgetsController < ApplicationController
   private
 
   def widget_params
-    params.require(:widget).permit(:user_id, :product_title, :product_pic)
+    params.require(:widget).permit(:user_id, :product_title, :product_pic, :product_id)
   end   
 
   def set_widget
