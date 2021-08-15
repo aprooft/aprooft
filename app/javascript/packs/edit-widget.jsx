@@ -7,8 +7,7 @@ function InputBox(props) {
     return (
         <div class="input-box">
             <div class="input-box-form">
-                <input type="text" class="youtube-link" name="youtube-link[]" placeholder="youtube video url" value={props.value} onChange={props.onChange} />
-
+                <input type="text" class="youtube-link" placeholder="youtube video url" value={props.value} onChange={props.onChange} />
             </div>
             <div class="input-box-icon">
                 <i class="fas fa-eye eyeicon" onClick={props.onPreview}></i>
@@ -92,7 +91,7 @@ function EditWidget() {
 
     function preview() {
         setLoading(true);
-        const input = document.querySelectorAll('.youtube-link');
+        const input = document.querySelectorAll('.youtube-hidden-link');
         let url = [];
         for (let i of input) {
             url.push(i.value);
@@ -186,11 +185,14 @@ function EditWidget() {
                 </div>
             </div>
 
+            <div class="d-none">
+                { formData.map((url, i) => <input key={i} type="hidden" class="youtube-hidden-link" name="youtube-link[]" value={url} />) }
+            </div>
+
             <div class="mt-4">
                 <If condition={display === "forms"}>
                     <div class="submit-dev">
                         <input type="button" class="submit-dev-btn" value="Preview" onClick={preview} />
-                        
                     </div>
                 </If>
                 <If condition={display === "preview"}>
