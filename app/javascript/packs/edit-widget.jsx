@@ -138,7 +138,8 @@ function EditWidget() {
     return (
         <>
             <If condition={display === "generate"}>
-                coming soon
+                <p>coming soon</p>
+                <input type="button" class="submit-dev-btn-back" value="Back" onClick={() => { setDisplay("preview") }} />           
             </If>
             <If condition={display != "generate"}>      
                 <form action={formUrl} method="POST">
