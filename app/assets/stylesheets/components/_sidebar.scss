@@ -267,16 +267,18 @@
   width: 0;
   height: 0;
   left: 170px;
-  transition: opacity 0.5s ease 0.05s;
+  transition: width 0s ease 0.5s, height 0s ease 0.5s, opacity 0.5s ease 0.05s;
   overflow: hidden;
   opacity: 0;
   display: block;
 }
 
+
 .style-options-wrapper.active {
   opacity: 0.85;
   width: 400px;
   height: 100%;
+  transition: opacity 0.5s ease 0.05s;
 }
 
 .sidebar.active ~ .style-options-wrapper {
