@@ -54,12 +54,16 @@ function YoutubePreview(props) {
     );
 }
 
+function If(props) {
+    return <>{ !!props.condition && props.children }</>;
+}
 
 function EditWidget() {
     let [previewData, setPreviewData] = useState([]);
     let [display, setDisplay] = useState("forms");
     let [formData, setFormData] = useState([""]);
     let [loading, setLoading] = useState(true);
+    let [tab, setTab] = useState("youtube");
 
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
 
@@ -136,17 +140,17 @@ function EditWidget() {
         <form action={formUrl} method="POST">
             <div class="widget-dev">
                 <div class="topbar-dev">
-                    <div class="widget-nav-btn active">
+                    <div class={tab === "youtube" ? "widget-nav-btn active" : "widget-nav-btn"} onClick={() => setTab("youtube")}>
                         <i class="fab fa-youtube"></i>
                     </div>
-                    <div class="widget-nav-btn">
+                    <div class={tab === "reddit" ? "widget-nav-btn active" : "widget-nav-btn"} onClick={() => setTab("reddit")}>
                         <i class="fab fa-reddit"></i>
                     </div>
                 </div>
                 <div class="widget-content-dev">
-                    {!loading &&
-                        <>
-                            {display === "forms" &&
+                    <If condition={!loading}>
+                        <If condition={tab === "youtube"}>    
+                            <If condition={display === "forms"}>
                                 <div class="edit-content">
                                     <div class="content-dev">
                                         {formData.map((url, i) =>
@@ -159,37 +163,43 @@ function EditWidget() {
                                         </div>
                                     </div>
                                 </div>
-                            }
-                            {display === "preview" &&
+                            </If>
+                            <If condition={display === "preview"}>
                                 <div class="preview-content">
                                     <div class="content-dev">
                                         {previewData && previewData.map(d => <YoutubePreview youtubeData={d} />)}
                                     </div>
                                 </div>
-                            }
-                        </>
-                    }
-                    {loading &&
+                            </If>
+                        </If>
+                        <If condition={tab === "reddit"}>
+                            <center class="mt-5">
+                                <h1>Coming Soon</h1>
+                            </center>
+                        </If>
+                    </If>
+                    <If condition={loading}>
                         <div class="loading-show">
                             <i class="fas fa-spinner fa-pulse"></i>
                         </div>
-                    }
+                    </If>
                 </div>
             </div>
 
             <div class="mt-4">
-                {display === "forms" &&
+                <If condition={display === "forms"}>
                     <div class="submit-dev">
                         <input type="button" class="submit-dev-btn" value="Preview" onClick={preview} />
                         <input type="hidden" name="_method" value="PATCH" />
-                        <input type="submit" class="submit-dev-btn" value="Save" />
                     </div>
-                }
-                {display === "preview" &&
+                </If>
+                <If condition={display === "preview"}>
                     <div class="submit-dev">
                         <input type="button" class="submit-dev-btn-back" value="Edit" onClick={() => { setDisplay("forms") }} />
+                        
+                        <input type="submit" class="submit-dev-btn" value="Save" />
                     </div>
-                }
+                </If>
             </div>
         </form>
     );
