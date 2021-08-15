@@ -268,12 +268,12 @@
   height: 100%;
   left: 170px;
   transition: all 0.5s ease;
-  // display: none;
+  display: none;
   opacity: 0;
 }
 
 .style-options-wrapper.active {
-  // display: block;
+  display: block;
   opacity: 0.85;
 }
 
