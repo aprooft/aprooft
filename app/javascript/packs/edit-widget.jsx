@@ -37,20 +37,20 @@ function YoutubePreview(props) {
                     <div class="list-info-title-insidebox">
                         {videoData.title}
                     </div>
-                </div> 
-                <div class="list-info-details">          
+                </div>
+                <div class="list-info-details">
                     <span class="list-info-channel">
                         <img src={videoData.channel_pic} />
                         <span>{videoData.channel_name}</span>
                     </span>
                     <div class="list-info-number">
-                        <span><i class="fas fa-eye"></i> {videoData.view_count}</span> 
+                        <span><i class="fas fa-eye"></i> {videoData.view_count}</span>
                         <span><i class="fas fa-thumbs-up"></i> {videoData.like_count}</span>
                         <span><i class="fas fa-thumbs-down"></i> {videoData.dislike_count}</span>
                     </div>
-                </div> 
+                </div>
             </div>
-        </div>       
+        </div>
     );
 }
 
@@ -70,12 +70,12 @@ function EditWidget() {
                 response
                     .json()
                     .then(res => {
-                        let urls = res.map(video => "https://www.youtube.com/watch?v=" + video.video_id )
+                        let urls = res.map(video => "https://www.youtube.com/watch?v=" + video.video_id)
                         setPreviewData(res);
                         if (urls.length > 0) {
                             setFormData(urls);
                             setDisplay("preview");
-                        }  
+                        }
                         setLoading(false);
                     });
             })
@@ -109,7 +109,7 @@ function EditWidget() {
                     setPreviewData(res);
                     setDisplay("preview");
                     setLoading(false);
-                    }
+                }
                 );
         })
     }
@@ -125,7 +125,7 @@ function EditWidget() {
     function addInputBox() {
         let data = formData.slice();
         data.push("");
-        setFormData(data)     
+        setFormData(data)
     }
 
     return (
@@ -139,7 +139,7 @@ function EditWidget() {
                 </div>
             </div>
             <div class="widget-content-dev">
-                { !loading &&
+                {!loading &&
                     <>
                         { display==="forms" &&  
                             <form action={formUrl} method="POST">
@@ -162,15 +162,16 @@ function EditWidget() {
                             </form>
                         }
                         { display==="preview" &&
-                            <>
+                            <div class="preview-content">
+
                                 <div class="content-dev">
-                                    { previewData && previewData.map(d => <YoutubePreview youtubeData={d} />) }   
+                                    {previewData && previewData.map(d => <YoutubePreview youtubeData={d} />)}
                                 </div>
                                 <div class="submit-dev">
                                     <input type="button" class="submit-dev-btn-back" value="Edit" onClick={()=>setDisplay("forms")}/>
-                                </div>                    
-                            </>
-                        }  
+                                </div>  
+                            </div>      
+                        } 
                         { display==="generate" &&
                             <>
                                 <div class="copy-btn">
@@ -204,12 +205,12 @@ function EditWidget() {
                             </>
                         }  
                     </>
-                }   
-                { loading &&
+                }
+                {loading &&
                     <div class="loading-show">
                         <i class="fas fa-spinner fa-pulse"></i>
                     </div>
-                } 
+                }
             </div>
         </div>
     );

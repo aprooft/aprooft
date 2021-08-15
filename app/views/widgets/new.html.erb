@@ -1,0 +1,10 @@
+<div class="container form-container">
+  <%= link_to "Back to product list", widgets_path, class: "btn btn-primary margin-button" %>
+  <%= simple_form_for(@widget) do |f| %>
+   <%= f.input :product_title, :label => "Product title" %>
+   <%= f.input :product_id, :label => "Product ID" %>
+   <%= f.input :product_pic, as: :file, :label => "Product picture" %>
+   <%= f.submit "Register product", class: "btn btn-primary" %>
+  <% end %>
+
+</div>
