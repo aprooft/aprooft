@@ -190,14 +190,15 @@ function EditWidget() {
                 <If condition={display === "forms"}>
                     <div class="submit-dev">
                         <input type="button" class="submit-dev-btn" value="Preview" onClick={preview} />
-                        <input type="hidden" name="_method" value="PATCH" />
+                        
                     </div>
                 </If>
                 <If condition={display === "preview"}>
                     <div class="submit-dev">
-                        <input type="button" class="submit-dev-btn-back" value="Edit" onClick={() => { setDisplay("forms") }} />
-                        
+                        <input type="button" class="submit-dev-btn-back" value="Edit" onClick={() => { setDisplay("forms") }} />           
+                        <input type="hidden" name="_method" value="PATCH" />
                         <input type="submit" class="submit-dev-btn" value="Save" />
+                        <input type="button" class="submit-dev-btn" value="Generate Code" />
                     </div>
                 </If>
             </div>
