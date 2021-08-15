@@ -125,25 +125,29 @@ function EditWidget() {
     function addInputBox() {
         let data = formData.slice();
         data.push("");
-        setFormData(data)
+        setFormData(data);
+        setTimeout(() => {
+            const links = document.querySelectorAll(".youtube-link");
+            links[links.length - 1] && links[links.length - 1].focus();
+        }, 100);
     }
 
     return (
-        <div class="widget-dev">
-            <div class="topbar-dev">
-                <div class="widget-nav-btn active">
-                    <i class="fab fa-youtube"></i>
+        <form action={formUrl} method="POST">
+            <div class="widget-dev">
+                <div class="topbar-dev">
+                    <div class="widget-nav-btn active">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div class="widget-nav-btn">
+                        <i class="fab fa-reddit"></i>
+                    </div>
                 </div>
-                <div class="widget-nav-btn">
-                    <i class="fab fa-reddit"></i>
-                </div>
-            </div>
-            <div class="widget-content-dev">
-                {!loading &&
-                    <>
-                        {display === "forms" &&
-                            <div class="edit-content">
-                                <form action={formUrl} method="POST">
+                <div class="widget-content-dev">
+                    {!loading &&
+                        <>
+                            {display === "forms" &&
+                                <div class="edit-content">
                                     <div class="content-dev">
                                         {formData.map((url, i) =>
                                             <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(i, e)} />
@@ -154,33 +158,40 @@ function EditWidget() {
                                             <i class="fas fa-plus"></i>
                                         </div>
                                     </div>
-                                    <div class="submit-dev">
-                                        <input type="button" class="submit-dev-btn" value="Preview" onClick={preview} />
-                                        <input type="hidden" name="_method" value="PATCH" />
-                                        <input type="submit" class="submit-dev-btn" value="Save" />
+                                </div>
+                            }
+                            {display === "preview" &&
+                                <div class="preview-content">
+                                    <div class="content-dev">
+                                        {previewData && previewData.map(d => <YoutubePreview youtubeData={d} />)}
                                     </div>
-                                </form>
-                            </div>
-                        }
-                        {display === "preview" &&
-                            <div class="preview-content">
-                                <div class="content-dev">
-                                    {previewData && previewData.map(d => <YoutubePreview youtubeData={d} />)}
                                 </div>
-                                <div class="submit-dev">
-                                    <input type="button" class="submit-dev-btn-back" value="Edit" onClick={() => { setDisplay("forms") }} />
-                                </div>
-                            </div>
-                        }
-                    </>
+                            }
+                        </>
+                    }
+                    {loading &&
+                        <div class="loading-show">
+                            <i class="fas fa-spinner fa-pulse"></i>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="mt-4">
+                {display === "forms" &&
+                    <div class="submit-dev">
+                        <input type="button" class="submit-dev-btn" value="Preview" onClick={preview} />
+                        <input type="hidden" name="_method" value="PATCH" />
+                        <input type="submit" class="submit-dev-btn" value="Save" />
+                    </div>
                 }
-                {loading &&
-                    <div class="loading-show">
-                        <i class="fas fa-spinner fa-pulse"></i>
+                {display === "preview" &&
+                    <div class="submit-dev">
+                        <input type="button" class="submit-dev-btn-back" value="Edit" onClick={() => { setDisplay("forms") }} />
                     </div>
                 }
             </div>
-        </div>
+        </form>
     );
 }
 
