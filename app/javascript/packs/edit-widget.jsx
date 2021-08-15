@@ -136,75 +136,80 @@ function EditWidget() {
     }
 
     return (
-        <form action={formUrl} method="POST">
-            <div class="widget-dev">
-                <div class="topbar-dev">
-                    <div class={tab === "youtube" ? "widget-nav-btn active" : "widget-nav-btn"} onClick={() => setTab("youtube")}>
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                    <div class={tab === "reddit" ? "widget-nav-btn active" : "widget-nav-btn"} onClick={() => setTab("reddit")}>
-                        <i class="fab fa-reddit"></i>
-                    </div>
-                </div>
-                <div class="widget-content-dev">
-                    <If condition={!loading}>
-                        <If condition={tab === "youtube"}>    
-                            <If condition={display === "forms"}>
-                                <div class="edit-content">
-                                    <div class="content-dev">
-                                        {formData.map((url, i) =>
-                                            <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(i, e)} />
-                                        )}
-                                    </div>
-                                    <div class="add-input-dev" onClick={addInputBox}>
-                                        <div class="plus-box">
-                                            <i class="fas fa-plus"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </If>
-                            <If condition={display === "preview"}>
-                                <div class="preview-content">
-                                    <div class="content-dev">
-                                        {previewData && previewData.map(d => <YoutubePreview youtubeData={d} />)}
-                                    </div>
-                                </div>
-                            </If>
-                        </If>
-                        <If condition={tab === "reddit"}>
-                            <center class="mt-5">
-                                <h1>Coming Soon</h1>
-                            </center>
-                        </If>
-                    </If>
-                    <If condition={loading}>
-                        <div class="loading-show">
-                            <i class="fas fa-spinner fa-pulse"></i>
+        <>
+            <If condition={display === "generate"}>
+                coming soon
+            </If>
+            <If condition={display != "generate"}>      
+                <form action={formUrl} method="POST">
+                    <div class="widget-dev">
+                        <div class="topbar-dev">
+                            <div class={tab === "youtube" ? "widget-nav-btn active" : "widget-nav-btn"} onClick={() => setTab("youtube")}>
+                                <i class="fab fa-youtube"></i>
+                            </div>
+                            <div class={tab === "reddit" ? "widget-nav-btn active" : "widget-nav-btn"} onClick={() => setTab("reddit")}>
+                                <i class="fab fa-reddit"></i>
+                            </div>
                         </div>
-                    </If>
-                </div>
-            </div>
-
-            <div class="d-none">
-                { formData.map((url, i) => <input key={i} type="hidden" class="youtube-hidden-link" name="youtube-link[]" value={url} />) }
-            </div>
-
-            <div class="mt-4">
-                <If condition={display === "forms"}>
-                    <div class="submit-dev">
-                        <input type="button" class="submit-dev-btn" value="Preview" onClick={preview} />
+                        <div class="widget-content-dev">
+                            <If condition={!loading}>
+                                <If condition={tab === "youtube"}>    
+                                    <If condition={display === "forms"}>
+                                        <div class="edit-content">
+                                            <div class="content-dev">
+                                                {formData.map((url, i) =>
+                                                    <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(i, e)} />
+                                                )}
+                                            </div>
+                                            <div class="add-input-dev" onClick={addInputBox}>
+                                                <div class="plus-box">
+                                                    <i class="fas fa-plus"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </If>
+                                    <If condition={display === "preview"}>
+                                        <div class="preview-content">
+                                            <div class="content-dev">
+                                                {previewData && previewData.map(d => <YoutubePreview youtubeData={d} />)}
+                                            </div>
+                                        </div>
+                                    </If>
+                                </If>
+                                <If condition={tab === "reddit"}>
+                                    <center class="mt-5">
+                                        <h1>Coming Soon</h1>
+                                    </center>
+                                </If>
+                            </If>
+                            <If condition={loading}>
+                                <div class="loading-show">
+                                    <i class="fas fa-spinner fa-pulse"></i>
+                                </div>
+                            </If>
+                        </div>
                     </div>
-                </If>
-                <If condition={display === "preview"}>
-                    <div class="submit-dev">
-                        <input type="button" class="submit-dev-btn-back" value="Edit" onClick={() => { setDisplay("forms") }} />           
-                        <input type="hidden" name="_method" value="PATCH" />
-                        <input type="submit" class="submit-dev-btn" value="Save" />
-                        <input type="button" class="submit-dev-btn" value="Generate Code" />
+                    <div class="d-none">
+                        { formData.map((url, i) => <input key={i} type="hidden" class="youtube-hidden-link" name="youtube-link[]" value={url} />) }
                     </div>
-                </If>
-            </div>
-        </form>
+                    <div class="mt-4">
+                        <If condition={display === "forms"}>
+                            <div class="submit-dev">
+                                <input type="button" class="submit-dev-btn" value="Preview" onClick={preview} />
+                            </div>
+                        </If>
+                        <If condition={display === "preview"}>
+                            <div class="submit-dev">
+                                <input type="button" class="submit-dev-btn-back" value="Edit" onClick={() => { setDisplay("forms") }} />           
+                                <input type="hidden" name="_method" value="PATCH" />
+                                <input type="submit" class="submit-dev-btn" value="Save" />
+                                <input type="button" class="submit-dev-btn" value="Generate Code" onClick={() => { setDisplay("generate") }} />
+                            </div>
+                        </If>
+                    </div>
+                </form>
+            </If>    
+        </>    
     );
 }
 
