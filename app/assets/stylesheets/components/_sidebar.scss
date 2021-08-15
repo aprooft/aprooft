@@ -264,22 +264,22 @@
 .style-options-wrapper {
   position: absolute;
   padding: 130px 0;
-  width: 400px;
-  height: 100%;
+  width: 0;
+  height: 0;
   left: 170px;
-  transition: all 0.5s ease;
-  display: none;
+  transition: opacity 0.5s ease 0.05s;
+  overflow: hidden;
   opacity: 0;
+  display: block;
 }
 
 .style-options-wrapper.active {
-  display: block;
   opacity: 0.85;
+  width: 400px;
+  height: 100%;
 }
 
 .sidebar.active ~ .style-options-wrapper {
-  width: 400px;
-  height: 100%;
   left: 330px;
 }
 
