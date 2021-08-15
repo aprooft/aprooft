@@ -60,6 +60,7 @@
     max-width: 80%;
     margin: 30px auto;
     flex-grow: 1;
+    height: 380px;
     .input-box {
         height: 75px;
         display: flex;
@@ -129,7 +130,6 @@
     border-radius: 3px;
     transition: background 0.3s ease;
     background: #11101D;
-    margin-top: 15px;
     &:hover {
         background: #20EFE3;
         color: #11101D;
