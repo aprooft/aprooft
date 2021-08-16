@@ -19,14 +19,18 @@ function InputBox(props) {
     )
 }
 
+function RedditPreview(props) {
+    return (<p>Coming soon</p>);
+}
+
 function YoutubePreview(props) {
-    const videoData = props.youtubeData;
+    const data = props.data;
 
     return (
         <div class="video-card-list">
             <div class="video-card-list-thumbnail">
                 <div class="list-info-thumbnail">
-                    <img src={videoData.thumbnail} />
+                    <img src={data.thumbnail} />
                 </div>
                 <div class="list-info-playicon">
                     <i class="fas fa-play-circle"></i>
@@ -35,18 +39,18 @@ function YoutubePreview(props) {
             <div class="video-card-list-info">
                 <div class="list-info-title">
                     <div class="list-info-title-insidebox">
-                        {videoData.title}
+                        {data.title}
                     </div>
                 </div>
                 <div class="list-info-details">
                     <span class="list-info-channel">
-                        <img src={videoData.channel_pic} />
-                        <span>{videoData.channel_name}</span>
+                        <img src={data.channel_pic} />
+                        <span>{data.channel_name}</span>
                     </span>
                     <div class="list-info-number">
-                        <span><i class="fas fa-eye"></i> {videoData.view_count}</span>
-                        <span><i class="fas fa-thumbs-up"></i> {videoData.like_count}</span>
-                        <span><i class="fas fa-thumbs-down"></i> {videoData.dislike_count}</span>
+                        <span><i class="fas fa-eye"></i> {data.view_count}</span>
+                        <span><i class="fas fa-thumbs-up"></i> {data.like_count}</span>
+                        <span><i class="fas fa-thumbs-down"></i> {data.dislike_count}</span>
                     </div>
                 </div>
             </div>
@@ -59,14 +63,16 @@ function If(props) {
 }
 
 function EditWidget() {
-    let [previewData, setPreviewData] = useState([]);
+    let [redditPreviewData, setRedditPreviewData] = useState([]);
+    let [youtubePreviewData, setYoutubePreviewData] = useState([]);
     let [display, setDisplay] = useState("forms");
-    let [formData, setFormData] = useState([""]);
+    let [youtubeData, setYoutubeData] = useState([""]);
+    let [redditData, setRedditData] = useState([""]);
     let [loading, setLoading] = useState(true);
     let [tab, setTab] = useState("youtube");
 
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
-    const widgetId = parseInt(window.location.href.split("/").slice(-2, -1)[0], 10);
+    // const widgetId = parseInt(window.location.href.split("/").slice(-2, -1)[0], 10);
     const dataApiUrl = window.location.href.replace("widgets", "api/v1/widgets").split('/').slice(0, -1).join('/')
 
     function existData() {
@@ -76,12 +82,19 @@ function EditWidget() {
                 response
                     .json()
                     .then(res => {
-                        let urls = res["youtubes"].map(youtube => "https://www.youtube.com/watch?v=" + youtube.video_id)
-                        setPreviewData(res["youtubes"]);
-                        if (urls.length > 0) {
-                            setFormData(urls);
+                        let ytUrls = res["youtubes"].map(youtube => "https://www.youtube.com/watch?v=" + youtube.video_id)
+                        setYoutubePreviewData(res["youtubes"]);
+                        setYoutubeData(ytUrls);
+
+                        let rUrls = res["reddits"].map(reddit => "" + reddit);
+                        setRedditPreviewData(res["reddits"]);
+                        setRedditData(rUrls);
+
+                        if ((tab === "youtube" && ytUrls.length > 0) ||
+                            (tab === "reddit" && rUrls.length > 0)) {
                             setDisplay("preview");
                         }
+
                         setLoading(false);
                     });
             })
@@ -95,15 +108,24 @@ function EditWidget() {
 
     function preview() {
         setLoading(true);
-        const input = document.querySelectorAll('.youtube-hidden-link');
-        let url = [];
+        let input = document.querySelectorAll('.youtube-hidden-link');
+        let youtubeUrls = [];
         for (let i of input) {
-            url.push(i.value);
+            youtubeUrls.push(i.value);
+        }
+
+        input = document.querySelectorAll('.reddit-hidden-link');
+        let redditUrls = [];
+        for (let i of input) {
+            redditUrls.push(i.value);
         }
 
         fetch(formUrl + '/preview', {
             method: 'POST',
-            body: JSON.stringify({ "youtube_links": url }),
+            body: JSON.stringify({
+                "youtube_links": youtubeUrls,
+                "reddit_links": redditUrls,
+            }),
             credentials: 'same-origin',
             headers: {
                 'content-type': 'application/json'
@@ -113,7 +135,7 @@ function EditWidget() {
             response
                 .json()
                 .then(res => {
-                    setPreviewData(res);
+                    setYoutubePreviewData(res);
                     setDisplay("preview");
                     setLoading(false);
                 }
@@ -121,18 +143,26 @@ function EditWidget() {
         })
     }
 
-    function onInputChange(i, e) {
-        // copy the formData array
-        let data = formData.slice();
-        data[i] = e.target.value;
+    function onInputChange(tab, i, e) {
+        if (tab === "youtube") {
+            // copy the youtubeData array
+            let ytData = youtubeData.slice();
+            ytData[i] = e.target.value;
 
-        setFormData(data);
+            setYoutubeData(ytData);
+        } else if (tab === "reddit") {
+            // copy the redditData array
+            let rData = redditData.slice();
+            rData[i] = e.target.value;
+
+            setRedditData(rData);
+        }
     }
 
     function addInputBox() {
-        let data = formData.slice();
+        let data = youtubeData.slice();
         data.push("");
-        setFormData(data);
+        setYoutubeData(data);
         setTimeout(() => {
             const links = document.querySelectorAll(".youtube-link");
             links[links.length - 1] && links[links.length - 1].focus();
@@ -143,7 +173,7 @@ function EditWidget() {
         <>
             <If condition={display === "generate"}>
                 <p>coming soon</p>
-                <input type="button" class="submit-dev-btn-back" value="Back" onClick={() => { setDisplay("preview") }} />           
+                <input type="button" class="submit-dev-btn-back" value="Back" onClick={() => { setDisplay("preview") }} />
             </If>
             <If condition={display != "generate"}>      
                 <form action={formUrl} method="POST">
@@ -151,12 +181,24 @@ function EditWidget() {
                         <TopBar tab={tab} setTab={setTab}/>
                         <div class="widget-content-dev">
                             <If condition={!loading}>
-                                <If condition={tab === "youtube"}>    
-                                    <If condition={display === "forms"}>
-                                        <div class="edit-content">
+                                <If condition={display === "forms"}>
+                                    <div class="edit-content">
+                                        <If condition={tab === "reddit"}>
                                             <div class="content-dev">
-                                                {formData.map((url, i) =>
-                                                    <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(i, e)} />
+                                                {redditData.map((url, i) =>
+                                                    <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(tab, i, e)} />
+                                                )}
+                                            </div>
+                                            <div class="add-input-dev" onClick={addInputBox}>
+                                                <div class="plus-box">
+                                                    <i class="fas fa-plus"></i>
+                                                </div>
+                                            </div>                                           
+                                        </If>
+                                        <If condition={tab === "youtube"}>
+                                            <div class="content-dev">
+                                                {youtubeData.map((url, i) =>
+                                                    <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(tab, i, e)} />
                                                 )}
                                             </div>
                                             <div class="add-input-dev" onClick={addInputBox}>
@@ -164,20 +206,20 @@ function EditWidget() {
                                                     <i class="fas fa-plus"></i>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </If>
-                                    <If condition={display === "preview"}>
-                                        <div class="preview-content">
-                                            <div class="content-dev">
-                                                {previewData && previewData.map(d => <YoutubePreview youtubeData={d} />)}
-                                            </div>
-                                        </div>
-                                    </If>
+                                        </If>
+                                    </div>
                                 </If>
-                                <If condition={tab === "reddit"}>
-                                    <center class="mt-5">
-                                        <h1>Coming Soon</h1>
-                                    </center>
+                                <If condition={display === "preview"}>
+                                    <div class="preview-content">
+                                        <div class="content-dev">
+                                            <If condition={tab === "reddit"}>
+                                                { redditPreviewData && redditPreviewData.map(d => <RedditPreview data={d} />) }
+                                            </If>
+                                            <If condition={tab === "youtube"}>
+                                                { youtubePreviewData && youtubePreviewData.map(d => <YoutubePreview data={d} />) }
+                                            </If>
+                                        </div>
+                                    </div>
                                 </If>
                             </If>
                             <If condition={loading}>
@@ -188,7 +230,7 @@ function EditWidget() {
                         </div>
                     </div>
                     <div class="d-none">
-                        { formData.map((url, i) => <input key={i} type="hidden" class="youtube-hidden-link" name="youtube-link[]" value={url} />) }
+                        { youtubeData.map((url, i) => <input key={i} type="hidden" class="youtube-hidden-link" name="youtube-link[]" value={url} />) }
                     </div>
                     <div class="mt-4">
                         <If condition={display === "forms"}>
