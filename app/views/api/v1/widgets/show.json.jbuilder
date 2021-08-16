@@ -1,1 +1,3 @@
-# json.extract! @widget, :product_id, :product_title
+json.youtubes @widget.youtubes do |youtube|
+    json.merge! youtube
+end

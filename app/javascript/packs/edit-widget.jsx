@@ -68,15 +68,15 @@ function EditWidget() {
     const widgetId = parseInt(window.location.href.split("/").slice(-2, -1)[0], 10);
     const dataApiUrl = window.location.href.replace("widgets", "api/v1/widgets").split('/').slice(0, -1).join('/')
 
-    function existVideosShow() {
+    function existData() {
         setLoading(true);
         fetch(dataApiUrl)
             .then(response => {
                 response
                     .json()
                     .then(res => {
-                        let urls = res.map(video => "https://www.youtube.com/watch?v=" + video.video_id)
-                        setPreviewData(res);
+                        let urls = res["youtubes"].map(youtube => "https://www.youtube.com/watch?v=" + youtube.video_id)
+                        setPreviewData(res["youtubes"]);
                         if (urls.length > 0) {
                             setFormData(urls);
                             setDisplay("preview");
@@ -86,10 +86,10 @@ function EditWidget() {
             })
     }
 
-    // Run existVideosShow when this component is created
+    // Run existData when this component is created
     useEffect(() => {
         // console.log(widgetId);
-        existVideosShow();
+        existData();
     }, []);
 
     function preview() {
