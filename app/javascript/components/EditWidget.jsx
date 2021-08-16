@@ -5,6 +5,7 @@ import If from "../components/If";
 import YoutubePreview from "../components/YoutubePreview";
 import RedditPreview from "../components/RedditPreview";
 import InputBox from "../components/InputBox";
+import WidgetCode from "../components/WidgetCode";
 
 export default function EditWidget() {
     let [redditPreviewData, setRedditPreviewData] = useState([]);
@@ -16,7 +17,7 @@ export default function EditWidget() {
     let [tab, setTab] = useState("youtube");
 
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
-    // const widgetId = parseInt(window.location.href.split("/").slice(-2, -1)[0], 10);
+    const widgetId = parseInt(window.location.href.split("/").slice(-2, -1)[0], 10);
     const dataApiUrl = window.location.href.replace("widgets", "api/v1/widgets").split('/').slice(0, -1).join('/')
 
     function existData() {
@@ -126,7 +127,8 @@ export default function EditWidget() {
     return (
         <>
             <If condition={display === "generate"}>
-                <p>coming soon</p>
+                {/* <p>coming soon</p> */}
+                <WidgetCode widgetId={widgetId} tab={tab} setTab={setTab} />
                 <input type="button" class="submit-dev-btn-back" value="Back" onClick={() => { setDisplay("preview") }} />
             </If>
             <If condition={display != "generate"}>      
