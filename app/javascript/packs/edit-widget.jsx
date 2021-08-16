@@ -1,6 +1,7 @@
 import { h, render, Fragment } from "preact";
 import register from 'preact-custom-element'
 import { useEffect, useState } from 'preact/hooks'
+import TopBar from "../components/TopBar"
 
 
 function InputBox(props) {
@@ -147,14 +148,7 @@ function EditWidget() {
             <If condition={display != "generate"}>      
                 <form action={formUrl} method="POST">
                     <div class="widget-dev">
-                        <div class="topbar-dev">
-                            <div class={tab === "youtube" ? "widget-nav-btn active" : "widget-nav-btn"} onClick={() => setTab("youtube")}>
-                                <i class="fab fa-youtube"></i>
-                            </div>
-                            <div class={tab === "reddit" ? "widget-nav-btn active" : "widget-nav-btn"} onClick={() => setTab("reddit")}>
-                                <i class="fab fa-reddit"></i>
-                            </div>
-                        </div>
+                        <TopBar tab={tab} setTab={setTab}/>
                         <div class="widget-content-dev">
                             <If condition={!loading}>
                                 <If condition={tab === "youtube"}>    
