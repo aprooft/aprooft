@@ -17,10 +17,7 @@
   width: 100%;
   min-height: 100px;
   flex-grow: 1;
-  object-fit: cover;
-  /*customizable*/
-  object-position: 50% 50%;
-  border-radius: 4px 4px 0 0;
+  object-fit: scale-down;
 }
 
 .product-card-info {
@@ -31,6 +28,10 @@
 .product-card-info h2 {
   /*customizable*/
   margin: 16px 0;
+}
+
+.widgets-all-list a:hover {
+  text-decoration: none;
 }
 
 .product-card:hover {
