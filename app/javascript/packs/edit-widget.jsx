@@ -20,6 +20,8 @@ function InputBox(props) {
 }
 
 function RedditPreview(props) {
+    const data = props.data;
+
     return (<p>Coming soon</p>);
 }
 
@@ -193,30 +195,23 @@ function EditWidget() {
                             <If condition={!loading}>
                                 <If condition={display === "forms"}>
                                     <div class="edit-content">
-                                        <If condition={tab === "reddit"}>
-                                            <div class="content-dev">
+                                        <div class="content-dev">
+                                            <If condition={tab === "reddit"}>
                                                 {redditData.map((url, i) =>
                                                     <InputBox key={i} tab={tab} value={url} onPreview={preview} onChange={(e) => onInputChange(tab, i, e)} />
                                                 )}
-                                            </div>
-                                            <div class="add-input-dev" onClick={addInputBox}>
-                                                <div class="plus-box">
-                                                    <i class="fas fa-plus"></i>
-                                                </div>
-                                            </div>                                           
-                                        </If>
-                                        <If condition={tab === "youtube"}>
-                                            <div class="content-dev">
+                                            </If>
+                                            <If condition={tab === "youtube"}>
                                                 {youtubeData.map((url, i) =>
                                                     <InputBox key={i} tab={tab} value={url} onPreview={preview} onChange={(e) => onInputChange(tab, i, e)} />
                                                 )}
+                                            </If>
+                                        </div>
+                                        <div class="add-input-dev" onClick={addInputBox}>
+                                            <div class="plus-box">
+                                                <i class="fas fa-plus"></i>
                                             </div>
-                                            <div class="add-input-dev" onClick={addInputBox}>
-                                                <div class="plus-box">
-                                                    <i class="fas fa-plus"></i>
-                                                </div>
-                                            </div>
-                                        </If>
+                                        </div>
                                     </div>
                                 </If>
                                 <If condition={display === "preview"}>
