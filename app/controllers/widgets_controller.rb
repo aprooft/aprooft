@@ -59,7 +59,7 @@ class WidgetsController < ApplicationController
 
   def widget_params
     params.require(:widget).permit(:user_id, :product_title, :product_pic, :product_id)
-  end   
+  end
 
   def set_widget
     @widget = Widget.find(params[:id].to_i)
@@ -91,7 +91,7 @@ class WidgetsController < ApplicationController
     }
     channel_id = video_result[:channel_id]
     channel_url = "https://www.googleapis.com/youtube/v3/channels?part=snippet&fields=items%2Fsnippet%2Fthumbnails%2Fdefault&id=#{channel_id}&key=#{ENV['GOOGLE_API_KEY']}"
-    video_result["channel_pic"] = JSON.parse(URI.open(channel_url).read)["items"][0]["snippet"]["thumbnails"]["default"]["url"]
+    video_result[:channel_pic] = JSON.parse(URI.open(channel_url).read)["items"][0]["snippet"]["thumbnails"]["default"]["url"]
     return video_result.except(:channel_id)
   end
 end
