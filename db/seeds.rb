@@ -17,28 +17,133 @@ User.create(email: "admin@me.com", password: "123456", admin: true)
 4.times do
   User.create(email: Faker::Internet.email, password: Faker::Internet.password, admin: false)
 end
-puts "creating Widget..."
-1.times do
- widget3 = Widget.new(user_id: User.all.sample.id, style: {}, product_title: Faker::Commerce.product_name, product_id: "FR69230" )
- widget3.product_pic.attach(io: URI.parse("https://images.unsplash.com/photo-1585298723682-7115561c51b7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80").open, filename: 'product.jpeg')
- widget3.save
-end
+puts "creating Widgets..."
+
+  widget1 = Widget.new(user_id: User.all.first.id, style: {}, product_title: "Sleepbuds II", product_id: "FR69230")
+  widget1.product_pic.attach(io: URI.parse("https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/noise_masking_sleepbuds_ii/product_silo_images/SBII_PP_Ecom_Silo-2_1200x1022_web.jpg/jcr:content/renditions/cq5dam.web.600.600.jpeg").open, filename: 'product.jpeg')
+  widget1.save
+
+puts "widget1 created"
+
+  widget2 = Widget.new(user_id: User.all.first.id, style: {}, product_title: "A20 Aviation Headset", product_id: "FR89723")
+  widget2.product_pic.attach(io: URI.parse("https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/a20_aviation_headset/product_silo_images/a20_hdst_EC5_01.psd/jcr:content/renditions/cq5dam.web.600.600.jpeg").open, filename: 'product.jpeg')
+  widget2.save
+
+puts "widget2 created"
+
+  widget3 = Widget.new(user_id: User.all.first.id, style: {}, product_title: "QuietComfort Earbuds", product_id: "FR84581")
+  widget3.product_pic.attach(io: URI.parse("https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/qc_earbuds/silo_images/v2/QCEB_PDP_Ecom-Gallery-B03.png/jcr:content/renditions/cq5dam.web.600.600.png").open, filename: 'product.jpeg')
+  widget3.save
+
+puts "widget3 created"
+
+  widget4 = Widget.new(user_id: User.all.first.id, style: {}, product_title: "Noise Cancelling Headphones 700", product_id: "FR73252")
+  widget4.product_pic.attach(io: URI.parse("https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/noise_cancelling_headphones_700/product_silo_images/Silo_jpg/noise_cancelling_headphones_700_blk_EC_02.jpg/jcr:content/renditions/cq5dam.web.600.600.jpeg").open, filename: 'product.jpeg')
+  widget4.save
+
+puts "widget4 created"
+
+  widget5 = Widget.new(user_id: User.all.first.id, style: {}, product_title: "SoundComm B40 Headset", product_id: "FR67230")
+  widget5.product_pic.attach(io: URI.parse("https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/soundcomm_b40_headset/product_silo_images/B40_headset_Headon_hero.psd/jcr:content/renditions/cq5dam.web.600.600.png").open, filename: 'product.jpeg')
+  widget5.save
+
+puts "widget5 created"
+
+  widget6 = Widget.new(user_id: User.all.first.id, style: {}, product_title: "Sport Open Earbuds", product_id: "FR31007")
+  widget6.product_pic.attach(io: URI.parse("https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/sport_open_earbuds/product_silo_images/soeb_product_page_ec_02_1200x1022_web.png/jcr:content/renditions/cq5dam.web.320.320.png").open, filename: 'product.jpeg')
+  widget6.save
+
+puts "widget6 created"
 puts "done"
+
 puts "creating youtubes links..."
-Youtube.create(title: "AirPods MaxじゃなくてBOSE NC700を買ったよ", thumbnail: "", like_count: 204,
-dislike_count: 27, channel_name: "DEEP KICS", view_count: 10898, widget_id: Widget.all.sample.id,
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a cursus eros. ", etag: "", channel_pic: "" )
+def youtube_id(youtube_url)
+  regex = %r{(?:youtube(?:-nocookie)?\.com/(?:[^/\n\s]+/\S+/|(?:v|e(?:mbed)?)/|\S*?[?&]v=)|youtu\.be/)([a-zA-Z0-9_-]{11})}
+  match = regex.match(youtube_url)
+  match[1] if match && !match[1].blank?
+end
 
-Youtube.create(title: "Bose Headphones 700: The King is Back!", thumbnail: "", like_count: 83570,
-dislike_count: 2710, channel_name: "Marques Brownlee", view_count: 3121467, widget_id: Widget.all.sample.id,
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a cursus eros. ", etag: "", channel_pic: "" )
+def fetchYoutubeApi(youtube_url)
+  input_video_id = youtube_id(youtube_url)
+  url = "https://www.googleapis.com/youtube/v3/videos?id=#{input_video_id}&key=#{ENV['GOOGLE_API_KEY']}&part=snippet,contentDetails,statistics,status"
+  result_serialized = URI.open(url).read
+  result = JSON.parse(result_serialized)
+  video_result = {
+    etag: result["etag"],
+    title: result["items"][0]["snippet"]["title"],
+    video_id: result["items"][0]["id"],
+    thumbnail: result["items"][0]["snippet"]["thumbnails"]["high"]["url"],
+    like_count: result["items"][0]["statistics"]["likeCount"],
+    dislike_count: result["items"][0]["statistics"]["dislikeCount"],
+    channel_name: result["items"][0]["snippet"]["channelTitle"],
+    channel_id: result["items"][0]["snippet"]["channelId"],
+    view_count: result["items"][0]["statistics"]["viewCount"],
+    description: result["items"][0]["snippet"]["description"]
+  }
+  channel_id = video_result[:channel_id]
+  channel_url = "https://www.googleapis.com/youtube/v3/channels?part=snippet&fields=items%2Fsnippet%2Fthumbnails%2Fdefault&id=#{channel_id}&key=#{ENV['GOOGLE_API_KEY']}"
+  video_result[:channel_pic] = JSON.parse(URI.open(channel_url).read)["items"][0]["snippet"]["thumbnails"]["default"]["url"]
+  return video_result.except(:channel_id)
+end
 
-Youtube.create(title: "Bose 700 Headphones Review - 6 Months Later", thumbnail: "", like_count: 1521,
-dislike_count: 23, channel_name: " 6 Months Later Reviews", view_count: 84101, widget_id: Widget.all.sample.id,
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a cursus eros. ", etag: "", channel_pic: "" )
+# Sleepbuds II
+sleepbuds_links = ["https://www.youtube.com/watch?v=GR0LL_7ZirE", "https://www.youtube.com/watch?v=aOjFrajPFLE", "https://www.youtube.com/watch?v=ATz7i6pcWE0", "https://www.youtube.com/watch?v=I8O8zajg4c4"];
+sleepbuds_links.each do |sleepbuds_link|
+  video_data = fetchYoutubeApi(sleepbuds_link)
+  Youtube.create(title: video_data[:title], video_id: video_data[:video_id], thumbnail: video_data[:thumbnail], like_count: video_data[:like_count],
+  dislike_count: video_data[:dislike_count], channel_name: video_data[:channel_name], view_count: video_data[:view_count], widget_id: Widget.all.first.id,
+  description: video_data[:description], etag: video_data[:etag], channel_pic: video_data[:channel_pic])
+end
+puts "sleepbuds links created"
 
-Youtube.create(title: "Bose ACTIVE NOISE CANCELLING 700 Headphones - REVIEW", thumbnail: "", like_count: 16522,
-dislike_count: 233, channel_name: "DEEP KICS", view_count: 504231, widget_id: Widget.all.sample.id,
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a cursus eros. ", etag: "", channel_pic: "" )
+#A20 Aviation Headset
+aviation_links = ["https://www.youtube.com/watch?v=Lp3tJSaKDFc", "https://www.youtube.com/watch?v=aV4l4NWBOK4", "https://www.youtube.com/watch?v=lW6YIwAFs2U"];
+aviation_links.each do |aviation_link|
+  video_data = fetchYoutubeApi(aviation_link)
+  Youtube.create(title: video_data[:title], video_id: video_data[:video_id], thumbnail: video_data[:thumbnail], like_count: video_data[:like_count],
+  dislike_count: video_data[:dislike_count], channel_name: video_data[:channel_name], view_count: video_data[:view_count], widget_id: Widget.all[1].id,
+  description: video_data[:description], etag: video_data[:etag], channel_pic: video_data[:channel_pic])
+end
+puts "A20 Aviation Headset links created"
+
+#QuietComfort Earbuds
+quietcomfort_links = ["https://www.youtube.com/watch?v=1adxs49qIqA", "https://www.youtube.com/watch?v=mxtJyn3pl30", "https://www.youtube.com/watch?v=8r_ivUdeR8Y", "https://www.youtube.com/watch?v=4sU6NrpDMB4"];
+quietcomfort_links.each do |quietcomfort_link|
+  video_data = fetchYoutubeApi(quietcomfort_link)
+  Youtube.create(title: video_data[:title], video_id: video_data[:video_id], thumbnail: video_data[:thumbnail], like_count: video_data[:like_count],
+  dislike_count: video_data[:dislike_count], channel_name: video_data[:channel_name], view_count: video_data[:view_count], widget_id: Widget.all[2].id,
+  description: video_data[:description], etag: video_data[:etag], channel_pic: video_data[:channel_pic])
+end
+puts "QuietComfort Earbuds links created"
+
+#Noise Cancelling Headphones 700
+noisecanceling_links = ["https://www.youtube.com/watch?v=Q15ZzwzN2-w", "https://www.youtube.com/watch?v=YPln3JP_gKs", "https://www.youtube.com/watch?v=7DMDA5pde-0"];
+noisecanceling_links.each do |noisecanceling_link|
+  video_data = fetchYoutubeApi(noisecanceling_link)
+  Youtube.create(title: video_data[:title], video_id: video_data[:video_id], thumbnail: video_data[:thumbnail], like_count: video_data[:like_count],
+  dislike_count: video_data[:dislike_count], channel_name: video_data[:channel_name], view_count: video_data[:view_count], widget_id: Widget.all[3].id,
+  description: video_data[:description], etag: video_data[:etag], channel_pic: video_data[:channel_pic])
+end
+puts "Noise Cancelling 700 links created"
+
+#SoundComm B40 Headset
+soundcomm_links = ["https://www.youtube.com/watch?v=f9yUAND_VWU", "https://www.youtube.com/watch?v=2gjWPS_NI5A", "https://www.youtube.com/watch?v=cUGx_iq1Sis"];
+soundcomm_links.each do |soundcomm_link|
+  video_data = fetchYoutubeApi(soundcomm_link)
+  Youtube.create(title: video_data[:title], video_id: video_data[:video_id], thumbnail: video_data[:thumbnail], like_count: video_data[:like_count],
+  dislike_count: video_data[:dislike_count], channel_name: video_data[:channel_name], view_count: video_data[:view_count], widget_id: Widget.all[4].id,
+  description: video_data[:description], etag: video_data[:etag], channel_pic: video_data[:channel_pic])
+end
+puts "SoundComm B40 Headset links created"
+
+#Sport Open Earbuds
+noisecanceling_links = ["https://www.youtube.com/watch?v=ieQ8icsc6dk", "https://www.youtube.com/watch?v=YOeCRKffHhg", "https://www.youtube.com/watch?v=rfknxc3_wjs"];
+noisecanceling_links.each do |noisecanceling_link|
+  video_data = fetchYoutubeApi(noisecanceling_link)
+  Youtube.create(title: video_data[:title], video_id: video_data[:video_id], thumbnail: video_data[:thumbnail], like_count: video_data[:like_count],
+  dislike_count: video_data[:dislike_count], channel_name: video_data[:channel_name], view_count: video_data[:view_count], widget_id: Widget.all[5].id,
+  description: video_data[:description], etag: video_data[:etag], channel_pic: video_data[:channel_pic])
+end
+puts "Sport Open Earbuds links created"
 
 puts "done"
