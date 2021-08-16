@@ -30,6 +30,10 @@
   margin: 16px 0;
 }
 
+.widgets-all-list a:hover {
+  text-decoration: none;
+}
+
 .product-card:hover {
   /*customizable*/
   transition: 0.2s ease-out;
