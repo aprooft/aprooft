@@ -8,7 +8,7 @@ function InputBox(props) {
     return (
         <div class="input-box">
             <div class="input-box-form">
-                <input type="text" class="youtube-link" placeholder="youtube video url" value={props.value} onChange={props.onChange} />
+                <input type="text" class={`${props.tab}-link`} placeholder="url" value={props.value} onChange={props.onChange} />
             </div>
             <div class="input-box-icon">
                 <i class="fas fa-eye eyeicon" onClick={props.onPreview}></i>
@@ -160,13 +160,23 @@ function EditWidget() {
     }
 
     function addInputBox() {
-        let data = youtubeData.slice();
-        data.push("");
-        setYoutubeData(data);
-        setTimeout(() => {
-            const links = document.querySelectorAll(".youtube-link");
-            links[links.length - 1] && links[links.length - 1].focus();
-        }, 100);
+        if (tab === "youtube") {
+            let data = youtubeData.slice();
+            data.push("");
+            setYoutubeData(data);
+            setTimeout(() => {
+                const links = document.querySelectorAll(".youtube-link");
+                links[links.length - 1] && links[links.length - 1].focus();
+            }, 100);
+        } else if (tab === "reddit") {
+            let data = redditData.slice();
+            data.push("");
+            setRedditData(data);
+            setTimeout(() => {
+                const links = document.querySelectorAll(".reddit-link");
+                links[links.length - 1] && links[links.length - 1].focus();
+            }, 100);
+        }
     }
 
     return (
@@ -186,7 +196,7 @@ function EditWidget() {
                                         <If condition={tab === "reddit"}>
                                             <div class="content-dev">
                                                 {redditData.map((url, i) =>
-                                                    <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(tab, i, e)} />
+                                                    <InputBox key={i} tab={tab} value={url} onPreview={preview} onChange={(e) => onInputChange(tab, i, e)} />
                                                 )}
                                             </div>
                                             <div class="add-input-dev" onClick={addInputBox}>
@@ -198,7 +208,7 @@ function EditWidget() {
                                         <If condition={tab === "youtube"}>
                                             <div class="content-dev">
                                                 {youtubeData.map((url, i) =>
-                                                    <InputBox key={i} value={url} onPreview={preview} onChange={(e) => onInputChange(tab, i, e)} />
+                                                    <InputBox key={i} tab={tab} value={url} onPreview={preview} onChange={(e) => onInputChange(tab, i, e)} />
                                                 )}
                                             </div>
                                             <div class="add-input-dev" onClick={addInputBox}>
@@ -231,6 +241,7 @@ function EditWidget() {
                     </div>
                     <div class="d-none">
                         { youtubeData.map((url, i) => <input key={i} type="hidden" class="youtube-hidden-link" name="youtube-link[]" value={url} />) }
+                        { redditData.map((url, i) => <input key={i} type="hidden" class="reddit-hidden-link" name="reddit-link[]" value={url} />) }
                     </div>
                     <div class="mt-4">
                         <If condition={display === "forms"}>
