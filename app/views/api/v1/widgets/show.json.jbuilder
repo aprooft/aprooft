@@ -1,0 +1,1 @@
+# json.extract! @widget, :product_id, :product_title

@@ -18,7 +18,6 @@ class WidgetsController < ApplicationController
   end
 
   def show
-    render json: Youtube.where(widget: @widget)
   end
 
   def new
