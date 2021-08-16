@@ -18,6 +18,7 @@
 .right-column-content {
     flex-grow: 1;
     padding: 80px;
+    overflow-y: scroll;
 }
 
 .right-column-content.show-view {
