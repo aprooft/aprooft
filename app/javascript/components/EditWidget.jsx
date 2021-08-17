@@ -52,6 +52,7 @@ export default function EditWidget() {
     useEffect(() => {
         // console.log(widgetId);
         existData();
+        window.setGlobalWidgetLayout = setLayout;
     }, []);
 
     function preview() {

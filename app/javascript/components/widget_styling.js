@@ -56,6 +56,14 @@ const widgetStyling = () => {
     document.body.style.setProperty("--widget-background-color", hexInput.value);
   })
 
+  // layout section
+  const layouts = ['list', 'grid', 'masonry', 'slider'];
+  
+  for (let layout of layouts){
+    document.getElementById(layout).addEventListener('click', () => {
+      window.setGlobalWidgetLayout(layout);
+    });
+  }
 }
 
 export { widgetStyling }
