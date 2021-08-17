@@ -65,11 +65,13 @@
         -webkit-line-clamp: 2;
         flex-grow: 1;
         display: -webkit-box;
-        font-size: 16px;
+        font-size: var(--widget-font-size);
         height: auto;
         line-height: 20px;
         overflow: hidden;
         text-overflow: ellipsis;
+        color: var(--widget-text-color);
+        font-family: var(--widget-font-family);
     }
 }
 
