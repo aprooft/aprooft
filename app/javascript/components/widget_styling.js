@@ -55,23 +55,24 @@ const widgetStyling = () => {
   console.log(widgetNavBtnActive)
 
   topbarColor.addEventListener('change', () => {
-    topbarDev.style.backgroundColor = topbarColor.value;
-    setHighlight();
+    // topbarDev.style.backgroundColor = topbarColor.value;
+    // setHighlight();
+    document.body.style.setProperty("--widget-topbar-color", topbarColor.value);
   })
 
   highlightColor.addEventListener('change', () => {
-    if (topbarDev.style.backgroundColor === "") {
-      topbarDev.style.backgroundColor = "#11101D";
-    }
-    setHighlight();
-    widgetNavBtnActive.style.borderBottom = `10px solid ${highlightColor.value}`
-
+    // if (topbarDev.style.backgroundColor === "") {
+    //   topbarDev.style.backgroundColor = "#11101D";
+    // }
+    // setHighlight();
+    // widgetNavBtnActive.style.borderBottom = `10px solid ${highlightColor.value}`
+    document.body.style.setProperty("--widget-highlight-color", highlightColor.value);
   })
 
-  const setHighlight = () => {
-    widgetNavBtnActive.style.background =
-      `linear-gradient(0deg, ${topbarDev.style.backgroundColor} 30%, ${highlightColor.value} 90%)`
-  }
+  // const setHighlight = () => {
+  //   widgetNavBtnActive.style.background =
+  //     `linear-gradient(0deg, ${topbarDev.style.backgroundColor} 30%, ${highlightColor.value} 90%)`
+  // }
 
   // background section
   const IroColorPicker = document.querySelector(".IroColorPicker");
