@@ -94,4 +94,22 @@ class WidgetsController < ApplicationController
     video_result[:channel_pic] = JSON.parse(URI.open(channel_url).read)["items"][0]["snippet"]["thumbnails"]["default"]["url"]
     return video_result.except(:channel_id)
   end
+
+  def reddit_id(reddit_url)
+    regex = (?:^.+?)(?:reddit.com\/r)(?:\/[\w\d]+){2}(?:\/)([\w\d]*)
+    match = regex.match(reddit_url)
+    match[1] if match && !match[1].blank?
+  end
+
+  def fetchRedditApi(reddit_url)
+    input_thread_id = reddit_id(reddit_url)
+    url = "https://api.reddit.com/api/info/?id=t3_#{input_thread_id}"
+    result_serialized = URI.open(url).read
+    result = JSON.parse(result_serialized)
+    comment_result = {
+      thread_title: result[0]["data"]["children"][0]["data"]["title"]
+    }
+    p comment_result
+  end
+
 end
