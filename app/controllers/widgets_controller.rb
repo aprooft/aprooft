@@ -1,5 +1,6 @@
 require 'json'
 require 'open-uri'
+require 'net/http'
 $fonts = { "arial" => "Arial", "verdana" => "Verdana" }
 
 class WidgetsController < ApplicationController
@@ -42,6 +43,9 @@ class WidgetsController < ApplicationController
   def preview
     youtube_links_result = params["youtube_links"].reject{ |link| link=="" }
     render json: youtube_links_result.map{ |link| fetchYoutubeApi(link) }
+
+    # reddit_links_result = params["reddit_links"].reject{ |link| link=="" }
+    # render json: reddit_links_result.map{ |link| fetchRedditApi(link) }
   end
 
   def update
@@ -95,20 +99,31 @@ class WidgetsController < ApplicationController
   end
 
   def reddit_id(reddit_url)
-    regex = (?:^.+?)(?:reddit.com\/r)(?:\/[\w\d]+){2}(?:\/)([\w\d]*)
+    regex = /(?:^.+?)(?:reddit.com\/r)(?:\/[\w\d]+){2}(?:\/)([\w\d]*)/
     match = regex.match(reddit_url)
-    match[1] if match && !match[1].blank?
+    match[1] if match && !match[1].empty?
   end
 
   def fetchRedditApi(reddit_url)
     input_thread_id = reddit_id(reddit_url)
-    url = "https://api.reddit.com/api/info/?id=t3_#{input_thread_id}"
-    result_serialized = URI.open(url).read
-    result = JSON.parse(result_serialized)
+    url = URI("https://api.reddit.com/api/info/?id=t3_#{input_thread_id}")
+    https = Net::HTTP.new(url.host, url.port)
+    https.use_ssl = true
+
+    request = Net::HTTP::Get.new(url)
+    request["User-Agent"] = "test-user-agent"
+    response = https.request(request)
+    result = JSON.parse(response.read_body)
     comment_result = {
-      thread_title: result[0]["data"]["children"][0]["data"]["title"]
+      thread_id: result["data"]["children"][0]["data"]["id"],
+      thread_title: result["data"]["children"][0]["data"]["title"],
+      ups: result["data"]["children"][0]["data"]["ups"],
+      link_flair_text: result["data"]["children"][0]["data"]["link_flair_text"],
+      created: result["data"]["children"][0]["data"]["created"],
+      author: result["data"]["children"][0]["data"]["author"],
+      num_comments: result["data"]["children"][0]["data"]["num_comments"],
+      subreddit: result["data"]["children"][0]["data"]["subreddit"]
     }
-    p comment_result
   end
 
 end
