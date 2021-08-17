@@ -17,6 +17,7 @@ export default function EditWidget() {
     let [redditData, setRedditData] = useState([""]);
     let [loading, setLoading] = useState(true);
     let [tab, setTab] = useState("youtube");
+    let [layout, setLayout] = useState("list");
 
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
     const widgetId = parseInt(window.location.href.split("/").slice(-2, -1)[0], 10);
@@ -51,6 +52,7 @@ export default function EditWidget() {
     useEffect(() => {
         // console.log(widgetId);
         existData();
+        window.setGlobalWidgetLayout = setLayout;
     }, []);
 
     function preview() {
@@ -164,7 +166,7 @@ export default function EditWidget() {
                                             {redditPreviewData && redditPreviewData.map(d => <RedditPreview data={d} />)}
                                         </If>
                                         <If condition={tab === "youtube"}>
-                                            {youtubePreviewData && youtubePreviewData.map(d => <YoutubePreview data={d} />)}
+                                            { youtubePreviewData && youtubePreviewData.map(d => <YoutubePreview data={d} layout={layout} />) }
                                         </If>
                                     </div>
                                 </div>
