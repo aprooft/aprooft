@@ -6,6 +6,8 @@ import YoutubePreview from "../components/YoutubePreview";
 import RedditPreview from "../components/RedditPreview";
 import InputBox from "../components/InputBox";
 import WidgetCode from "../components/WidgetCode";
+import WidgetBox from "./WidgetBox";
+
 
 export default function EditWidget() {
     let [redditPreviewData, setRedditPreviewData] = useState([]);
@@ -127,78 +129,69 @@ export default function EditWidget() {
     return (
         <>
             <If condition={display === "generate"}>
-                {/* <p>coming soon</p> */}
                 <WidgetCode widgetId={widgetId} tab={tab} setTab={setTab} />
                 <input type="button" class="back-button" value="Back" onClick={() => { setDisplay("preview") }} />
             </If>
-            <If condition={display != "generate"}>      
-                <form action={formUrl} method="POST">
-                    <div class="widget-dev">
-                        <TopBar tab={tab} setTab={setTab}/>
-                        <div class="widget-content-dev">
-                            <If condition={!loading}>
-                                <If condition={display === "forms"}>
-                                    <div class="edit-content">
-                                        <div class="content-dev">
-                                            <If condition={tab === "reddit"}>
-                                                {redditData.map((url, i) =>
-                                                    <InputBox key={i} tab={tab} value={url} onPreview={preview} onChange={(e) => onInputChange(tab, i, e)} />
-                                                )}
-                                            </If>
-                                            <If condition={tab === "youtube"}>
-                                                {youtubeData.map((url, i) =>
-                                                    <InputBox key={i} tab={tab} value={url} onPreview={preview} onChange={(e) => onInputChange(tab, i, e)} />
-                                                )}
-                                            </If>
-                                        </div>
-                                        <div class="add-input-dev" onClick={addInputBox}>
-                                            <div class="plus-box">
-                                                <i class="fas fa-plus"></i>
-                                            </div>
+            <If condition={display != "generate"}>
+                <div class="edit-widget-wrapper">
+                    <form action={formUrl} method="POST">
+                        <WidgetBox tab={tab} setTab={setTab} loading={loading}>
+                            <If condition={display === "forms"}>
+                                <div class="edit-content">
+                                    <div class="content-dev">
+                                        <If condition={tab === "reddit"}>
+                                            {redditData.map((url, i) =>
+                                                <InputBox key={i} tab={tab} value={url} onPreview={preview} onChange={(e) => onInputChange(tab, i, e)} />
+                                            )}
+                                        </If>
+                                        <If condition={tab === "youtube"}>
+                                            {youtubeData.map((url, i) =>
+                                                <InputBox key={i} tab={tab} value={url} onPreview={preview} onChange={(e) => onInputChange(tab, i, e)} />
+                                            )}
+                                        </If>
+                                    </div>
+                                    <div class="add-input-dev" onClick={addInputBox}>
+                                        <div class="plus-box">
+                                            <i class="fas fa-plus"></i>
                                         </div>
                                     </div>
-                                </If>
-                                <If condition={display === "preview"}>
-                                    <div class="preview-content">
-                                        <div class="content-dev">
-                                            <If condition={tab === "reddit"}>
-                                                { redditPreviewData && redditPreviewData.map(d => <RedditPreview data={d} />) }
-                                            </If>
-                                            <If condition={tab === "youtube"}>
-                                                { youtubePreviewData && youtubePreviewData.map(d => <YoutubePreview data={d} />) }
-                                            </If>
-                                        </div>
-                                    </div>
-                                </If>
+                                </div>
                             </If>
-                            <If condition={loading}>
-                                <div class="loading-show">
-                                    <i class="fas fa-spinner fa-pulse"></i>
+                            <If condition={display === "preview"}>
+                                <div class="preview-content">
+                                    <div class="content-dev">
+                                        <If condition={tab === "reddit"}>
+                                            { redditPreviewData && redditPreviewData.map(d => <RedditPreview data={d} />) }
+                                        </If>
+                                        <If condition={tab === "youtube"}>
+                                            { youtubePreviewData && youtubePreviewData.map(d => <YoutubePreview data={d} />) }
+                                        </If>
+                                    </div>
+                                </div>
+                            </If>
+                        </WidgetBox>
+                        <div class="d-none">
+                            { youtubeData.map((url, i) => <input key={i} type="hidden" class="youtube-hidden-link" name="youtube-link[]" value={url} />) }
+                            { redditData.map((url, i) => <input key={i} type="hidden" class="reddit-hidden-link" name="reddit-link[]" value={url} />) }
+                        </div>
+                        <div class="mt-4">
+                            <If condition={display === "forms"}>
+                                <div class="submit-dev">
+                                    <input type="button" class="submit-dev-btn" value="Preview" onClick={preview} />
+                                </div>
+                            </If>
+                            <If condition={display === "preview"}>
+                                <div class="submit-dev">
+                                    <input type="button" class="submit-dev-btn" value="Edit" onClick={() => { setDisplay("forms") }} />           
+                                    <input type="hidden" name="_method" value="PATCH" />
+                                    <input type="submit" class="submit-dev-btn" value="Save" />
+                                    <input type="button" class="submit-dev-btn" value="Generate Code" onClick={() => { setDisplay("generate") }} />
                                 </div>
                             </If>
                         </div>
-                    </div>
-                    <div class="d-none">
-                        { youtubeData.map((url, i) => <input key={i} type="hidden" class="youtube-hidden-link" name="youtube-link[]" value={url} />) }
-                        { redditData.map((url, i) => <input key={i} type="hidden" class="reddit-hidden-link" name="reddit-link[]" value={url} />) }
-                    </div>
-                    <div class="mt-4">
-                        <If condition={display === "forms"}>
-                            <div class="submit-dev">
-                                <input type="button" class="submit-dev-btn" value="Preview" onClick={preview} />
-                            </div>
-                        </If>
-                        <If condition={display === "preview"}>
-                            <div class="submit-dev">
-                                <input type="button" class="submit-dev-btn" value="Edit" onClick={() => { setDisplay("forms") }} />           
-                                <input type="hidden" name="_method" value="PATCH" />
-                                <input type="submit" class="submit-dev-btn" value="Save" />
-                                <input type="button" class="submit-dev-btn" value="Generate Code" onClick={() => { setDisplay("generate") }} />
-                            </div>
-                        </If>
-                    </div>
-                </form>
-            </If>    
-        </>    
+                    </form>
+                </div>
+            </If>
+        </>
     );
 }

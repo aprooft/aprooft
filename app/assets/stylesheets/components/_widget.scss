@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.widget-box {
+.widget-wrapper {
     position: fixed;
     bottom: 100px;
     right: 100px;
@@ -22,14 +22,25 @@
     transition: width 0.4s ease, height 0.4s ease;
 }
 
-.widget-box.active {
-    height: 70vh;
-    width: 50vw;
+.widget-wrapper.active {
+    display: flex;
     position: fixed;
     bottom: 100px;
     right: 100px;
-    height: 70vh;
-    width: 50vw;
-    border: solid 1px grey;  
+    // TODO
+    // use global css variable replace the white color, connect with sidebar styling.
+    width: 460px;
+    height: 600px;
+
+    // TODO
+    // use global css variable replace the white color, connect with sidebar styling.
+    background-color: white;
     transition: width 0.5s ease, height 0.5s ease;
+}
+
+.edit-widget-wrapper {
+    // TODO
+    // use global css variable replace the white color, connect with sidebar styling.
+    width: 460px;
+    height: 600px;
 }
