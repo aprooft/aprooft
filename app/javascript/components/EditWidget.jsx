@@ -34,7 +34,7 @@ export default function EditWidget() {
                         setYoutubePreviewData(res["youtubes"]);
                         setYoutubeData(ytUrls);
 
-                        let rUrls = res["reddits"].map(reddit => "" + reddit);
+                        let rUrls = res["reddits"].map(reddit => "https://api.reddit.com/api/info/?id=t3_" + reddit.thread_id);
                         setRedditPreviewData(res["reddits"]);
                         setRedditData(rUrls);
 
@@ -163,7 +163,7 @@ export default function EditWidget() {
                                 <div class="preview-content">
                                     <div class="content-dev">
                                         <If condition={tab === "reddit"}>
-                                            { redditPreviewData && redditPreviewData.map(d => <RedditPreview data={d} />) }
+                                            {redditPreviewData && redditPreviewData.map(d => <RedditPreview data={d} />)}
                                         </If>
                                         <If condition={tab === "youtube"}>
                                             { youtubePreviewData && youtubePreviewData.map(d => <YoutubePreview data={d} layout={layout} />) }
@@ -173,8 +173,8 @@ export default function EditWidget() {
                             </If>
                         </WidgetBox>
                         <div class="d-none">
-                            { youtubeData.map((url, i) => <input key={i} type="hidden" class="youtube-hidden-link" name="youtube-link[]" value={url} />) }
-                            { redditData.map((url, i) => <input key={i} type="hidden" class="reddit-hidden-link" name="reddit-link[]" value={url} />) }
+                            {youtubeData.map((url, i) => <input key={i} type="hidden" class="youtube-hidden-link" name="youtube-link[]" value={url} />)}
+                            {redditData.map((url, i) => <input key={i} type="hidden" class="reddit-hidden-link" name="reddit-link[]" value={url} />)}
                         </div>
                         <div class="mt-4">
                             <If condition={display === "forms"}>
@@ -184,7 +184,7 @@ export default function EditWidget() {
                             </If>
                             <If condition={display === "preview"}>
                                 <div class="submit-dev">
-                                    <input type="button" class="submit-dev-btn" value="Edit" onClick={() => { setDisplay("forms") }} />           
+                                    <input type="button" class="submit-dev-btn" value="Edit" onClick={() => { setDisplay("forms") }} />
                                     <input type="hidden" name="_method" value="PATCH" />
                                     <input type="submit" class="submit-dev-btn" value="Save" />
                                     <input type="button" class="submit-dev-btn" value="Generate Code" onClick={() => { setDisplay("generate") }} />

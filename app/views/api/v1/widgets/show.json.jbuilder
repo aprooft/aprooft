@@ -3,3 +3,6 @@ json.youtubes @widget.youtubes do |youtube|
 end
 
 json.reddits ["coming soon"]
+# json.reddits @widget.reddits do |reddit|
+#     json.merge! reddit
+# end
