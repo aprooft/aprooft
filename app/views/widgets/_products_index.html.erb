@@ -26,6 +26,10 @@
             <% end %>
             <div class="product-card-info">
               <h2> <%= product.product_title %> </h2>
+                             <button type="button" class="btn btn-primary"><%= link_to "Remove",
+                    widget_path(product),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } %></button>
             </div>
           </div>
         <% end %>

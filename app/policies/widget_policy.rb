@@ -21,4 +21,9 @@ class WidgetPolicy < ApplicationPolicy
   def preview?
     true
   end  
+
+  def destroy?
+     true
+  end
+
 end

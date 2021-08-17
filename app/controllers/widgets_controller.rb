@@ -37,6 +37,13 @@ class WidgetsController < ApplicationController
     authorize @widget
   end
 
+  def destroy
+    @widget = Widget.find(params[:id])
+    @widget.destroy
+    redirect_to widgets_path
+    authorize @widget
+  end
+
   def edit
   end
 
