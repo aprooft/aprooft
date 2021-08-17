@@ -12,14 +12,21 @@ import If from './If';
 
 
 function Widget() {
-    const [show, setShow] = useState(false);
-    
+    const [show, setShow] = useState(true);
+
+    const widgetBoxClasses = show ? "widget-box" : "widget-box active";
+
     return (
-        <If condition = {show}>
-            <div>
-                <p class="widget-button">Aprooft</p>
+        <>    
+            <If condition = {show}>
+                <div>
+                    <button class="widget-button" onClick={() => setShow(false)}>Aprooft</button>
+                </div>
+            </If>  
+            <div class={widgetBoxClasses}  onClick={() => setShow(true)}>
+                coming soon
             </div>
-        </If>    
+        </>     
     );
 }
 

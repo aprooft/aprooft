@@ -129,7 +129,7 @@ export default function EditWidget() {
             <If condition={display === "generate"}>
                 {/* <p>coming soon</p> */}
                 <WidgetCode widgetId={widgetId} tab={tab} setTab={setTab} />
-                <input type="button" class="submit-dev-btn-back" value="Back" onClick={() => { setDisplay("preview") }} />
+                <input type="button" class="back-button" value="Back" onClick={() => { setDisplay("preview") }} />
             </If>
             <If condition={display != "generate"}>      
                 <form action={formUrl} method="POST">
@@ -190,7 +190,7 @@ export default function EditWidget() {
                         </If>
                         <If condition={display === "preview"}>
                             <div class="submit-dev">
-                                <input type="button" class="submit-dev-btn-back" value="Edit" onClick={() => { setDisplay("forms") }} />           
+                                <input type="button" class="submit-dev-btn" value="Edit" onClick={() => { setDisplay("forms") }} />           
                                 <input type="hidden" name="_method" value="PATCH" />
                                 <input type="submit" class="submit-dev-btn" value="Save" />
                                 <input type="button" class="submit-dev-btn" value="Generate Code" onClick={() => { setDisplay("generate") }} />

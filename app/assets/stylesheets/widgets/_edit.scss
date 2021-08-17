@@ -123,13 +123,16 @@
     text-decoration: none;
 }
 
-.submit-dev-btn-back {
+.back-button {
     color: #20EFE3;
     height: 50px;
     width: 140px;
     border-radius: 3px;
     transition: background 0.3s ease;
     background: #11101D;
+    position: fixed;
+    top: 20px;
+    right: 100px;
     &:hover {
         background: #20EFE3;
         color: #11101D;
