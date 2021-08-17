@@ -4,14 +4,6 @@ import If from './If';
 import WidgetBox from "./WidgetBox";
 
 
-        // elem.addEventListener('click', (e) => {
-        //     e.currentTarget.remove();
-        // //   widgetSetting();
-        // });
-        // document.body.appendChild(elem);
-
-
-
 function Widget(props) {
     const [show, setShow] = useState(true);
 
