@@ -1,11 +1,8 @@
 .widget-dev {
     border-radius: 12px;
     flex-grow: 1;
-    height: 600px;
-
-    // TODO
-    // use global css variable replace the white color, connect with sidebar styling.
-    background-color: white;
+    height: var(--widget-height);
+    background-color: var(--widget-background-color);
 }
 
 .topbar-dev {
