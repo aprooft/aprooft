@@ -14,7 +14,13 @@
     </div>
   </div>
   <div class="your-products-wrapper">
-    <h1> Your products</h1>
+    <h1 style="margin-bottom: 32px;"> Your products</h1>
+    <%= link_to new_widget_url do %>
+    <div class="flex">
+      <i class="fas fa-plus-circle fa-2x"></i>
+      <h4>Add a product</h4>
+    </div>
+    <% end %>
     <div class="widgets-all-list">
       <% @widgets.where(user_id: current_user.id).each do |product| %>
         <%= link_to edit_widget_path(product[:id]) do %>
@@ -28,7 +34,7 @@
               <h2> <%= product.product_title %> </h2>
                 <%= link_to widget_path(product),
                 method: :delete,
-                data: { confirm: "Are you sure?" }  do %>
+                data: { confirm: "Removing this product will delete any widget and configuration associated with it. Continue? " }  do %>
                 <i class="fas fa-trash-alt fa-2x trash-button"></i>
                 <% end %>
             </div>
@@ -36,9 +42,7 @@
         <% end %>
       <% end %>
    </div>
-    <%= link_to new_widget_url do %>
-      <i class="fas fa-plus-circle fa-10x fixed"></i>
-    <% end %>
+
   </div>
 </div>
 
