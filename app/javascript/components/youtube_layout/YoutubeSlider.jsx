@@ -5,9 +5,10 @@ export default function YoutubeSlider(props) {
 
     // TODO
     return (
-        <div>    
-            <p>Slider</p>
-            <p>{data.title}</p>
-        </div>
+        <div class="youtube-slider-wrapper"> 
+            { data.map( youtubedata =>
+                <p>{youtubedata.title}</p>
+            )}
+        </div>  
     )
 }

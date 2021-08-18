@@ -5,9 +5,10 @@ export default function YoutubeGrid(props) {
     
     // TODO
     return (
-        <div>  
-            <p>Grid</p>
-            <p>{data.title}</p>
+        <div class="youtube-grid-wrapper"> 
+            { data.map( youtubedata =>
+                <p>{youtubedata.title}</p>
+            )}
         </div>     
     )
 }
