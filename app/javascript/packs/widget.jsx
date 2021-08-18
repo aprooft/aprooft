@@ -1,5 +1,6 @@
 import register from "preact-custom-element";
 import WidgetCode from "../components/WidgetCode";
+import "../../assets/stylesheets/widget.scss";
 
 function load() {
     if (typeof window.aprooft.q !== 'object') {
