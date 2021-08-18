@@ -10,7 +10,7 @@ export default function YoutubeGrid(props) {
                 <div class="video-card-grid">
                     <div class="video-card-grid-thumbnail">
                         <div class="grid-info-thumbnail">
-                            <img src={data.thumbnail} />
+                            <img src={youtubedata.thumbnail} />
                         </div>
                         <div class="grid-info-playicon">
                             <i class="fas fa-play-circle"></i>
@@ -19,17 +19,14 @@ export default function YoutubeGrid(props) {
                     <div class="video-card-grid-info">
                         <div class="grid-info-title">
                             <div class="grid-info-title-insidebox">
-                                {data.title}
+                                {youtubedata.title}
                             </div>
                         </div>
                         <div class="grid-info-details">
-                            <div class="grid-description">
-                                {data.description}
-                            </div>
                             <div class="grid-info-number">
-                                <span><i class="fas fa-eye"></i> {data.view_count}</span>
-                                <span><i class="fas fa-thumbs-up"></i> {data.like_count}</span>
-                                <span><i class="fas fa-thumbs-down"></i> {data.dislike_count}</span>
+                                <span><i class="fas fa-eye"></i> <p>{youtubedata.view_count}</p></span>
+                                <span><i class="fas fa-thumbs-up"></i><p>{youtubedata.like_count}</p></span>
+                                <span><i class="fas fa-thumbs-down"></i><p>{youtubedata.dislike_count}</p></span>
                             </div>
                         </div>
                     </div>
