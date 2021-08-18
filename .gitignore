@@ -39,3 +39,9 @@ yarn-debug.log*
 # Ignore Mac and Linux file system files
 *.swp
 .DS_Store
+
+# Ignore top-level public packs
+/public/application.j*
+/public/widget.j*
+/public/edit-widget.j*
+/public/manifest.json

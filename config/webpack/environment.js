@@ -11,4 +11,5 @@ environment.plugins.prepend('Provide',
     Popper: ['popper.js', 'default']
   })
 );
+environment.config.output.filename = '[name].js';
 module.exports = environment
