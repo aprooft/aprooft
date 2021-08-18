@@ -5,9 +5,10 @@ export default function YoutubeMasonry(props) {
     
     // TODO
     return (  
-        <div>
-            <p>Masonry</p>
-            <p>{data.title}</p>
-        </div>      
+        <div class="youtube-grid-masonry"> 
+            { data.map( youtubedata =>
+                <p>{youtubedata.title}</p>
+            )}
+        </div>   
     )
 }
