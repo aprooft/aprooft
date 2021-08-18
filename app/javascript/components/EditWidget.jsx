@@ -163,10 +163,10 @@ export default function EditWidget() {
                                 <div class="preview-content">
                                     <div class="content-dev">
                                         <If condition={tab === "reddit"}>
-                                            {redditPreviewData && redditPreviewData.map(d => <RedditPreview data={d} />)}
+                                            <RedditPreview data={redditPreviewData}  layout={layout} />
                                         </If>
                                         <If condition={tab === "youtube"}>
-                                            { youtubePreviewData && youtubePreviewData.map(d => <YoutubePreview data={d} layout={layout} />) }
+                                            <YoutubePreview data={youtubePreviewData} layout={layout} />
                                         </If>
                                     </div>
                                 </div>
