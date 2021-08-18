@@ -12,7 +12,7 @@ import WidgetBox from "./WidgetBox";
 export default function EditWidget() {
     let [redditPreviewData, setRedditPreviewData] = useState([]);
     let [youtubePreviewData, setYoutubePreviewData] = useState([]);
-    let [display, setDisplay] = useState("forms");
+    let [display, setDisplay] = useState("generate");
     let [youtubeData, setYoutubeData] = useState([""]);
     let [redditData, setRedditData] = useState([""]);
     let [loading, setLoading] = useState(true);
@@ -40,7 +40,8 @@ export default function EditWidget() {
 
                         if ((tab === "youtube" && ytUrls.length > 0) ||
                             (tab === "reddit" && rUrls.length > 0)) {
-                            setDisplay("preview");
+                            // change
+                            setDisplay("generate");
                         }
 
                         setLoading(false);

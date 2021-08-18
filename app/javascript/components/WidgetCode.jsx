@@ -16,8 +16,10 @@ function Widget(props) {
                     <button class="widget-button" onClick={() => setShow(false)}>Aprooft</button>
                 </div>
             </If>  
-            <div class={widgetBoxClasses}  onClick={() => setShow(true)}>
+            <div class={widgetBoxClasses}>
+                
                 <WidgetBox tab={"youtube"} setTab={() => {}} loading={false}>
+                    <i class="fas fa-times close-icon" onClick={() => setShow(true)}></i>
                     <p>hello</p>
                 </WidgetBox>
             </div>
