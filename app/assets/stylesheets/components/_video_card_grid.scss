@@ -1,0 +1,97 @@
+.content-dev.grid {
+  overflow-y: auto;
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.video-card-grid {
+  overflow: hidden;
+  position: relative;
+  height: 155px;
+  width: 200px;
+  background: white;
+  box-shadow: 0 0 1px rgba(0,0,0,0.2);
+
+  .video-card-grid-thumbnail {
+    // align-items: center;
+    // flex-direction: row;
+    border-radius: 12px;
+    // box-sizing: border-box;
+    // display: flex;
+    // overflow: hidden;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    // flex-shrink: 0;
+    // flex-grow: 0;
+  }
+
+  :hover .video-card-grid-info {
+    visibility: visible;
+    opacity: 1;
+    transition-duration: .3s;
+    transition-delay: 0s;
+  }
+
+  .video-card-grid-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: aliceblue;
+    width: 200px;
+    height: 155px;
+    border-radius: 12px;
+    visibility: hidden;
+    z-index: 2;
+    opacity: 0;
+    transition: all .35s ease;
+  }
+}
+
+.grid-info-thumbnail {
+  height: 100%;
+  border-radius: 12px;
+  img {
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+  }
+}
+
+.grid-info-playicon {
+  // color: #FF0000;
+  color: white;
+  opacity: 0.87;
+  font-size: 48px;
+  position: absolute;
+  top: 25%;
+  left: 37%;
+}
+
+.grid-description {
+  overflow: hidden;
+  height: 58px;
+  color: gray;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}
+
+.grid-info-number {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  color: #5d5757;
+}
+
+.grid-info-title-insidebox {
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
