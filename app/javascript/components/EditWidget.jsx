@@ -18,7 +18,7 @@ export default function EditWidget() {
     let [loading, setLoading] = useState(true);
     let [tab, setTab] = useState("youtube");
     let [layout, setLayout] = useState("list");
-
+  
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
     const widgetId = parseInt(window.location.href.split("/").slice(-2, -1)[0], 10);
     const dataApiUrl = window.location.href.replace("widgets", "api/v1/widgets").split('/').slice(0, -1).join('/')
