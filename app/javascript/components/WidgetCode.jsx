@@ -5,11 +5,12 @@ import WidgetBox from "./WidgetBox";
 import YoutubePreview from "../components/YoutubePreview";
 import RedditPreview from "../components/RedditPreview";
 
-function Widget(props) {
+function Widget({ url, widgetId }) {
+    url = url || "";
     const [show, setShow] = useState(true);
     let [tab, setTab] = useState("youtube");
     const widgetBoxClasses = show ? "widget-wrapper" : "widget-wrapper active";
-    const dataApiUrl = window.location.href.replace("widgets", "api/v1/widgets").split('/').slice(0, -1).join('/')
+    const dataApiUrl = `${url}/api/v1/widgets/${widgetId}`;
     let [redditPreviewData, setRedditPreviewData] = useState([]);
     let [youtubePreviewData, setYoutubePreviewData] = useState([]);
     let [layout, setLayout] = useState("list");
