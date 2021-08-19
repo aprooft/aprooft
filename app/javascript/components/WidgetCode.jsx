@@ -1,41 +1,21 @@
 import { h, render, Fragment } from "preact";
-import { useState } from 'preact/hooks';
-import If from './If'; 
-import WidgetBox from "./WidgetBox";
-
-
-function Widget(props) {
-    const [show, setShow] = useState(true);
-
-    const widgetBoxClasses = show ? "widget-wrapper" : "widget-wrapper active";
-
-    return (
-        <>
-            <If condition = {show}>
-                <div>
-                    <button class="widget-button" onClick={() => setShow(false)}>Aprooft</button>
-                </div>
-            </If>  
-            <div class={widgetBoxClasses}  onClick={() => setShow(true)}>
-                <WidgetBox tab={"youtube"} setTab={() => {}} loading={false}>
-                    <p>hello</p>
-                </WidgetBox>
-            </div>
-        </>
-    );
-}
 
 export default function WidgetCode(props) {
     return (
         <>    
-            {/* <div class="widget-dev"> 
+            <div class="widget-dev" style="display:flex; justify-content:center;align-items:center"> 
                 <pre>
-                    {`
-                        () => {}...
-                    `}
+                    {`<script>
+    ((e, l, i, x, y, b, z) => {
+    e[y]=e[y]||function(){(e[y].q=e[y].q||[]).push(arguments)};
+    b=l.createElement(i);z=l.getElementsByTagName(i)[0];b.async=1;
+    b.src=x;z.parentNode.insertBefore(b,z);
+    })(window, document, 'script', 'https://aprooft.com/widget.js', 'aprooft');
+
+    aprooft('https://aprooft.com', '${props.widgetId}');
+</script>`}
                 </pre> 
-            </div>    */}
-            <Widget {...props}/>
+            </div>   
         </>    
     )
 }    

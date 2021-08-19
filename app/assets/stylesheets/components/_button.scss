@@ -17,8 +17,14 @@
 
 
 .margin-button {
-
   margin-bottom: 23px;
+}
 
-
+.close-icon {
+  position: relative;
+  top: -95px;
+  color: #e2ebf1;
+  font-size: 20px;
+  left: 9px;
+  cursor: pointer;
 }
