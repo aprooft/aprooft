@@ -1,5 +1,5 @@
 import register from "preact-custom-element";
-import WidgetCode from "../components/WidgetCode";
+import WidgetContent from "../components/WidgetContent"; 
 import "../../assets/stylesheets/widget.scss";
 import '@fortawesome/fontawesome-free/js/fontawesome'
 import '@fortawesome/fontawesome-free/js/solid'
@@ -18,5 +18,5 @@ function load() {
     document.body.appendChild(widget);
 }
 
-register(WidgetCode, "aprooft-widget", ["url", "widget-id"]);
+register(WidgetContent, "aprooft-widget", ["url", "widget-id"]);
 load();
