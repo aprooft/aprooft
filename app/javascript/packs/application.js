@@ -21,6 +21,8 @@ ActiveStorage.start()
 
 // External imports
 import "bootstrap";
+import AOS from 'aos'
+AOS.init();
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';

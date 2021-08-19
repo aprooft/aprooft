@@ -20,7 +20,7 @@
 }
 
 
-.text-box {
+.text-boxleft {
   background-image: url(https://i.ibb.co/rFzgLnw/aprooft-background.png);
   background-repeat: no-repeat;
   background-size: contain;
@@ -29,24 +29,93 @@
 
 }
 
-.text-box2 {
+.text-boxleft2 {
+  background-image: url(https://i.ibb.co/rFzgLnw/aprooft-background.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 1075px;
+
+}
+
+.img-boxright {
   background-image: url(https://i.ibb.co/18sx1yX/Take-a-Survey.png);
   background-repeat: no-repeat;
   background-size: contain;
   width: 100%;
-  height: 614px;
-  left: 363px;
-  top: -455px;
+  height: 754px;
+  left: 473px;
+  top: -593px;
 
 }
+
+
+.img-boxright2 {
+  background-image: url(https://i.ibb.co/njN2cdc/Stock-broker.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 754px;
+  left: 473px;
+  top: -593px;
+
+}
+
+.img-box2 {
+  background-image: url(https://i.ibb.co/RHcXFyJ/Get-personalised-product-recommendations.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 754px;
+  right: 30px;
+  top: -593px;
+}
+
+.text-boxright {
+  background-image: url(https://i.ibb.co/JvmtC3r/textboxright.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 1075px;
+  margin-right: 0px;
+  margin-left: 712px;
+
+}
+
 .img-width {
 
   width: 70%;
 }
 
-.subtext1 {
+.subtextleft {
 
     top: 525px;
     width: 390px;
     margin-left: 44px;
+}
+
+.subtextleft2 {
+
+    top: 525px;
+    width: 390px;
+    margin-left: 44px;
+}
+
+
+.subtextright {
+
+    top: 501px;
+    width: 390px;
+    left: 297px;
+    text-align: right;
+}
+
+
+.homepage-container {
+    width: 100%;
+    overflow: hidden;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1440px;
+
 }
