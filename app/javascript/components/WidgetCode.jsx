@@ -18,9 +18,11 @@ export default function WidgetCode(props) {
 
     return (
         <div class="widget-code-box"> 
+            <p>Copy paste this script inside your product page html right above the closing &lt;/body&gt; tag.</p>
+            <hr />
             <pre>
                 <code dangerouslySetInnerHTML={{ __html: highlighted }} />
-            </pre>
+            </pre>  
         </div>
     )
 }    
