@@ -1,12 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 require "open-uri"
+include ActiveSupport::NumberHelper
 
 Youtube.destroy_all
 Widget.destroy_all
@@ -73,11 +67,11 @@ def fetchYoutubeApi(youtube_url)
     title: result["items"][0]["snippet"]["title"],
     video_id: result["items"][0]["id"],
     thumbnail: result["items"][0]["snippet"]["thumbnails"]["high"]["url"],
-    like_count: result["items"][0]["statistics"]["likeCount"],
-    dislike_count: result["items"][0]["statistics"]["dislikeCount"],
+    like_count: number_to_human(result["items"][0]["statistics"]["likeCount"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
+    dislike_count: number_to_human(result["items"][0]["statistics"]["dislikeCount"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
     channel_name: result["items"][0]["snippet"]["channelTitle"],
     channel_id: result["items"][0]["snippet"]["channelId"],
-    view_count: result["items"][0]["statistics"]["viewCount"],
+    view_count: number_to_human(result["items"][0]["statistics"]["viewCount"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
     description: result["items"][0]["snippet"]["description"]
   }
   channel_id = video_result[:channel_id]
