@@ -16,6 +16,7 @@
 @import "components/add_button";
 @import "components/form-container";
 @import "components/button";
+@import "components/homepage";
 @import "pages/index";
 @import "widgets/index";
 
@@ -24,3 +25,8 @@ body {
   background-color: #F0F8FF;
 }
 
+.background {
+
+  background-color: #11101D;
+
+}
