@@ -4,6 +4,7 @@ import If from './If';
 import WidgetBox from "./WidgetBox";
 import YoutubePreview from "../components/YoutubePreview";
 import RedditPreview from "../components/RedditPreview";
+import { XCircle } from 'preact-feather';
 
 export default function WidgetContent({ url, widgetId }) {
     url = url || "";
@@ -15,6 +16,16 @@ export default function WidgetContent({ url, widgetId }) {
     let [youtubePreviewData, setYoutubePreviewData] = useState([]);
     let [layout, setLayout] = useState("list");
     let [loading, setLoading] = useState(true);
+
+    const closebtnstyles = {
+        position: 'relative',
+        top: '-95px',
+        color: '#e2ebf1',
+        fontSize: '20px',
+        left: '9px',
+        cursor: 'pointer',
+      };
+      
 
     function finalWidgetData() {
         setLoading(true);
@@ -45,7 +56,7 @@ export default function WidgetContent({ url, widgetId }) {
             </If>  
             <div class={widgetBoxClasses}>
                 <WidgetBox tab={tab} setTab={setTab} loading={false}>
-                    <i class="fas fa-times close-icon" onClick={() => setShow(true)}></i>
+                    <span style={closebtnstyles}><XCircle size={22} opacity={0.8} onClick={() => setShow(true)} /></span>
                     <div class="preview-content">
                         <div class="content-dev">
                             <If condition={tab === "reddit"}>
