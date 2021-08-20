@@ -122,7 +122,8 @@ class WidgetsController < ApplicationController
       created: result["data"]["children"][0]["data"]["created"],
       author: result["data"]["children"][0]["data"]["author"],
       num_comments: result["data"]["children"][0]["data"]["num_comments"],
-      subreddit: result["data"]["children"][0]["data"]["subreddit"]
+      subreddit: result["data"]["children"][0]["data"]["subreddit"],
+      thumbnail: result["data"]["children"][0]["data"]["thumbnail"]
     }
   end
 
