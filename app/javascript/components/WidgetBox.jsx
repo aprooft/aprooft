@@ -12,7 +12,7 @@ export default function WidgetBox(props) {
                 </If>
                 <If condition={props.loading}>
                     <div class="loading-show">
-                        <i class="fas fa-spinner fa-pulse"></i>
+                        <i class="fas fa-spinner fa-pulse"></i>       
                     </div>
                 </If>
             </div>
