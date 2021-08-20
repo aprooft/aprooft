@@ -1,10 +1,10 @@
 import register from "preact-custom-element";
 import WidgetContent from "../components/WidgetContent"; 
 import "../../assets/stylesheets/widget.scss";
-import '@fortawesome/fontawesome-free/js/fontawesome'
-import '@fortawesome/fontawesome-free/js/solid'
-import '@fortawesome/fontawesome-free/js/regular'
-import '@fortawesome/fontawesome-free/js/brands'
+// import '@fortawesome/fontawesome-free/js/fontawesome'
+// import '@fortawesome/fontawesome-free/js/solid'
+// import '@fortawesome/fontawesome-free/js/regular'
+// import '@fortawesome/fontawesome-free/js/brands'
 
 function load() {
     if (typeof window.aprooft.q !== 'object') {
