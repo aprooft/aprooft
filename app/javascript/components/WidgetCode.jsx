@@ -2,6 +2,7 @@ import { h, render } from "preact";
 import Prism from 'prismjs';
 import PrismJSX from "prismjs/components/prism-jsx";
 import "prismjs/themes/prism-solarizedlight.css";
+import { Copy } from "preact-feather";
 
 export default function WidgetCode(props) {
     const code = `<script>
@@ -18,7 +19,7 @@ export default function WidgetCode(props) {
 
     return (
         <div class="widget-code-box"> 
-            <p>Copy paste this script inside your product page html right above the closing &lt;/body&gt; tag.</p>
+            <span style="padding-right: 10px"><Copy color="red" size={28} /></span><span style="color: red; font-size: 20px">Copy paste this script inside your product page html right above the closing &lt;/body&gt; tag.</span>
             <hr />
             <pre>
                 <code dangerouslySetInnerHTML={{ __html: highlighted }} />
