@@ -3,7 +3,7 @@ import If from './If';
 import RedditGrid from './Reddit_layout/RedditGrid';
 import RedditMasonry from './Reddit_layout/RedditMasonry';
 import RedditSlider from './Reddit_layout/RedditSlider';
-import RedditList from './Reddit_layout/RedditList';
+import RedditList from './Reddit_layout/RedditList.jsx';
 
 export default function RedditPreview(props) {
     const data = props.data;

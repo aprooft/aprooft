@@ -7,7 +7,7 @@ export default function RedditSlider(props) {
     return (
         <div class="reddit-slider-wrapper"> 
             { data.map( redditdata =>
-                <p>{redditdata.title}</p>
+                <p>{redditdata.thread_id}</p>
             )}
         </div>  
     )

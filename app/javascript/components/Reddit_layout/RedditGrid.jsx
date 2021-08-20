@@ -7,7 +7,7 @@ export default function RedditGrid(props) {
     return (
         <div class="reddit-grid-wrapper"> 
             { data.map( redditdata =>
-                <p>{redditdata.title}</p>
+                <p>{redditdata.thread_id}</p>
             )}
         </div>     
     )

@@ -8,7 +8,7 @@ export default function RedditGrid(props) {
         <div>
             { data.map( redditdata => 
                 <div class="reddit-card-list">
-                    <p>redditdata.title</p>
+                    <p>{redditdata.thread_id}</p>
                 </div> 
             ) }
         </div>          

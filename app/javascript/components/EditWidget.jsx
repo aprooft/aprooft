@@ -85,8 +85,8 @@ export default function EditWidget() {
             response
                 .json()
                 .then(res => {
-                    setYoutubePreviewData(res);
-                    setRedditPreviewData(res);
+                    setYoutubePreviewData(res["youtubes"]);
+                    setRedditPreviewData(res["reddits"]);
                     setDisplay("preview");
                     setLoading(false);
                 }

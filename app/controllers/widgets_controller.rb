@@ -42,10 +42,10 @@ class WidgetsController < ApplicationController
 
   def preview
     youtube_links_result = params["youtube_links"].reject{ |link| link=="" }
-    render json: youtube_links_result.map{ |link| fetchYoutubeApi(link) }
-
     reddit_links_result = params["reddit_links"].reject{ |link| link=="" }
-    render json: reddit_links_result.map{ |link| fetchRedditApi(link) }
+    render json: {youtubes: youtube_links_result.map{ |link| fetchYoutubeApi(link)}, 
+                  reddits: reddit_links_result.map{ |link| fetchRedditApi(link) }   
+                  }
   end
 
   def update

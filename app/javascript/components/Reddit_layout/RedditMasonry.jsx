@@ -7,7 +7,7 @@ export default function RedditMasonry(props) {
     return (  
         <div class="reddit-grid-masonry"> 
             { data.map( redditdata =>
-                <p>{redditdata.title}</p>
+                <p>{redditdata.thread_id}</p>
             )}
         </div>   
     )
