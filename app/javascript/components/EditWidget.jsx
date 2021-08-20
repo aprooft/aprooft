@@ -7,7 +7,7 @@ import RedditPreview from "../components/RedditPreview";
 import InputBox from "../components/InputBox";
 import WidgetCode from "../components/WidgetCode";
 import WidgetBox from "./WidgetBox";
-import { PlusCircle } from "preact-feather";
+import { PlusCircle, SkipBack } from "preact-feather";
 
 
 export default function EditWidget() {
@@ -132,8 +132,11 @@ export default function EditWidget() {
     return (
         <>
             <If condition={display === "generate"}>
+                <div class="go-back" onClick={() => { setDisplay("preview") }}> 
+                    <SkipBack /><span>Back</span>
+                </div>
                 <WidgetCode widgetId={widgetId} tab={tab} setTab={setTab} />
-                <input type="button" class="back-button" value="Back" onClick={() => { setDisplay("preview") }} />
+                {/* <input type="button" class="back-button" value="Back" onClick={() => { setDisplay("preview") }} /> */}
             </If>
             <If condition={display != "generate"}>
                 <div class="edit-widget-wrapper">
