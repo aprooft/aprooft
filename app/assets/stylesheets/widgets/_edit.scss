@@ -45,6 +45,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     i {
         color: white;
         font-size: 50px;
@@ -55,6 +56,7 @@
 .widget-nav-btn.active {
     background: linear-gradient(0deg, var(--widget-topbar-color) 30%, var(--widget-highlight-color) 90%);
     border-bottom: 10px solid var(--widget-highlight-color);
+    cursor: pointer;
 }
 
 .content-dev {

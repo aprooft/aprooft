@@ -49,11 +49,17 @@ class WidgetsController < ApplicationController
   end
 
   def update
-    urls = params["youtube-link"].reject{ |link| link=="" }
-    urls.each do |link|
+    yturls = params["youtube-link"].reject{ |link| link=="" }
+    rdurls = params["reddit-link"].reject{ |link| link=="" }
+    yturls.each do |link|
       youtube = Youtube.new(fetchYoutubeApi(link))
       youtube.widget = @widget
       youtube.save
+    end
+    rdurls.each do |link|
+      reddit = Reddit.new(fetchRedditApi(link))
+      reddit.widget = @widget
+      reddit.save
     end
     redirect_to edit_widget_path(@widget)
   end
