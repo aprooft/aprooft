@@ -35,7 +35,7 @@ export default function EditWidget() {
                         setYoutubePreviewData(res["youtubes"]);
                         setYoutubeData(ytUrls);
 
-                        let rUrls = res["reddits"].map(reddit => "https://api.reddit.com/api/info/?id=t3_" + reddit.thread_id);
+                        let rUrls = res["reddits"].map(reddit => "https://www.reddit.com/comments/" + reddit.thread_id);
                         setRedditPreviewData(res["reddits"]);
                         setRedditData(rUrls);
 

@@ -105,7 +105,7 @@ class WidgetsController < ApplicationController
   end
 
   def reddit_id(reddit_url)
-    regex = /(?:^.+?)(?:reddit.com\/r)(?:\/[\w\d]+){2}(?:\/)([\w\d]*)/
+    regex = /(?:reddit.com.*\/comments\/)([\w\d_-]*)/
     match = regex.match(reddit_url)
     match[1] if match && !match[1].empty?
   end
