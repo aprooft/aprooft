@@ -1,7 +1,7 @@
 class Widget < ApplicationRecord
   belongs_to :user
   has_many :youtubes
-  has_mang :reddits
+  has_many :reddits
   has_one_attached :product_pic
 
   validates :user_id, presence: true
