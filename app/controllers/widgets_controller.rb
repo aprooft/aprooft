@@ -42,18 +42,24 @@ class WidgetsController < ApplicationController
 
   def preview
     youtube_links_result = params["youtube_links"].reject{ |link| link=="" }
-    render json: youtube_links_result.map{ |link| fetchYoutubeApi(link) }
-
-    # reddit_links_result = params["reddit_links"].reject{ |link| link=="" }
-    # render json: reddit_links_result.map{ |link| fetchRedditApi(link) }
+    reddit_links_result = params["reddit_links"].reject{ |link| link=="" }
+    render json: {youtubes: youtube_links_result.map{ |link| fetchYoutubeApi(link)}, 
+                  reddits: reddit_links_result.map{ |link| fetchRedditApi(link) }   
+                  }
   end
 
   def update
-    urls = params["youtube-link"].reject{ |link| link=="" }
-    urls.each do |link|
+    yturls = params["youtube-link"].reject{ |link| link=="" }
+    rdurls = params["reddit-link"].reject{ |link| link=="" }
+    yturls.each do |link|
       youtube = Youtube.new(fetchYoutubeApi(link))
       youtube.widget = @widget
       youtube.save
+    end
+    rdurls.each do |link|
+      reddit = Reddit.new(fetchRedditApi(link))
+      reddit.widget = @widget
+      reddit.save
     end
     redirect_to edit_widget_path(@widget)
   end
@@ -99,7 +105,7 @@ class WidgetsController < ApplicationController
   end
 
   def reddit_id(reddit_url)
-    regex = /(?:^.+?)(?:reddit.com\/r)(?:\/[\w\d]+){2}(?:\/)([\w\d]*)/
+    regex = /(?:reddit.com.*\/comments\/)([\w\d_-]*)/
     match = regex.match(reddit_url)
     match[1] if match && !match[1].empty?
   end
@@ -122,7 +128,8 @@ class WidgetsController < ApplicationController
       created: result["data"]["children"][0]["data"]["created"],
       author: result["data"]["children"][0]["data"]["author"],
       num_comments: result["data"]["children"][0]["data"]["num_comments"],
-      subreddit: result["data"]["children"][0]["data"]["subreddit"]
+      subreddit: result["data"]["children"][0]["data"]["subreddit"],
+      thumbnail: result["data"]["children"][0]["data"]["thumbnail"]
     }
   end
 
