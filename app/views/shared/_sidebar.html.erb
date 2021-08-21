@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar active">
   <div class="logo-content">
     <div class="logo">
       <%# <i class='bx bxs-widget'></i> %>
@@ -9,10 +9,12 @@
   </div>
   <ul class="nav-list">
     <li>
-      <div class="nav-btn" id="nav-btn-products">
-        <i class='bx bx-spreadsheet'></i>
-        <span class="links-name">Products</span>
-      </div>
+      <%= link_to widgets_path do%>
+        <div class="nav-btn focus" id="nav-btn-products">
+          <i class='bx bx-spreadsheet'></i>
+          <span class="links-name">Products</span>
+        </div>
+      <% end %>
     </li>
     <li>
       <div class="nav-btn" id="nav-btn-styles">
