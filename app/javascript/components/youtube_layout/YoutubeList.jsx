@@ -3,10 +3,10 @@ import { Youtube, Eye, ThumbsUp, ThumbsDown } from 'preact-feather';
 
 export default function YoutubeGrid(props) {
     const data = props.data
-    
+
     return (
         <div>
-            { data.map( youtubedata => 
+            {data.map(youtubedata =>
                 <div class="video-card-list">
                     <div class="video-card-list-thumbnail">
                         <div class="list-info-thumbnail">
@@ -34,8 +34,8 @@ export default function YoutubeGrid(props) {
                             </div>
                         </div>
                     </div>
-                </div> 
-            ) }
-        </div>          
+                </div>
+            )}
+        </div>
     )
 }

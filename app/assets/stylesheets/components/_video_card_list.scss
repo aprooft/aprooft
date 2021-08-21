@@ -11,6 +11,7 @@
     margin-bottom: 15px;
     border-radius: 5px;
     cursor: pointer;
+
     .video-card-list-thumbnail {
         align-items: center;
         flex-direction: row;
@@ -24,7 +25,7 @@
         flex-shrink: 0;
         flex-grow: 0;
     }
-    
+
     .video-card-list-info {
         display: flex;
         flex-direction: column;
@@ -49,7 +50,7 @@
 }
 
 .list-info-playicon {
-    color: #fff;  
+    color: #fff;
     position: absolute;
     left: 35%;
     top: 18%;

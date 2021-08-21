@@ -1,7 +1,10 @@
 require 'json'
 require 'open-uri'
 require 'net/http'
+include ActiveSupport::NumberHelper
+# need to look at this
 $fonts = { "arial" => "Arial", "verdana" => "Verdana" }
+
 
 class WidgetsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i[update preview]
@@ -91,13 +94,14 @@ class WidgetsController < ApplicationController
       title: result["items"][0]["snippet"]["title"],
       video_id: result["items"][0]["id"],
       thumbnail: result["items"][0]["snippet"]["thumbnails"]["high"]["url"],
-      like_count: result["items"][0]["statistics"]["likeCount"],
-      dislike_count: result["items"][0]["statistics"]["dislikeCount"],
+      like_count: number_to_human(result["items"][0]["statistics"]["likeCount"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
+      dislike_count: number_to_human(result["items"][0]["statistics"]["dislikeCount"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
       channel_name: result["items"][0]["snippet"]["channelTitle"],
       channel_id: result["items"][0]["snippet"]["channelId"],
-      view_count: result["items"][0]["statistics"]["viewCount"],
+      view_count: number_to_human(result["items"][0]["statistics"]["viewCount"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
       description: result["items"][0]["snippet"]["description"]
     }
+
     channel_id = video_result[:channel_id]
     channel_url = "https://www.googleapis.com/youtube/v3/channels?part=snippet&fields=items%2Fsnippet%2Fthumbnails%2Fdefault&id=#{channel_id}&key=#{ENV['GOOGLE_API_KEY']}"
     video_result[:channel_pic] = JSON.parse(URI.open(channel_url).read)["items"][0]["snippet"]["thumbnails"]["default"]["url"]
