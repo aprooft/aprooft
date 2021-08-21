@@ -46,8 +46,8 @@ class WidgetsController < ApplicationController
   def preview
     youtube_links_result = params["youtube_links"].reject{ |link| link=="" }
     reddit_links_result = params["reddit_links"].reject{ |link| link=="" }
-    render json: {youtubes: youtube_links_result.map{ |link| fetchYoutubeApi(link)}, 
-                  reddits: reddit_links_result.map{ |link| fetchRedditApi(link) }   
+    render json: {youtubes: youtube_links_result.map{ |link| fetchYoutubeApi(link)},
+                  reddits: reddit_links_result.map{ |link| fetchRedditApi(link) }
                   }
   end
 
@@ -127,11 +127,11 @@ class WidgetsController < ApplicationController
     comment_result = {
       thread_id: result["data"]["children"][0]["data"]["id"],
       thread_title: result["data"]["children"][0]["data"]["title"],
-      ups: result["data"]["children"][0]["data"]["ups"],
+      ups: number_to_human(result["data"]["children"][0]["data"]["ups"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
       link_flair_text: result["data"]["children"][0]["data"]["link_flair_text"],
       created: result["data"]["children"][0]["data"]["created"],
       author: result["data"]["children"][0]["data"]["author"],
-      num_comments: result["data"]["children"][0]["data"]["num_comments"],
+      num_comments: number_to_human(result["data"]["children"][0]["data"]["num_comments"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
       subreddit: result["data"]["children"][0]["data"]["subreddit"],
       thumbnail: result["data"]["children"][0]["data"]["thumbnail"]
     }
