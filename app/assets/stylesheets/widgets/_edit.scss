@@ -113,36 +113,37 @@
 }
 
 .submit-dev-btn {
-    color: hsl(177, 87%, 53%);
+    color: white;
     height: 50px;
     width: 140px;
-    border-radius: 3px;
+    border-radius: 5px;
     transition: background 0.3s ease;
-    background: #11101D;
+    background: #3a84de;
+    border: none;
 }
 
 .submit-dev-btn:hover {
-    background: #20EFE3;
-    color: #11101D;
+    background: #2762aa;
+    color: white;
     text-decoration: none;
 }
 
-.back-button {
-    color: #20EFE3;
-    height: 50px;
-    width: 140px;
-    border-radius: 3px;
-    transition: background 0.3s ease;
-    background: #11101D;
-    position: fixed;
-    top: 20px;
-    right: 100px;
-    &:hover {
-        background: #20EFE3;
-        color: #11101D;
-        text-decoration: none;
-    }
-}
+// .back-button {
+//     color: #3a84de;
+//     height: 50px;
+//     width: 140px;
+//     border-radius: 3px;
+//     transition: background 0.3s ease;
+//     background: #11101D;
+//     position: fixed;
+//     top: 20px;
+//     right: 100px;
+//     &:hover {
+//         background: #3a84de;
+//         color: #11101D;
+//         text-decoration: none;
+//     }
+// }
 
 .add-input-dev {
     width: 90%;
