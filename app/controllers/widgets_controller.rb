@@ -89,17 +89,18 @@ class WidgetsController < ApplicationController
     url = "https://www.googleapis.com/youtube/v3/videos?id=#{input_video_id}&key=#{ENV['GOOGLE_API_KEY']}&part=snippet,contentDetails,statistics,status"
     result_serialized = URI.open(url).read
     result = JSON.parse(result_serialized)
+    youtube = result["items"][0]
     video_result = {
       etag: result["etag"],
-      title: result["items"][0]["snippet"]["title"],
-      video_id: result["items"][0]["id"],
-      thumbnail: result["items"][0]["snippet"]["thumbnails"]["high"]["url"],
-      like_count: number_to_human(result["items"][0]["statistics"]["likeCount"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
-      dislike_count: number_to_human(result["items"][0]["statistics"]["dislikeCount"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
-      channel_name: result["items"][0]["snippet"]["channelTitle"],
-      channel_id: result["items"][0]["snippet"]["channelId"],
-      view_count: number_to_human(result["items"][0]["statistics"]["viewCount"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
-      description: result["items"][0]["snippet"]["description"]
+      title: youtube["snippet"]["title"],
+      video_id: youtube["id"],
+      thumbnail: youtube["snippet"]["thumbnails"]["high"]["url"],
+      like_count: number_to_human(youtube["statistics"]["likeCount"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
+      dislike_count: number_to_human(youtube["statistics"]["dislikeCount"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
+      channel_name: youtube["snippet"]["channelTitle"],
+      channel_id: youtube["snippet"]["channelId"],
+      view_count: number_to_human(youtube["statistics"]["viewCount"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
+      description: youtube["snippet"]["description"]
     }
 
     channel_id = video_result[:channel_id]
@@ -124,17 +125,29 @@ class WidgetsController < ApplicationController
     request["User-Agent"] = "test-user-agent"
     response = https.request(request)
     result = JSON.parse(response.read_body)
+    reddit = result["data"]["children"][0]["data"]
     comment_result = {
-      thread_id: result["data"]["children"][0]["data"]["id"],
-      thread_title: result["data"]["children"][0]["data"]["title"],
-      ups: number_to_human(result["data"]["children"][0]["data"]["ups"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
-      link_flair_text: result["data"]["children"][0]["data"]["link_flair_text"],
-      created: result["data"]["children"][0]["data"]["created"],
-      author: result["data"]["children"][0]["data"]["author"],
-      num_comments: number_to_human(result["data"]["children"][0]["data"]["num_comments"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
-      subreddit: result["data"]["children"][0]["data"]["subreddit"],
-      thumbnail: result["data"]["children"][0]["data"]["thumbnail"]
+      thread_id: reddit["id"],
+      thread_title: reddit["title"],
+      ups: number_to_human(reddit["ups"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
+      link_flair_text: reddit["link_flair_text"],
+      created: time_ago(reddit["created"]),
+      author: reddit["author"],
+      num_comments: number_to_human(reddit["num_comments"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
+      subreddit: reddit["subreddit"],
+      thumbnail: reddit["thumbnail"],
     }
+  end
+
+  def time_ago(timestamp)
+    days_ago = Date.today - Time.at(timestamp).to_date
+    if days_ago.to_i == 1
+      difference_in_sec = Time.now - Time.at(timestamp)
+      difference_in_h = (difference_in_sec / 3600).to_i.to_s
+      difference_in_h
+    else
+      days_ago.to_s
+    end
   end
 
 end
