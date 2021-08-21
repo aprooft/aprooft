@@ -1,4 +1,5 @@
 import { h, render, Fragment } from "preact";
+import { Youtube, Eye, ThumbsUp, ThumbsDown } from 'preact-feather';
 
 export default function YoutubeGrid(props) {
     const data = props.data
@@ -12,7 +13,7 @@ export default function YoutubeGrid(props) {
                             <img src={youtubedata.thumbnail} />
                         </div>
                         <div class="list-info-playicon">
-                            <i class="fas fa-play-circle"></i>
+                            <Youtube size={48} opacity={0.85} />
                         </div>
                     </div>
                     <div class="video-card-list-info">
@@ -27,9 +28,9 @@ export default function YoutubeGrid(props) {
                                 <span>{youtubedata.channel_name}</span>
                             </span>
                             <div class="list-info-number">
-                                <span><i class="fas fa-eye"></i> {youtubedata.view_count}</span>
-                                <span><i class="fas fa-thumbs-up"></i> {youtubedata.like_count}</span>
-                                <span><i class="fas fa-thumbs-down"></i> {youtubedata.dislike_count}</span>
+                                <span><Eye size={17} /> {youtubedata.view_count}</span>
+                                <span><ThumbsUp size={17} /> {youtubedata.like_count}</span>
+                                <span><ThumbsDown size={17} /> {youtubedata.dislike_count}</span>
                             </div>
                         </div>
                     </div>

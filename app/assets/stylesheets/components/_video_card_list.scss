@@ -10,6 +10,7 @@
     align-items: center;
     margin-bottom: 15px;
     border-radius: 5px;
+    cursor: pointer;
 
     .video-card-list-thumbnail {
         align-items: center;
@@ -50,11 +51,11 @@
 
 .list-info-playicon {
     color: #fff;
-    opacity: 0.87;
     position: absolute;
-    left: 39%;
-    top: 21%;
-    font-size: 40px;
+    left: 35%;
+    top: 18%;
+    // opacity: 0.8;
+    // font-size: 40px;
     // transform: translate(-50%,-50%);
 }
 

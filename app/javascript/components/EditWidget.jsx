@@ -7,6 +7,7 @@ import RedditPreview from "../components/RedditPreview";
 import InputBox from "../components/InputBox";
 import WidgetCode from "../components/WidgetCode";
 import WidgetBox from "./WidgetBox";
+import { PlusCircle, SkipBack } from "preact-feather";
 
 
 export default function EditWidget() {
@@ -18,7 +19,7 @@ export default function EditWidget() {
     let [loading, setLoading] = useState(true);
     let [tab, setTab] = useState("youtube");
     let [layout, setLayout] = useState("list");
-
+  
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
     const widgetId = parseInt(window.location.href.split("/").slice(-2, -1)[0], 10);
     const dataApiUrl = window.location.href.replace("widgets", "api/v1/widgets").split('/').slice(0, -1).join('/')
@@ -34,7 +35,7 @@ export default function EditWidget() {
                         setYoutubePreviewData(res["youtubes"]);
                         setYoutubeData(ytUrls);
 
-                        let rUrls = res["reddits"].map(reddit => "https://api.reddit.com/api/info/?id=t3_" + reddit.thread_id);
+                        let rUrls = res["reddits"].map(reddit => "https://www.reddit.com/comments/" + reddit.thread_id);
                         setRedditPreviewData(res["reddits"]);
                         setRedditData(rUrls);
 
@@ -84,7 +85,8 @@ export default function EditWidget() {
             response
                 .json()
                 .then(res => {
-                    setYoutubePreviewData(res);
+                    setYoutubePreviewData(res["youtubes"]);
+                    setRedditPreviewData(res["reddits"]);
                     setDisplay("preview");
                     setLoading(false);
                 }
@@ -131,8 +133,11 @@ export default function EditWidget() {
     return (
         <>
             <If condition={display === "generate"}>
+                <div class="go-back" onClick={() => { setDisplay("preview") }}> 
+                    <SkipBack /><span>Back</span>
+                </div>
                 <WidgetCode widgetId={widgetId} tab={tab} setTab={setTab} />
-                <input type="button" class="back-button" value="Back" onClick={() => { setDisplay("preview") }} />
+                {/* <input type="button" class="back-button" value="Back" onClick={() => { setDisplay("preview") }} /> */}
             </If>
             <If condition={display != "generate"}>
                 <div class="edit-widget-wrapper">
@@ -154,7 +159,8 @@ export default function EditWidget() {
                                     </div>
                                     <div class="add-input-dev" onClick={addInputBox}>
                                         <div class="plus-box">
-                                            <i class="fas fa-plus"></i>
+                                            {/* <i class="fas fa-plus"></i> */}
+                                            <PlusCircle size={30} stroke-width={2} />
                                         </div>
                                     </div>
                                 </div>

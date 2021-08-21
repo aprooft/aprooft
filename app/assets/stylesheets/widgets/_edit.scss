@@ -45,6 +45,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     i {
         color: white;
         font-size: 50px;
@@ -55,6 +56,7 @@
 .widget-nav-btn.active {
     background: linear-gradient(0deg, var(--widget-topbar-color) 30%, var(--widget-highlight-color) 90%);
     border-bottom: 10px solid var(--widget-highlight-color);
+    cursor: pointer;
 }
 
 .content-dev {
@@ -154,8 +156,7 @@
         height: 38px;
         width: 38px;
         border-radius: 50%;
-        background-color: #20EFE3;
-        box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        color: #6d7889;
         transition: 0.3s ease;
     }
     .plus-box i {
@@ -164,10 +165,9 @@
 }
 
 .plus-box:hover {
-    cursor: pointer;
-    background-color: black;
-    i {
-        color: #20EFE3;
+    cursor: pointer;    
+    svg {
+        color: black;
     }
 }
 
