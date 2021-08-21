@@ -3,6 +3,7 @@ require "open-uri"
 include ActiveSupport::NumberHelper
 
 Youtube.destroy_all
+Reddit.destroy_all
 Widget.destroy_all
 User.destroy_all
 
