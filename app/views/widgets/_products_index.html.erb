@@ -1,3 +1,5 @@
+
+
 <div class="products-view-wrapper">
   <div class="product-searchbar-wrapper">
     <div class="product-searchbar">
@@ -7,14 +9,20 @@
       </div>
       <div class="product-searchbar-button">
         <%= button_tag(:class => "search-button") do %>
-          <i class="fas fa-search fa-2x"></i>
+          <%# <i class="fas fa-search fa-2x"></i> %>
+          <img src="https://img.icons8.com/material-outlined/24/000000/search--v1.png"/>
         <% end %>
         <% end %>
       </div>
     </div>
   </div>
   <div class="your-products-wrapper">
-    <h1> Your products</h1>
+    <div class="your-products-title">
+      <h1> Your products</h1>
+      <%= link_to new_widget_url do %>
+        <img src="https://img.icons8.com/ios-glyphs/28/ffffff/plus-math.png"/>
+      <% end %>
+    </div>
     <div class="widgets-all-list">
       <% @widgets.where(user_id: current_user.id).each do |product| %>
         <%= link_to edit_widget_path(product[:id]) do %>
@@ -30,10 +38,7 @@
           </div>
         <% end %>
       <% end %>
-   </div>
-    <%= link_to new_widget_url do %>
-      <i class="fas fa-plus-circle fa-10x fixed"></i>
-    <% end %>
-  </div>
-</div>
+    </div>  
+  </div>    
+</div>    
 
