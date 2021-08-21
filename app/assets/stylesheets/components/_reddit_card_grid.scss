@@ -1,0 +1,54 @@
+.reddit-grid-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+}
+
+.reddit-card-grid {
+  width: 100%;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 5px;
+  cursor: pointer;
+  background: white;
+  box-shadow: 0 0 1px rgba(0,0,0,0.2);
+}
+
+.reddit-grid-thread-title {
+  font-size: var(--widget-font-size);
+}
+
+.reddit-grid-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.upvotes-grid-wrapper {
+  display: flex;
+  opacity: .5;
+  & svg {
+    margin-right: 5px;
+    height: 16px;
+    width: 16px;
+  }
+  & p {
+    margin-bottom: 0;
+    margin-right: 5px;
+  }
+}
+
+.reddit-grid-comments {
+  display: flex;
+  opacity: .5;
+  & svg {
+    margin-right: 5px;
+    height: 16px;
+    width: 16px;
+  }
+  & p {
+    margin-bottom: 0;
+  }
+}
