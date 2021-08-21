@@ -19,7 +19,7 @@ export default function EditWidget() {
     let [loading, setLoading] = useState(true);
     let [tab, setTab] = useState("youtube");
     let [layout, setLayout] = useState("list");
-  
+
     const formUrl = window.location.href.split("/").slice(0, -1).join("/");
     const widgetId = parseInt(window.location.href.split("/").slice(-2, -1)[0], 10);
     const dataApiUrl = window.location.href.replace("widgets", "api/v1/widgets").split('/').slice(0, -1).join('/')
@@ -133,7 +133,7 @@ export default function EditWidget() {
     return (
         <>
             <If condition={display === "generate"}>
-                <div class="go-back" onClick={() => { setDisplay("preview") }}> 
+                <div class="go-back" onClick={() => { setDisplay("preview") }}>
                     <SkipBack /><span>Back</span>
                 </div>
                 <WidgetCode widgetId={widgetId} tab={tab} setTab={setTab} />
@@ -169,7 +169,7 @@ export default function EditWidget() {
                                 <div class="preview-content">
                                     <div class="content-dev">
                                         <If condition={tab === "reddit"}>
-                                            <RedditPreview data={redditPreviewData}  layout={layout} />
+                                            <RedditPreview data={redditPreviewData} layout={layout} />
                                         </If>
                                         <If condition={tab === "youtube"}>
                                             <YoutubePreview data={youtubePreviewData} layout={layout} />
@@ -193,7 +193,7 @@ export default function EditWidget() {
                                     <input type="button" class="submit-dev-btn" value="Edit" onClick={() => { setDisplay("forms") }} />
                                     <input type="hidden" name="_method" value="PATCH" />
                                     <input type="submit" class="submit-dev-btn" value="Save" />
-                                    <input type="button" class="submit-dev-btn" value="Generate Code" onClick={() => { setDisplay("generate") }} />
+                                    <input type="button" class="submit-dev-btn" id="generate-dev-btn" value="Generate Code" onClick={() => { setDisplay("generate") }} />
                                 </div>
                             </If>
                         </div>
