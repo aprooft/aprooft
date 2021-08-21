@@ -49,8 +49,9 @@ export default function WidgetContent({ url, widgetId }) {
     return (
         <>
             <If condition = {show}>
-                <div>
-                    <button class="widget-button" onClick={() => setShow(false)}>Aprooft</button>
+                <div  onClick={() => setShow(false)}>
+                    {/* <button class="widget-button" onClick={() => setShow(false)}>Aprooft</button> */}
+                    <img src="https://res.cloudinary.com/ellie-xyb/image/upload/v1629524847/seal_e9k7rq.png" alt="logo"   class="widget-button" />
                 </div>
             </If>  
             <div class={widgetBoxClasses}>
