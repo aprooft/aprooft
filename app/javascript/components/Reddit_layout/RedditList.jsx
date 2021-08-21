@@ -18,7 +18,7 @@ export default function RedditGrid(props) {
                     <div class="reddit-card-list-right"></div>
                     <div class="reddit-list-info">
                         <div class="reddit-list-info-top">
-                            <p class="subreddit-list"><span>r/{redditdata.subreddit}</span> · Posted by u/{redditdata.author} {redditdata.created} days ago</p>
+                            <p class="subreddit-list"><span>r/{redditdata.subreddit}</span> · Posted by u/{redditdata.author} {redditdata.created} ago</p>
                             <p class="reddit-list-thread-title">{redditdata.thread_title}</p>
                         </div>
                         <div class="reddit-list-comments">

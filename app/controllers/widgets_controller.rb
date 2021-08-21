@@ -144,9 +144,9 @@ class WidgetsController < ApplicationController
     if days_ago.to_i == 1
       difference_in_sec = Time.now - Time.at(timestamp)
       difference_in_h = (difference_in_sec / 3600).to_i.to_s
-      difference_in_h
+      difference_in_h + " hours"
     else
-      days_ago.to_s
+      days_ago.to_s + " days"
     end
   end
 
