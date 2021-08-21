@@ -3,7 +3,7 @@ require 'open-uri'
 require 'net/http'
 include ActiveSupport::NumberHelper
 # need to look at this
-$font = { "arial" => "Arial", "verdana" => "Verdana" }
+$fonts = { "arial" => "Arial", "verdana" => "Verdana" }
 
 
 class WidgetsController < ApplicationController
