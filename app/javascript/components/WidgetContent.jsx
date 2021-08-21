@@ -19,10 +19,9 @@ export default function WidgetContent({ url, widgetId }) {
 
     const closebtnstyles = {
         position: 'relative',
-        top: '-95px',
+        top: '-91px',
         color: '#e2ebf1',
         fontSize: '20px',
-        left: '9px',
         cursor: 'pointer',
       };
       
@@ -56,9 +55,11 @@ export default function WidgetContent({ url, widgetId }) {
             </If>  
             <div class={widgetBoxClasses}>
                 <WidgetBox tab={tab} setTab={setTab} loading={false}>
-                    <span style={closebtnstyles}><XCircle size={22} opacity={0.8} onClick={() => setShow(true)} /></span>
-                    <div class="preview-content">
-                        <div class="content-dev">
+                    <div style="display:flex;justify-content:flex-end;margin-right:10px">
+                        <span style={closebtnstyles}><XCircle size={22} opacity={0.8} onClick={() => setShow(true)} /></span>
+                    </div>
+                    <div class="preview-content" style="margin-top: -24px;">
+                        <div class="content-dev" style="">
                             <If condition={tab === "reddit"}>
                                 <RedditPreview data={redditPreviewData}  layout={layout} />
                             </If>
