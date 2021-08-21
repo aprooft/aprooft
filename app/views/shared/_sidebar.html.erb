@@ -1,10 +1,11 @@
 <div class="sidebar active">
   <div class="logo-content">
-    <div class="logo">
-      <%# <i class='bx bxs-widget'></i> %>
-      <%= image_tag 'seal.png', alt: 'logo', class: 'index-page-logo' %>
-      <div class="logo-name">Aprooft</div>
-    </div>
+    <%= link_to root_path do %>
+      <div class="logo">
+        <%= image_tag 'seal.png', alt: 'logo', class: 'index-page-logo' %>
+        <div class="logo-name">Aprooft</div>
+      </div>
+    <% end %>
     <i class="bx bx-menu" id="sidebar-hamburger-menu"></i>
   </div>
   <ul class="nav-list">
