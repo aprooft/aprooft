@@ -1,9 +1,9 @@
 .products-view-wrapper {
-  display: none;
+  display: block;
 }
 
 .products-view-wrapper.active {
-  display: block;
+  display: none;
 }
 
 .search-button {

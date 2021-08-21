@@ -7,13 +7,15 @@
       </div>
       <div class="product-searchbar-button">
         <%= button_tag(:class => "search-button") do %>
-          <i class="fas fa-search fa-2x"></i>
+          <%# <i class="fas fa-search fa-2x"></i> %>
+          <img src="https://img.icons8.com/material-outlined/24/000000/search--v1.png"/>
         <% end %>
         <% end %>
       </div>
     </div>
   </div>
   <div class="your-products-wrapper">
+
     <h1 style="margin-bottom: 32px;"> Your products</h1>
     <%= link_to new_widget_url do %>
     <div class="flex">
@@ -21,6 +23,7 @@
       <h4>Add a product</h4>
     </div>
     <% end %>
+
     <div class="widgets-all-list">
       <% @widgets.where(user_id: current_user.id).each do |product| %>
         <%= link_to edit_widget_path(product[:id]) do %>
@@ -42,7 +45,6 @@
         <% end %>
       <% end %>
    </div>
-
   </div>
 </div>
 

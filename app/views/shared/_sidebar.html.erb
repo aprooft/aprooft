@@ -1,17 +1,21 @@
-<div class="sidebar">
+<div class="sidebar active">
   <div class="logo-content">
-    <div class="logo">
-      <i class='bx bxs-widget'></i>
-      <div class="logo-name">Aprooft</div>
-    </div>
+    <%= link_to root_path do %>
+      <div class="logo">
+        <%= image_tag 'seal.png', alt: 'logo', class: 'index-page-logo' %>
+        <div class="logo-name">Aprooft</div>
+      </div>
+    <% end %>
     <i class="bx bx-menu" id="sidebar-hamburger-menu"></i>
   </div>
   <ul class="nav-list">
     <li>
-      <div class="nav-btn" id="nav-btn-products">
-        <i class='bx bx-spreadsheet'></i>
-        <span class="links-name">Products</span>
-      </div>
+      <%= link_to widgets_path do%>
+        <div class="nav-btn focus" id="nav-btn-products">
+          <i class='bx bx-spreadsheet'></i>
+          <span class="links-name">Products</span>
+        </div>
+      <% end %>
     </li>
     <li>
       <div class="nav-btn" id="nav-btn-styles">

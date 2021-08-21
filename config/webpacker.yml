@@ -4,7 +4,7 @@ default: &default
   source_path: app/javascript
   source_entry_path: packs
   public_root_path: public
-  public_output_path: packs
+  public_output_path: .
   cache_path: tmp/cache/webpacker
   webpack_compile_output: true
 
@@ -87,7 +87,7 @@ production:
   compile: false
 
   # Extract and emit a css file
-  extract_css: true
+  # extract_css: true
 
   # Cache manifest.json for performance
   cache_manifest: true

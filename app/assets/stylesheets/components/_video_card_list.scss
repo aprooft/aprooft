@@ -9,6 +9,9 @@
     flex-basis: 0%;
     align-items: center;
     margin-bottom: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+
     .video-card-list-thumbnail {
         align-items: center;
         flex-direction: row;
@@ -22,7 +25,7 @@
         flex-shrink: 0;
         flex-grow: 0;
     }
-    
+
     .video-card-list-info {
         display: flex;
         flex-direction: column;
@@ -47,12 +50,12 @@
 }
 
 .list-info-playicon {
-    color: #fff;  
-    opacity: 0.87;
+    color: #fff;
     position: absolute;
-    left: 39%;
-    top: 21%;
-    font-size: 40px;
+    left: 35%;
+    top: 18%;
+    // opacity: 0.8;
+    // font-size: 40px;
     // transform: translate(-50%,-50%);
 }
 
@@ -65,11 +68,13 @@
         -webkit-line-clamp: 2;
         flex-grow: 1;
         display: -webkit-box;
-        font-size: 16px;
+        font-size: var(--widget-font-size);
         height: auto;
         line-height: 20px;
         overflow: hidden;
         text-overflow: ellipsis;
+        color: var(--widget-text-color);
+        font-family: var(--widget-font-family);
     }
 }
 

@@ -17,13 +17,28 @@
 
 
 .margin-button {
-
   margin-bottom: 23px;
+}
 
+.close-icon {
+  position: relative;
+  top: -95px;
+  color: #e2ebf1;
+  font-size: 20px;
+  left: 9px;
+  cursor: pointer;
+}
 
+.go-back {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 100px;
+  cursor: pointer;
+  color: grey;
 }
 
 
+<<<<<<< HEAD
 .trash-button {
 
     position: absolute;
@@ -35,3 +50,14 @@
 
   display: flex;
 }
+=======
+#reddit-button {
+  margin-left: 3px;
+}
+
+.back-on-widgets-new {
+  background-color: black;
+  border-radius: 50%;
+  margin-bottom: 30px;
+}
+>>>>>>> master

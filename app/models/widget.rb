@@ -1,7 +1,13 @@
 class Widget < ApplicationRecord
   belongs_to :user
+<<<<<<< HEAD
   has_many :youtubes, dependent: :destroy
   has_one_attached :product_pic, dependent: :destroy
+=======
+  has_many :youtubes
+  has_many :reddits
+  has_one_attached :product_pic
+>>>>>>> master
 
   validates :user_id, presence: true
   validates :product_title, presence: true
