@@ -21,10 +21,10 @@ export default function YoutubeSlider(props) {
                         <div class="carousel-item">
                             <a href={`https://www.youtube.com/watch?v=${youtubedata.video_id}`} target='_blank'>
                                 <img src={youtubedata.thumbnail} class="slider-img" />
+                                <div class="slider-info-playicon">
+                                    <Youtube size={72} opacity={0.85} />
+                                </div>
                             </a>
-                            <div class="grid-info-playicon">
-                                <Youtube size={48} opacity={0.85} />
-                            </div>
                         </div>
                     )}
                 </div>
