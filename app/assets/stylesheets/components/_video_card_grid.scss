@@ -2,6 +2,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 15px;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .video-card-grid {
@@ -79,6 +83,7 @@
   opacity: .5;
   span {
     display: flex;
+    align-items: center;
   }
   span i {
     margin-right: 5px;
