@@ -2,9 +2,29 @@
   display: flex;
   align-items: center;
   height: 95%;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .slider-img {
   width: 100%;
   object-fit: cover;
+}
+
+.carousel-item {
+  position: relative;
+}
+
+.slider-info-playicon {
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
