@@ -3,7 +3,19 @@ const widgetStyling = () => {
 
   function setStyles(key, value){
     styles[key] = value;
-
+    const styleUrl = window.location.href.split("/").slice(0, -1).join("/") + '/styles';
+   
+    fetch(styleUrl, {
+      method: 'POST',
+      body: JSON.stringify(styles),
+      credentials: 'same-origin',
+      headers: {
+          'content-type': 'application/json'
+      },
+      mode: 'cors',
+    }).then(response => {
+      response.json();
+    })           
   }
 
   const sizeOptions = document.querySelectorAll(".size-option");
