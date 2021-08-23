@@ -2,7 +2,7 @@
   <div class="logo-content">
     <%= link_to root_path do %>
       <div class="logo">
-        <%= image_tag 'seal.png', alt: 'logo', class: 'index-page-logo' %>
+        <%= cl_image_tag("seal_uior2x", class: 'index-page-logo', alt: 'logo') %>
         <div class="logo-name">Aprooft</div>
       </div>
     <% end %>
@@ -34,8 +34,7 @@
       <% if user_signed_in? %>
         <div class="profile">
           <div class="profile-details">
-            <%# <img src="profile.jpg" alt="profile-pic"> %>
-            <%= image_tag "profile.png", alt: "profile-pic" %>
+            <%= cl_image_tag("profile_eyqwoe", alt: "profile-pic") %>
             <div class="name-job">
               <div class="name">John Doe</div>
               <div class="job">Marketer</div>
