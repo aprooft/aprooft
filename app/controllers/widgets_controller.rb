@@ -7,8 +7,8 @@ $fonts = { "arial" => "Arial", "verdana" => "Verdana" }
 
 
 class WidgetsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: %i[update preview]
-  before_action :set_widget, only: %i[update edit preview show]
+  skip_before_action :verify_authenticity_token, only: %i[update preview style] 
+  before_action :set_widget, only: %i[update edit preview show style]
 
   def index
     # @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
@@ -50,6 +50,10 @@ class WidgetsController < ApplicationController
                   reddits: reddit_links_result.map{ |link| fetchRedditApi(link) }
                   }
   end
+
+  def style
+
+  end  
 
   def update
     yturls = params["youtube-link"].reject{ |link| link=="" }

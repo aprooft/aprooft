@@ -21,4 +21,8 @@ class WidgetPolicy < ApplicationPolicy
   def preview?
     true
   end  
+
+  def style?
+    true
+  end  
 end
