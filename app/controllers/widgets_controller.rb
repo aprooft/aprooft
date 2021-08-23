@@ -44,10 +44,8 @@ class WidgetsController < ApplicationController
   end
 
   def preview
-    youtubes = params["youtube_links"].exists? ? params["youtube_links"] : []
-    reddits = params["reddit_links"].exists? ? params["reddit_links"] : []
-    youtube_links_result = youtubes.reject{ |link| link=="" }
-    reddit_links_result = reddits.reject{ |link| link=="" }
+    youtube_links_result = params["youtube_links"].reject{ |link| link=="" }
+    reddit_links_result = params["reddit_links"].reject{ |link| link=="" }
     render json: {youtubes: youtube_links_result.map{ |link| fetchYoutubeApi(link)},
                   reddits: reddit_links_result.map{ |link| fetchRedditApi(link) }
                   }
