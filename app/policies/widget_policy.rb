@@ -22,7 +22,11 @@ class WidgetPolicy < ApplicationPolicy
     true
   end  
 
-  def style?
+  def setStyle?
+    true
+  end  
+
+  def showStyle?
     true
   end  
 end

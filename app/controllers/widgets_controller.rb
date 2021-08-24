@@ -7,8 +7,8 @@ $fonts = { "arial" => "Arial", "verdana" => "Verdana" }
 
 
 class WidgetsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: %i[update preview style] 
-  before_action :set_widget, only: %i[update edit preview show style]
+  skip_before_action :verify_authenticity_token, only: %i[update preview setStyle showStyle] 
+  before_action :set_widget, only: %i[update edit preview show setStyle showStyle]
 
   def index
     # @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
@@ -51,15 +51,21 @@ class WidgetsController < ApplicationController
                   }
   end
 
-  def style
-    styles = params["styles"]
-    # render json: styles
-    @widget.update(style: styles)
+  def setStyle
+    new_styles = params["styles"]
+    exist_styles = @widget.style
+    merge_styles = new_styles.reverse_merge!(exist_styles)
+    @widget.update(style: merge_styles)
     # p @widget.style
   end  
 
+  def showStyle
+    styles = @widget.style
+    render json: styles
+  end  
+
   def update
-    yturls = params["youtube-link"].reject{ |link| link=="" }
+    yturls = paramsz["youtube-link"].reject{ |link| link=="" }
     rdurls = params["reddit-link"].reject{ |link| link=="" }
     yturls.each do |link|
       youtube = Youtube.new(fetchYoutubeApi(link))
