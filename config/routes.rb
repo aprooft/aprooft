@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   
   post '/widgets/:id/preview', to: 'widgets#preview', as: :preview
   post '/widgets/:id/styles', to: 'widgets#setStyle', as: :styles
+  post 'widgets/:id/widgetaccess', to: 'widgets#widgetAccess', as : :widget_accesses
+  post 'widgets/:id/contentaccess', to: 'widgets#contentAccess', as : :content_accesses
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do

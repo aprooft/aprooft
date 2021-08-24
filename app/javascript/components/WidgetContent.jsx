@@ -13,6 +13,7 @@ export default function WidgetContent({ url, widgetId }) {
     let [tab, setTab] = useState("youtube");
     const widgetBoxClasses = show ? "widget-wrapper" : "widget-wrapper active";
     const dataApiUrl = `${url}/api/v1/widgets/${widgetId}`;
+    const widgetAccessUrl = `${url}/widgets/${widgetId}/widgetaccess`;
     let [redditPreviewData, setRedditPreviewData] = useState([]);
     let [youtubePreviewData, setYoutubePreviewData] = useState([]);
     let [layout, setLayout] = useState("list");
@@ -41,6 +42,18 @@ export default function WidgetContent({ url, widgetId }) {
             })
     }
 
+    function widgetAccesses() {
+        setShow(false);
+        fetch(widgetAccessUrl, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'content-type': 'application/json'
+            },
+            mode: 'cors',
+        })     
+    }
+
     useEffect(() => {
         finalWidgetData();
         window.setGlobalWidgetLayout = setLayout;
@@ -50,7 +63,7 @@ export default function WidgetContent({ url, widgetId }) {
     return (
         <>
             <If condition = {show}>
-                <div  onClick={() => setShow(false)}>
+                <div onClick={() => widgetAccesses()}>
                     {/* <button class="widget-button" onClick={() => setShow(false)}>Aprooft</button> */}
                     <img src="https://res.cloudinary.com/ellie-xyb/image/upload/v1629524847/seal_e9k7rq.png" alt="logo"   class="widget-button" />
                 </div>
