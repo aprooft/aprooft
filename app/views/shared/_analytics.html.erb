@@ -1,0 +1,67 @@
+<div class="analytics">
+  <div class="all-stats-wrapper">
+    <div class="global-stats-wrapper">
+      <div class="global-stats">
+        <div class="global-session-number-wrapper">
+          <div class="global-session-number">
+            <h3>10</h3>
+            <p>Total sessions</p>
+          </div>
+        </div>
+        <div class="global-session-time-wrapper">
+          <div class="global-session-time">
+            <h3>00:20:08</h3>
+            <p>Total time</p>
+          </div>
+        </div>
+        <div class="average-session-time-wrapper">
+          <div class="average-session-time">
+            <h3>00:02:00</h3>
+            <p>Time per widget</p>
+          </div>
+        </div>
+        <div class="global-clicks-wrapper">
+          <div class="global-clicks">
+            <h3>60</h3>
+            <p>Total clicks</p>
+          </div>
+        </div>
+        <div class="average-clicks-wrapper">
+          <div class="average-clicks">
+            <h3>6</h3>
+            <p>Clicks per widget</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="widget-stats-wrapper">
+      <div class="session-number-wrapper">
+        <div class="widget-name">
+          <h3>Bose Noise Cancelling 700</h3>
+        </div>
+        <div class="session-number">
+          <h3>6 sessions</h3>
+        </div>
+      </div>
+      <div class="total-session-time-wrapper">
+        <div class="total-session-time">
+          <p>Total time:</p>
+          <h4>00:02:00</>
+        </div>
+        <div class="session-time-chart">
+          <%= line_chart User.group_by_day(:created_at).count %>
+        </div>
+
+      </div>
+      <div class="total-clicks-wrapper">
+        <div class="total-clicks">
+          <p>Total clicks:</p>
+          <h4>6 clicks</h4>
+        </div>
+        <div class="clicks-chart">
+          <%= line_chart User.group_by_day(:created_at).count %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
