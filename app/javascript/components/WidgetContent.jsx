@@ -5,6 +5,7 @@ import WidgetBox from "./WidgetBox";
 import YoutubePreview from "../components/YoutubePreview";
 import RedditPreview from "../components/RedditPreview";
 import { XCircle } from 'preact-feather';
+import { showExistingStyles } from "./showexistingstyles";
 
 export default function WidgetContent({ url, widgetId }) {
     url = url || "";
@@ -15,7 +16,7 @@ export default function WidgetContent({ url, widgetId }) {
     let [redditPreviewData, setRedditPreviewData] = useState([]);
     let [youtubePreviewData, setYoutubePreviewData] = useState([]);
     let [layout, setLayout] = useState("list");
-    let [loading, setLoading] = useState(true);
+    let [loading, setLoading] = useState(true);  
 
     const closebtnstyles = {
         position: 'relative',
@@ -42,8 +43,8 @@ export default function WidgetContent({ url, widgetId }) {
 
     useEffect(() => {
         finalWidgetData();
-        // need comment out after storing jsonb styles in database
         window.setGlobalWidgetLayout = setLayout;
+        showExistingStyles(dataApiUrl);
     }, []);
 
     return (

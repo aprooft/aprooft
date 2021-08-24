@@ -1,7 +1,8 @@
-import { showExistStyles } from "./showexiststyles";
+import { showExistingStyles } from "./showexistingstyles";
 
 const widgetStyling = () => {
   let styles = {};
+  const dataApiUrl = window.location.href.replace("widgets", "api/v1/widgets").split('/').slice(0, -1).join('/');
   const styleUrl = window.location.href.split("/").slice(0, -1).join("/") + '/styles';
 
   function setStyles(key, value){
@@ -14,16 +15,10 @@ const widgetStyling = () => {
           'content-type': 'application/json'
       },
       mode: 'cors',
-    }).then(response => {
-      response 
-        .json()
-        .then(res => {
-          console.log(res);
-        });
-    })           
+    })     
   }  
 
-  showExistStyles(styleUrl);
+  showExistingStyles(dataApiUrl);
 
   const sizeOptions = document.querySelectorAll(".size-option");
   sizeOptions.forEach((sizeOption) => {

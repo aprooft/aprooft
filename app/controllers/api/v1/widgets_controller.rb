@@ -3,9 +3,6 @@ class Api::V1::WidgetsController < Api::V1::BaseController
 
     def show
       response.headers['Access-Control-Allow-Origin'] = '*'
-        # render json: Youtube.where(widget: @widget)
-        # @youtubes = @widget.youtubes
-        # @reddits = ["coming soon"]
     end
 
     private

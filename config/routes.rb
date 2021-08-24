@@ -4,8 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
   post '/widgets/:id/preview', to: 'widgets#preview', as: :preview
-  post '/widgets/:id/styles', to: 'widgets#setStyle', as: :set_styles
-  get '/widgets/:id/styles', to: 'widgets#showStyle', as: :show_styles
+  post '/widgets/:id/styles', to: 'widgets#setStyle', as: :styles
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
