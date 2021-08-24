@@ -21,4 +21,12 @@ class WidgetPolicy < ApplicationPolicy
   def preview?
     true
   end  
+
+  def setStyle?
+    true
+  end  
+
+  # def showStyle?
+  #   true
+  # end  
 end
