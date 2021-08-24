@@ -53,7 +53,9 @@ class WidgetsController < ApplicationController
 
   def style
     styles = params["styles"]
-    render json: styles
+    # render json: styles
+    @widget.update(style: styles)
+    # p @widget.style
   end  
 
   def update
