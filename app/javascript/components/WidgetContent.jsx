@@ -46,12 +46,19 @@ export default function WidgetContent({ url, widgetId }) {
         setShow(false);
         fetch(widgetAccessUrl, {
             method: 'POST',
-            credentials: 'same-origin',
+            body: JSON.stringify({}),
             headers: {
                 'content-type': 'application/json'
             },
             mode: 'cors',
-        })     
+        }).then(response => {
+            response
+                .json()
+                .then(res => {
+                    console.log(res);
+                }
+            );
+        })  
     }
 
     useEffect(() => {

@@ -7,6 +7,7 @@ $fonts = { "arial" => "Arial", "verdana" => "Verdana" }
 
 
 class WidgetsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[widgetAccess]
   skip_before_action :verify_authenticity_token, only: %i[update preview setStyle widgetAccess contentAccess] 
   before_action :set_widget, only: %i[update edit preview show setStyle widgetAccess contentAccess]
 
@@ -79,7 +80,13 @@ class WidgetsController < ApplicationController
   end
 
   def widgetAccess
-
+    @widget_access = WidgetAccess.new
+    @widget_access.widget = @widget
+    @widget_access.open_at = DateTime.now
+    if @widget_access.save
+      render json: { id: @widget_access.id }
+    end 
+    authorize @widget_access
   end
   
   def contentAccess
