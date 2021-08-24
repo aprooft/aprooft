@@ -7,14 +7,18 @@ const widgetStyling = () => {
    
     fetch(styleUrl, {
       method: 'POST',
-      body: JSON.stringify(styles),
+      body: JSON.stringify({styles: styles}),
       credentials: 'same-origin',
       headers: {
           'content-type': 'application/json'
       },
       mode: 'cors',
     }).then(response => {
-      response.json();
+      response 
+        .json()
+        .then(res => {
+          console.log(res);
+        });
     })           
   }
 
