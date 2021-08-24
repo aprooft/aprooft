@@ -94,6 +94,23 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        flex-grow: 1;
+    }
+}
+
+.input-links-wrapper {
+    display: flex;
+    align-items: center;
+    svg {
+        transition: all ease-in-out 350ms;
+        width: 0;
+        cursor: pointer;
+    }
+}
+
+.input-links-wrapper:hover {
+    svg {
+        width: 32px;
     }
 }
 
@@ -175,7 +192,7 @@
 
 .add-input-dev {
     width: 90%;
-    margin-bottom: 20px;
+    margin: 0 auto 20px auto;
     display: flex;
     justify-content: flex-end;
     .plus-box {
@@ -187,9 +204,6 @@
         border-radius: 50%;
         color: #6d7889;
         transition: 0.3s ease;
-    }
-    .plus-box i {
-        font-size: 20px;
     }
 }
 

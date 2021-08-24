@@ -7,8 +7,8 @@ $fonts = { "arial" => "Arial", "verdana" => "Verdana" }
 
 
 class WidgetsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: %i[update preview setStyle] 
-  before_action :set_widget, only: %i[update edit preview show setStyle]
+  skip_before_action :verify_authenticity_token, only: %i[update preview setStyle]
+  before_action :set_widget, only: %i[update edit preview show setStyle analytics]
 
   def index
     # @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
@@ -56,7 +56,7 @@ class WidgetsController < ApplicationController
     exist_styles = @widget.style
     merge_styles = new_styles.reverse_merge!(exist_styles)
     @widget.update(style: merge_styles)
-  end  
+  end
 
   def update
     unless params["youtube-link"] === nil then
@@ -66,16 +66,20 @@ class WidgetsController < ApplicationController
         youtube.widget = @widget
         youtube.save
       end
-    end   
-    unless params["reddit-link"] === nil then 
+    end
+    unless params["reddit-link"] === nil then
       rdurls = params["reddit-link"].reject{ |link| link=="" }
       rdurls.each do |link|
         reddit = Reddit.new(fetchRedditApi(link))
         reddit.widget = @widget
         reddit.save
       end
-    end  
+    end
     redirect_to edit_widget_path(@widget)
+  end
+
+  def analytics
+    authorize @widget
   end
 
   private

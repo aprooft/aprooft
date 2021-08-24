@@ -1,5 +1,5 @@
 import { h, render, Fragment } from "preact";
-import { Youtube, Eye, ThumbsUp, ThumbsDown, MessageSquare } from 'preact-feather';
+import { ArrowUp, ArrowDown, MessageSquare } from 'preact-feather';
 
 export default function RedditGrid(props) {
     const data = props.data
@@ -11,9 +11,9 @@ export default function RedditGrid(props) {
                     <div class="reddit-card-list">
                         <div class="reddit-card-list-left">
                             <div class="upvotes-list-wrapper">
-                                <ThumbsUp />
+                                <ArrowUp />
                                 <p>{redditdata.ups}</p>
-                                <ThumbsDown />
+                                <ArrowDown />
                             </div>
                         </div>
                         <div class="reddit-card-list-right"></div>
