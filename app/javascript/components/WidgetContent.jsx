@@ -14,6 +14,7 @@ export default function WidgetContent({ url, widgetId }) {
     const widgetBoxClasses = show ? "widget-wrapper" : "widget-wrapper active";
     const dataApiUrl = `${url}/api/v1/widgets/${widgetId}`;
     const widgetAccessUrl = `${url}/widgets/${widgetId}/widgetaccess`;
+    const widgetAccessUpdateUrl = `${url}/widgets/${widgetId}/widgetaccess/update`;
     let [redditPreviewData, setRedditPreviewData] = useState([]);
     let [youtubePreviewData, setYoutubePreviewData] = useState([]);
     let [layout, setLayout] = useState("list");
@@ -56,7 +57,6 @@ export default function WidgetContent({ url, widgetId }) {
             response
                 .json()
                 .then(res => {
-                    console.log(res);
                     setWidgetAccessId(res['id']);
                 }
             );
@@ -66,9 +66,9 @@ export default function WidgetContent({ url, widgetId }) {
     function hideWidget() {
         setShow(true);
         if (widgetAccessId) {
-            fetch(widgetAccessUrl, {
+            fetch(widgetAccessUpdateUrl, {
                 method: 'POST',
-                body: JSON.stringify({}),
+                body: JSON.stringify(widgetAccessId),
                 headers: {
                     'content-type': 'application/json'
                 },
@@ -78,7 +78,6 @@ export default function WidgetContent({ url, widgetId }) {
                     .json()
                     .then(res => {
                         console.log(res);
-                        setWidgetAccessId(res['id']);
                     }
                 );
             })  
