@@ -28,7 +28,11 @@ class WidgetPolicy < ApplicationPolicy
 
   def  widgetAccess?
     true
-  end   
+  end 
+  
+  def  widgetAccessUpdate?
+    true
+  end 
   
   def contentAccess?
     true
