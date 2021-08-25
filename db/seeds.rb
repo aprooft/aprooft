@@ -2,6 +2,7 @@ require 'faker'
 require "open-uri"
 include ActiveSupport::NumberHelper
 
+ContentAccess.destroy_all
 WidgetAccess.destroy_all
 Youtube.destroy_all
 Reddit.destroy_all
@@ -197,9 +198,9 @@ puts "Noise Cancelling 700 links created"
 
 puts "creating widget accesses"
 32.times do
-  start_at = Faker::Date.between(from: 7.days.ago, to: Date.today)
+  start_at = Faker::Time.between_dates(from: Date.today - 7, to: Date.today, period: :all)
   close_at = start_at + rand(5..120).seconds
-  session_time = close_at.to_time.to_i - start_at.to_time.to_i
+  session_time = close_at.to_i - start_at.to_i
   WidgetAccess.create(open_at: start_at, close_at: close_at, session_time: session_time, widget_id: Widget.first.id)
 end
 

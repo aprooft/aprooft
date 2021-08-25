@@ -51,7 +51,7 @@
           <h4><%= @total_time %></h4>
         </div>
         <div class="session-time-chart">
-          <%= column_chart WidgetAccess.group_by_day(:open_at).count, ytitle: "Time per day" %>
+          <%= column_chart WidgetAccess.group_by_day(:open_at).sum(:session_time), ytitle: "Time per day" %>
         </div>
       </div>
       <div class="total-session-time-wrapper">
