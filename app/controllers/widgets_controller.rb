@@ -78,6 +78,10 @@ class WidgetsController < ApplicationController
   end
 
   def analytics
+    @user_widgets = Widget.where(user_id: current_user.id)
+    @widget_sessions = @widget.widget_accesses.count
+    @widget_clicks = @widget.content_accesses.count
+    @total_time = seconds_to_units(total_time())
     authorize @widget
   end
 
@@ -102,6 +106,24 @@ class WidgetsController < ApplicationController
   def contentAccess; end
 
   private
+
+  def total_time
+    widget = set_widget()
+    total_time = []
+    widget.widget_accesses.each do |widget_access|
+      total_time << widget_access.close_at - widget_access.open_at
+    end
+    total_time.sum
+  end
+
+  def seconds_to_units(seconds)
+    # '%d days, %d hours, %d minutes, %d seconds' %
+    '%d:%d:%d' %
+      [60,60].reverse.inject([seconds]) {|result, unitsize|
+        result[0,0] = result.shift.divmod(unitsize)
+        result
+      }
+  end
 
   def widget_params
     params.require(:widget).permit(:user_id, :product_title, :product_pic, :product_id)
