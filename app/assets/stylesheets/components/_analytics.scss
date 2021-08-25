@@ -1,3 +1,7 @@
+.right-column-content.analytics-view {
+  padding: 0;
+}
+
 .analytics {
   background: aliceblue;
 }
@@ -23,7 +27,7 @@
 .average-stats {
   color: aliceblue;
   background-color: #11101d;
-  border-radius: 8px 8px 0 0;
+  // border-radius: 8px 8px 0 0;
   margin-bottom: 24px;
 }
 
