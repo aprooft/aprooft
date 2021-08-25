@@ -199,7 +199,8 @@ puts "creating widget accesses"
 32.times do
   start_at = Faker::Date.between(from: 7.days.ago, to: Date.today)
   close_at = start_at + rand(5..120).seconds
-  WidgetAccess.create(open_at: start_at, close_at: close_at, widget_id: Widget.first.id)
+  session_time = close_at.to_time.to_i - start_at.to_time.to_i
+  WidgetAccess.create(open_at: start_at, close_at: close_at, session_time: session_time, widget_id: Widget.first.id)
 end
 
 puts "creating content accesses"
