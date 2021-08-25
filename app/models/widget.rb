@@ -1,5 +1,7 @@
 class Widget < ApplicationRecord
   belongs_to :user
+  has_many :widget_accesses
+  has_many :content_accesses
   has_many :youtubes
   has_many :reddits
   has_one_attached :product_pic

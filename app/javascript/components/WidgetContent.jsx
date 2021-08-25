@@ -13,10 +13,13 @@ export default function WidgetContent({ url, widgetId }) {
     let [tab, setTab] = useState("youtube");
     const widgetBoxClasses = show ? "widget-wrapper" : "widget-wrapper active";
     const dataApiUrl = `${url}/api/v1/widgets/${widgetId}`;
+    const widgetAccessUrl = `${url}/widgets/${widgetId}/widgetaccess`;
+    const widgetAccessUpdateUrl = `${url}/widgets/${widgetId}/widgetaccess/update`;
     let [redditPreviewData, setRedditPreviewData] = useState([]);
     let [youtubePreviewData, setYoutubePreviewData] = useState([]);
     let [layout, setLayout] = useState("list");
     let [loading, setLoading] = useState(true);  
+    let [widgetAccessId, setWidgetAccessId] = useState(null);
 
     const closebtnstyles = {
         position: 'relative',
@@ -41,6 +44,46 @@ export default function WidgetContent({ url, widgetId }) {
             })
     }
 
+    function showWidget() {
+        setShow(false);
+        fetch(widgetAccessUrl, {
+            method: 'POST',
+            body: JSON.stringify({}),
+            headers: {
+                'content-type': 'application/json'
+            },
+            mode: 'cors',
+        }).then(response => {
+            response
+                .json()
+                .then(res => {
+                    setWidgetAccessId(res['id']);
+                }
+            );
+        })  
+    }
+
+    function hideWidget() {
+        setShow(true);
+        if (widgetAccessId) {
+            fetch(widgetAccessUpdateUrl, {
+                method: 'POST',
+                body: JSON.stringify(widgetAccessId),
+                headers: {
+                    'content-type': 'application/json'
+                },
+                mode: 'cors',
+            }).then(response => {
+                response
+                    .json()
+                    .then(res => {
+                        console.log(res);
+                    }
+                );
+            })  
+        }
+    }
+
     useEffect(() => {
         finalWidgetData();
         window.setGlobalWidgetLayout = setLayout;
@@ -50,7 +93,7 @@ export default function WidgetContent({ url, widgetId }) {
     return (
         <>
             <If condition = {show}>
-                <div  onClick={() => setShow(false)}>
+                <div onClick={showWidget}>
                     {/* <button class="widget-button" onClick={() => setShow(false)}>Aprooft</button> */}
                     <img src="https://res.cloudinary.com/ellie-xyb/image/upload/v1629524847/seal_e9k7rq.png" alt="logo"   class="widget-button" />
                 </div>
@@ -58,7 +101,7 @@ export default function WidgetContent({ url, widgetId }) {
             <div class={widgetBoxClasses}>
                 <WidgetBox tab={tab} setTab={setTab} loading={false}>
                     <div style="display:flex;justify-content:flex-end;margin-right:10px">
-                        <span style={closebtnstyles}><XCircle size={22} opacity={0.8} onClick={() => setShow(true)} /></span>
+                        <span style={closebtnstyles}><XCircle size={22} opacity={0.8} onClick={hideWidget} /></span>
                     </div>
                     <div class="preview-content" style="margin-top: -24px;">
                         <div class="content-dev" style="">

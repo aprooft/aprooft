@@ -7,8 +7,9 @@ $fonts = { "arial" => "Arial", "verdana" => "Verdana" }
 
 
 class WidgetsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: %i[update preview setStyle]
-  before_action :set_widget, only: %i[update edit preview show setStyle analytics]
+  skip_before_action :authenticate_user!, only: %i[widgetAccess widgetAccessUpdate]
+  skip_before_action :verify_authenticity_token, only: %i[update preview setStyle widgetAccess contentAccess widgetAccessUpdate]
+  before_action :set_widget, only: %i[update edit preview show setStyle widgetAccess contentAccess widgetAccessUpdate analytics]
 
   def index
     # @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
@@ -21,8 +22,7 @@ class WidgetsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @widget = Widget.new
@@ -40,8 +40,7 @@ class WidgetsController < ApplicationController
     authorize @widget
   end
 
-  def edit
-  end
+  def edit; end
 
   def preview
     youtube_links_result = params["youtube_links"].reject{ |link| link=="" }
@@ -81,6 +80,26 @@ class WidgetsController < ApplicationController
   def analytics
     authorize @widget
   end
+
+  def widgetAccess
+    skip_authorization
+    @widget_access = WidgetAccess.new
+    @widget_access.widget = @widget
+    @widget_access.open_at = DateTime.now
+    if @widget_access.save
+      render json: { id: @widget_access.id }
+    end
+  end
+
+  def widgetAccessUpdate
+    skip_authorization
+    @widget_access = WidgetAccess.find(params["_json"])
+    if @widget_access.update(close_at: DateTime.now)
+      render json: @widget_access
+    end
+  end
+
+  def contentAccess; end
 
   private
 
