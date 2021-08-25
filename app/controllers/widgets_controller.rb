@@ -7,8 +7,9 @@ $fonts = { "arial" => "Arial", "verdana" => "Verdana" }
 
 
 class WidgetsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: %i[update preview setStyle] 
-  before_action :set_widget, only: %i[update edit preview show setStyle]
+  skip_before_action :authenticate_user!, only: %i[widgetAccess widgetAccessUpdate]
+  skip_before_action :verify_authenticity_token, only: %i[update preview setStyle widgetAccess contentAccess widgetAccessUpdate] 
+  before_action :set_widget, only: %i[update edit preview show setStyle widgetAccess contentAccess widgetAccessUpdate]
 
   def index
     # @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
@@ -77,6 +78,28 @@ class WidgetsController < ApplicationController
     end  
     redirect_to edit_widget_path(@widget)
   end
+
+  def widgetAccess
+    skip_authorization
+    @widget_access = WidgetAccess.new
+    @widget_access.widget = @widget
+    @widget_access.open_at = DateTime.now
+    if @widget_access.save
+      render json: { id: @widget_access.id }
+    end 
+  end
+
+  def widgetAccessUpdate
+    skip_authorization
+    @widget_access = WidgetAccess.find(params["_json"])
+    if @widget_access.update(close_at: DateTime.now)
+      render json: @widget_access
+    end 
+  end
+  
+  def contentAccess
+
+  end  
 
   private
 

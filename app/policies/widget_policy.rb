@@ -26,7 +26,15 @@ class WidgetPolicy < ApplicationPolicy
     true
   end  
 
-  # def showStyle?
-  #   true
-  # end  
+  def  widgetAccess?
+    true
+  end 
+  
+  def  widgetAccessUpdate?
+    true
+  end 
+  
+  def contentAccess?
+    true
+  end  
 end
