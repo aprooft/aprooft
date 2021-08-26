@@ -224,6 +224,6 @@ puts "creating content accesses widget4"
 39.times do
   random_youtube = Youtube.where(widget_id: Widget.all[1].id).sample
   click_at = Faker::Date.between(from: 7.days.ago, to: Date.today)
-  ContentAccess.create(click_at: click_at, source: random_youtube.title, source_id: random_youtube.id, widget_id: Widget.all[1].id)
+  ContentAccess.create(click_at: click_at, source: "youtube", source_id: random_youtube.id, widget_id: Widget.all[1].id)
 end
 puts "done"

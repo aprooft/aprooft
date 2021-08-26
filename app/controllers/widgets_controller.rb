@@ -9,7 +9,8 @@ $fonts = { "arial" => "Arial", "verdana" => "Verdana" }
 class WidgetsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[widgetAccess widgetAccessUpdate]
   skip_before_action :verify_authenticity_token, only: %i[update preview setStyle widgetAccess contentAccess widgetAccessUpdate]
-  before_action :set_widget, only: %i[update edit preview show setStyle widgetAccess contentAccess widgetAccessUpdate analytics]
+  before_action :set_widget, only: %i[update edit preview show setStyle widgetAccess contentAccess widgetAccessUpdate]
+  after_action :verify_authorized, only: %i{analytics}
 
   def index
     # @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
@@ -78,17 +79,23 @@ class WidgetsController < ApplicationController
   end
 
   def analytics
-    @user_widgets = Widget.where(user_id: current_user.id)
+    skip_authorization
+    if params[:product].present?
+      @user_widgets = Widget.where(user: current_user)
+      @user_widget = Widget.where(user: current_user, product_id: params[:product])
+      @widget_sessions = @user_widget.first.widget_accesses.count
+      @widget_clicks = @user_widget.first.content_accesses.count
+      @widget_time = seconds_to_units(widget_time(@user_widget.first))
+    else
+      @user_widgets = Widget.where(user: current_user)
+    end
+
     @global_sessions = global_sessions(@user_widgets)
-    @widget_sessions = @widget.widget_accesses.count
     @global_clicks = global_clicks(@user_widgets)
-    @widget_clicks = @widget.content_accesses.count
     @clicks_per_widget = @global_clicks.fdiv(Widget.all.count)
     @global_time = seconds_to_units(global_time(@user_widgets))
-    @widget_time = seconds_to_units(widget_time(@widget))
     average_time = global_time(@user_widgets).fdiv(Widget.all.count)
-    @time_per_widget =seconds_to_units(average_time)
-    authorize @widget
+    @time_per_widget = seconds_to_units(average_time)
   end
 
   def widgetAccess

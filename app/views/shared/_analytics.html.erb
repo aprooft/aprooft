@@ -36,13 +36,11 @@
     </div>
     <div class="widget-stats-wrapper">
       <div class="session-number-wrapper">
-        <div class="widget-select">
-          <select id="select-widget">
-            <option value="all">All</option>
-            <% @user_widgets.each do |user_widget| %>
-              <option value=<%= user_widget.product_id %>><%= user_widget.product_title %></option>
-            <% end %>
-          </select>
+        <div id="select-widget">
+          <%= form_with url: "analytics", method: :get do |form| %>
+            <%= form.select :product, Widget.where(user: current_user).collect { |product| [product.product_title, product.product_id] }.unshift(["All", nil]) %>
+            <%= form.submit "Submit", style: "display: none" %>
+          <% end %>
         </div>
       </div>
       <div class="total-session-time-wrapper">

@@ -24,19 +24,12 @@
       </div>
     </li>
     <li>
-      <% if @widget %>
         <%= link_to analytics_path do %>
           <div class="nav-btn" id="nav-btn-analytics">
             <i class="bx bx-pie-chart-alt-2"></i>
             <span class="links-name">Analytics</span>
           </div>
         <% end %>
-      <% else %>
-          <div class="nav-btn" id="nav-btn-analytics">
-            <i class="bx bx-pie-chart-alt-2"></i>
-            <span class="links-name">Analytics</span>
-          </div>
-      <% end %>
     </li>
   </ul>
   <div class="profile-content">
