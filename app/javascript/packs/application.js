@@ -14,6 +14,7 @@ Turbolinks.start()
 ActiveStorage.start()
 
 
+
 // ----------------------------------------------------
 // Note(lewagon): ABOVE IS RAILS DEFAULT CONFIGURATION
 // WRITE YOUR OWN JS STARTING FROM HERE 👇
@@ -22,7 +23,11 @@ ActiveStorage.start()
 // External imports
 import "bootstrap";
 import AOS from 'aos'
-AOS.init();
+AOS.init({
+  duration: 1700,
+});
+
+
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -59,3 +64,9 @@ document.addEventListener('turbolinks:load', () => {
   sideBar();
   widgetStyling();
 });
+
+
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+}
+
