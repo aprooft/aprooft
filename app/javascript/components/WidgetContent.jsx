@@ -23,7 +23,7 @@ export default function WidgetContent({ url, widgetId }) {
 
     const closebtnstyles = {
         position: 'relative',
-        top: '-91px',
+        top: '-70px',
         color: '#e2ebf1',
         fontSize: '20px',
         cursor: 'pointer',
