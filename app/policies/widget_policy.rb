@@ -12,7 +12,7 @@ class WidgetPolicy < ApplicationPolicy
 
   def update?
     true
-  end 
+  end
 
   def show?
     true
@@ -20,28 +20,30 @@ class WidgetPolicy < ApplicationPolicy
 
   def preview?
     true
-  end  
+  end
 
-<<<<<<< HEAD
   def destroy?
      true
   end
-
-=======
+  
   def setStyle?
     true
-  end  
+  end
+
+  def analytics?
+    true
+  end
 
   def  widgetAccess?
     true
-  end 
-  
+  end
+
   def  widgetAccessUpdate?
     true
-  end 
-  
+  end
+
   def contentAccess?
     true
-  end  
->>>>>>> c0947365e452b7cc91bc00eb492c8937c1c9f690
+  end
+
 end

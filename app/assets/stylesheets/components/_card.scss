@@ -66,3 +66,15 @@
     opacity: 1;
   }
 }
+
+.add-product {
+  cursor: pointer;
+  svg {
+    stroke: #6d7889;
+    transition: 0.3s ease;
+  }
+}
+
+.add-product:hover svg {
+  stroke: black;
+}

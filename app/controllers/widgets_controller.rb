@@ -8,8 +8,9 @@ $fonts = { "arial" => "Arial", "verdana" => "Verdana" }
 
 class WidgetsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[widgetAccess widgetAccessUpdate]
-  skip_before_action :verify_authenticity_token, only: %i[update preview setStyle widgetAccess contentAccess widgetAccessUpdate] 
+  skip_before_action :verify_authenticity_token, only: %i[update preview setStyle widgetAccess contentAccess widgetAccessUpdate]
   before_action :set_widget, only: %i[update edit preview show setStyle widgetAccess contentAccess widgetAccessUpdate]
+  after_action :verify_authorized, only: %i{analytics}
 
   def index
     # @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
@@ -22,8 +23,7 @@ class WidgetsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @widget = Widget.new
@@ -48,8 +48,7 @@ class WidgetsController < ApplicationController
     authorize @widget
   end
 
-  def edit
-  end
+  def edit; end
 
   def preview
     youtube_links_result = params["youtube_links"].reject{ |link| link=="" }
@@ -64,7 +63,7 @@ class WidgetsController < ApplicationController
     exist_styles = @widget.style
     merge_styles = new_styles.reverse_merge!(exist_styles)
     @widget.update(style: merge_styles)
-  end  
+  end
 
   def update
     unless params["youtube-link"] === nil then
@@ -74,16 +73,39 @@ class WidgetsController < ApplicationController
         youtube.widget = @widget
         youtube.save
       end
-    end   
-    unless params["reddit-link"] === nil then 
+    end
+    unless params["reddit-link"] === nil then
       rdurls = params["reddit-link"].reject{ |link| link=="" }
       rdurls.each do |link|
         reddit = Reddit.new(fetchRedditApi(link))
         reddit.widget = @widget
         reddit.save
       end
-    end  
+    end
     redirect_to edit_widget_path(@widget)
+  end
+
+  def analytics
+    skip_authorization
+    @product = params[:product]
+    if params[:product] === "all"
+      @user_widgets = Widget.where(user: current_user)
+    elsif params[:product].present?
+      @user_widgets = Widget.where(user: current_user)
+      @user_widget = Widget.where(user: current_user, product_id: params[:product])
+      @widget_sessions = @user_widget.first.widget_accesses.count
+      @widget_clicks = @user_widget.first.content_accesses.count
+      @widget_time = seconds_to_units(widget_time(@user_widget.first))
+    else
+      @user_widgets = Widget.where(user: current_user)
+    end
+
+    @global_sessions = global_sessions(@user_widgets)
+    @global_clicks = global_clicks(@user_widgets)
+    @clicks_per_widget = @global_clicks.fdiv(Widget.all.count)
+    @global_time = seconds_to_units(global_time(@user_widgets))
+    average_time = global_time(@user_widgets).fdiv(Widget.all.count)
+    @time_per_widget = seconds_to_units(average_time)
   end
 
   def widgetAccess
@@ -93,7 +115,7 @@ class WidgetsController < ApplicationController
     @widget_access.open_at = DateTime.now
     if @widget_access.save
       render json: { id: @widget_access.id }
-    end 
+    end
   end
 
   def widgetAccessUpdate
@@ -101,14 +123,41 @@ class WidgetsController < ApplicationController
     @widget_access = WidgetAccess.find(params["_json"])
     if @widget_access.update(close_at: DateTime.now)
       render json: @widget_access
-    end 
+    end
   end
-  
-  def contentAccess
 
-  end  
+  def contentAccess; end
 
   private
+
+  def global_sessions(user_widgets)
+    global_sessions = user_widgets.map { |user_widget| user_widget.widget_accesses.count }
+    global_sessions.sum
+  end
+
+  def global_time(user_widgets)
+    global_time = user_widgets.map { |user_widget| widget_time(user_widget)}
+    global_time.sum
+  end
+
+  def widget_time(widget)
+    total_time = widget.widget_accesses.map { |widget_access| widget_access.session_time }
+    total_time.sum
+  end
+
+  def seconds_to_units(seconds)
+    # '%d days, %d hours, %d minutes, %d seconds' %
+    '%d:%d:%d' %
+      [60,60].reverse.inject([seconds]) {|result, unitsize|
+        result[0,0] = result.shift.divmod(unitsize)
+        result
+      }
+  end
+
+  def global_clicks(user_widgets)
+   global_clicks = user_widgets.map { |user_widget| user_widget.content_accesses.count }
+   global_clicks.sum
+  end
 
   def widget_params
     params.require(:widget).permit(:user_id, :product_title, :product_pic, :product_id)

@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import iro from '@jaames/iro';
+import "chartkick/chart.js"
 
 Rails.start()
 Turbolinks.start()
@@ -33,6 +34,7 @@ AOS.init({
 // import { initSelect2 } from '../components/init_select2';
 import { sideBar } from "../components/sidebar"
 import { widgetStyling } from "../components/widget_styling"
+import { changeWidget } from "../components/analytics"
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -63,6 +65,7 @@ document.addEventListener('turbolinks:load', () => {
 
   sideBar();
   widgetStyling();
+  changeWidget();
 });
 
 
