@@ -7,7 +7,7 @@ import RedditPreview from "../components/RedditPreview";
 import InputBox from "../components/InputBox";
 import WidgetCode from "../components/WidgetCode";
 import WidgetBox from "./WidgetBox";
-import { PlusCircle, SkipBack } from "preact-feather";
+import { PlusCircle, SkipBack, X } from "preact-feather";
 
 
 export default function EditWidget() {
@@ -90,7 +90,7 @@ export default function EditWidget() {
                     setDisplay("preview");
                     setLoading(false);
                 }
-            );
+                );
         })
     }
 
@@ -130,6 +130,12 @@ export default function EditWidget() {
         }
     }
 
+    function removeInputBox(e) {
+        console.log("test works")
+        console.log(e)
+        e.currentTarget.parentNode.remove();
+    }
+
     return (
         <>
             <If condition={display === "generate"}>
@@ -148,19 +154,24 @@ export default function EditWidget() {
                                     <div class="content-dev">
                                         <If condition={tab === "reddit"}>
                                             {redditData.map((url, i) =>
-                                                <InputBox key={i} tab={tab} value={url} onPreview={preview} onChange={(e) => onInputChange(tab, i, e)} />
+                                                <div class="input-links-wrapper">
+                                                    <InputBox key={i} tab={tab} value={url} onPreview={preview} onChange={(e) => onInputChange(tab, i, e)} />
+                                                    <X size={32} stroke-width={2} onClick={(e) => removeInputBox(e)} />
+                                                </div>
                                             )}
                                         </If>
                                         <If condition={tab === "youtube"}>
                                             {youtubeData.map((url, i) =>
-                                                <InputBox key={i} tab={tab} value={url} onPreview={preview} onChange={(e) => onInputChange(tab, i, e)} />
+                                                <div class="input-links-wrapper">
+                                                    <InputBox key={i} tab={tab} value={url} onPreview={preview} onChange={(e) => onInputChange(tab, i, e)} />
+                                                    <X size={32} stroke-width={2} onClick={(e) => removeInputBox(e)} />
+                                                </div>
                                             )}
                                         </If>
                                     </div>
                                     <div class="add-input-dev" onClick={addInputBox}>
                                         <div class="plus-box">
-                                            {/* <i class="fas fa-plus"></i> */}
-                                            <PlusCircle size={30} stroke-width={2} />
+                                            <PlusCircle size={40} stroke-width={2} />
                                         </div>
                                     </div>
                                 </div>

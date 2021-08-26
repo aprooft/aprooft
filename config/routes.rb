@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  get '/analytics', to: 'widgets#analytics', as: :analytics
   post '/widgets/:id/preview', to: 'widgets#preview', as: :preview
   post '/widgets/:id/styles', to: 'widgets#setStyle', as: :styles
   post 'widgets/:id/widgetaccess', to: 'widgets#widgetAccess', as: :widget_access

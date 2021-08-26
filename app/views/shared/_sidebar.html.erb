@@ -10,7 +10,7 @@
   </div>
   <ul class="nav-list">
     <li>
-      <%= link_to widgets_path do%>
+      <%= link_to widgets_path do %>
         <div class="nav-btn focus" id="nav-btn-products">
           <i class='bx bx-spreadsheet'></i>
           <span class="links-name">Products</span>
@@ -24,10 +24,12 @@
       </div>
     </li>
     <li>
-      <div class="nav-btn" id="nav-btn-analytics">
-        <i class="bx bx-pie-chart-alt-2"></i>
-        <span class="links-name">Analytics</span>
-      </div>
+        <%= link_to analytics_path do %>
+          <div class="nav-btn" id="nav-btn-analytics">
+            <i class="bx bx-pie-chart-alt-2"></i>
+            <span class="links-name">Analytics</span>
+          </div>
+        <% end %>
     </li>
   </ul>
   <div class="profile-content">
