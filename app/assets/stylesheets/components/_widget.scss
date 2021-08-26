@@ -1,39 +1,76 @@
 .widget-button {
-    height: 80px;
     width: 80px;
-    border-radius: 50%;
-    background-color: #3A83DD;
+    height: 60px;
+    border-radius: 12px;
+    background-color: var(--widget-topbar-color);
+    box-shadow: 0px 0px 2px grey;
     position: fixed;
-    bottom: 10px;
-    right: 10px;
+    bottom: 0px;
+    right: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    overflow: hidden;
+    // overflow: hidden;
+    color: var(--widget-highlight-color);
+    transition: height 0.3s ease, width 0.3s ease;
+    small {
+        display: none;
+    }
+    svg {
+        width: 35px;
+        height: 35px;
+    }
+    #widget-yt-btn {
+        margin-top: 15px;
+        margin-right: -12px;
+    }
+    #widget-rd-btn {
+        opacity: 0.8;
+        margin-right: 3px;
+        margin-bottom: 15px;
+    }
+}
+
+.widget-button:hover {
+    width: var(--widget-width);
+    padding: 12px;
+    justify-content: flex-start;
+    small {
+        display: block;
+    }
+    #widget-yt-btn {
+        margin-top: 0px;
+        margin-right: 0px;
+    }
+    #widget-rd-btn {
+        opacity: 1;
+        margin-right: 8px;
+        margin-bottom: 0px;
+    }
 }
 
 .widget-wrapper {
     position: fixed;
-    bottom: 10px;
-    right: 10px;
+    bottom: 0px;
+    right: 0px;
     width: 0px;
     height: 0px;
     overflow: hidden;
     box-shadow: 0px 0px 2px grey;
-    transition: width 0.4s ease, height 0.4s ease;
+    transition: height 0.4s ease;
 }
 
 .widget-wrapper.active {
     display: flex;
     position: fixed;
-    bottom: 15px;
-    right: 15px;
+    bottom: 0px;
+    right: 0px;
     width: var(--widget-width);
     height: var(--widget-height);
     background-color: var(--widget-background-color);
-    transition: width 0.5s ease, height 0.5s ease;
+    transition: height 0.5s ease;
     border-radius: 12px;
+    box-shadow: 0px 0px 2px grey;
 }
 
 .edit-widget-wrapper {
