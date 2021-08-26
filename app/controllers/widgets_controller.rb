@@ -141,7 +141,7 @@ class WidgetsController < ApplicationController
   end
 
   def widget_time(widget)
-    total_time = widget.widget_accesses.map { |widget_access| widget_access.session_time }
+    total_time = widget.widget_accesses.map { |widget_access| widget_access.session_time }.reject{ |time| time.nil? }
     total_time.sum
   end
 
