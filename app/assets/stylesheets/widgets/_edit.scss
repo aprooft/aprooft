@@ -31,7 +31,7 @@
 
 .topbar-dev {
     width: 100%;
-    height:100px;
+    height:80px;
     background-color: var(--widget-topbar-color);
     border-radius: 8px 8px 0 0;
     display: flex;
@@ -78,8 +78,8 @@
 }
 
 .widget-nav-btn.active {
-    background: linear-gradient(0deg, var(--widget-topbar-color) 30%, var(--widget-highlight-color) 90%);
-    border-bottom: 10px solid var(--widget-highlight-color);
+    // background: linear-gradient(0deg, var(--widget-topbar-color) 30%, var(--widget-highlight-color) 90%);
+    border-bottom: 4px solid var(--widget-highlight-color);
     cursor: pointer;
 }
 
