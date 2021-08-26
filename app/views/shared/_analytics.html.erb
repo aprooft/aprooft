@@ -4,31 +4,31 @@
       <div class="global-stats">
         <div class="global-session-number-wrapper">
           <div class="global-session-number">
-            <h3>10</h3>
+            <h3><%= @global_sessions %></h3>
             <p>Total sessions</p>
           </div>
         </div>
         <div class="global-session-time-wrapper">
           <div class="global-session-time">
-            <h3>00:20:08</h3>
+            <h3><%= @global_time %> </h3>
             <p>Total time</p>
           </div>
         </div>
         <div class="average-session-time-wrapper">
           <div class="average-session-time">
-            <h3>00:02:00</h3>
+            <h3><%= @time_per_widget %></h3>
             <p>Time per widget</p>
           </div>
         </div>
         <div class="global-clicks-wrapper">
           <div class="global-clicks">
-            <h3>60</h3>
+            <h3><%= @global_clicks %></h3>
             <p>Total clicks</p>
           </div>
         </div>
         <div class="average-clicks-wrapper">
           <div class="average-clicks">
-            <h3>6</h3>
+            <h3><%= @clicks_per_widget %> </h3>
             <p>Clicks per widget</p>
           </div>
         </div>
@@ -48,7 +48,7 @@
       <div class="total-session-time-wrapper">
         <div class="total-session-time">
           <p>Total time:</p>
-          <h4><%= @total_time %></h4>
+          <h4><%= @widget_time %></h4>
         </div>
         <div class="session-time-chart">
           <%= column_chart WidgetAccess.group_by_day(:open_at).sum(:session_time), ytitle: "Time per day" %>
@@ -60,7 +60,7 @@
           <h4><%= @widget_sessions %> sessions</h4>
         </div>
         <div class="session-time-chart">
-          <%= area_chart WidgetAccess.group_by_day(:open_at).count, ytitle: "Number of Sessions" %>
+          <%= area_chart WidgetAccess.group_by_day(:open_at).count, ytitle: "Number of Sessions"%>
         </div>
       </div>
       <div class="total-clicks-wrapper">

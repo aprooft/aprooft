@@ -37,13 +37,14 @@ puts "creating Widgets..."
   widget4 = Widget.new(user_id: User.all.first.id, style: {}, product_title: "Noise Cancelling Headphones 700", product_id: "FR73252")
   widget4.product_pic.attach(io: URI.parse("https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/noise_cancelling_headphones_700/product_silo_images/Silo_jpg/noise_cancelling_headphones_700_blk_EC_02.jpg/jcr:content/renditions/cq5dam.web.600.600.jpeg").open, filename: 'product.jpeg')
   widget4.save
+
 puts "widget4 created"
 
-#   widget5 = Widget.new(user_id: User.all.first.id, style: {}, product_title: "SoundComm B40 Headset", product_id: "FR67230")
-#   widget5.product_pic.attach(io: URI.parse("https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/soundcomm_b40_headset/product_silo_images/B40_headset_Headon_hero.psd/jcr:content/renditions/cq5dam.web.600.600.png").open, filename: 'product.jpeg')
-#   widget5.save
+  widget5 = Widget.new(user_id: User.all.first.id, style: {}, product_title: "SoundComm B40 Headset", product_id: "FR67230")
+  widget5.product_pic.attach(io: URI.parse("https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/soundcomm_b40_headset/product_silo_images/B40_headset_Headon_hero.psd/jcr:content/renditions/cq5dam.web.600.600.png").open, filename: 'product.jpeg')
+  widget5.save
 
-# puts "widget5 created"
+puts "widget5 created"
 
 #   widget6 = Widget.new(user_id: User.all.first.id, style: {}, product_title: "Sport Open Earbuds", product_id: "FR31007")
 #   widget6.product_pic.attach(io: URI.parse("https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/sport_open_earbuds/product_silo_images/soeb_product_page_ec_02_1200x1022_web.png/jcr:content/renditions/cq5dam.web.320.320.png").open, filename: 'product.jpeg')
@@ -113,7 +114,7 @@ end
 # end
 # puts "QuietComfort Earbuds links created"
 
-#Noise Cancelling Headphones 700
+# Noise Cancelling Headphones 700
 noisecanceling_links = ["https://www.youtube.com/watch?v=Q15ZzwzN2-w", "https://www.youtube.com/watch?v=YPln3JP_gKs", "https://www.youtube.com/watch?v=7DMDA5pde-0"];
 noisecanceling_links.each do |noisecanceling_link|
   video_data = fetchYoutubeApi(noisecanceling_link)
@@ -123,15 +124,15 @@ noisecanceling_links.each do |noisecanceling_link|
 end
 puts "Noise Cancelling 700 links created"
 
-#SoundComm B40 Headset
-# soundcomm_links = ["https://www.youtube.com/watch?v=f9yUAND_VWU", "https://www.youtube.com/watch?v=2gjWPS_NI5A", "https://www.youtube.com/watch?v=cUGx_iq1Sis"];
-# soundcomm_links.each do |soundcomm_link|
-#   video_data = fetchYoutubeApi(soundcomm_link)
-#   Youtube.create(title: video_data[:title], video_id: video_data[:video_id], thumbnail: video_data[:thumbnail], like_count: video_data[:like_count],
-#   dislike_count: video_data[:dislike_count], channel_name: video_data[:channel_name], view_count: video_data[:view_count], widget_id: Widget.all[4].id,
-#   description: video_data[:description], etag: video_data[:etag], channel_pic: video_data[:channel_pic])
-# end
-# puts "SoundComm B40 Headset links created"
+# SoundComm B40 Headset
+soundcomm_links = ["https://www.youtube.com/watch?v=f9yUAND_VWU", "https://www.youtube.com/watch?v=2gjWPS_NI5A", "https://www.youtube.com/watch?v=cUGx_iq1Sis"];
+soundcomm_links.each do |soundcomm_link|
+  video_data = fetchYoutubeApi(soundcomm_link)
+  Youtube.create(title: video_data[:title], video_id: video_data[:video_id], thumbnail: video_data[:thumbnail], like_count: video_data[:like_count],
+  dislike_count: video_data[:dislike_count], channel_name: video_data[:channel_name], view_count: video_data[:view_count], widget_id: Widget.all[1].id,
+  description: video_data[:description], etag: video_data[:etag], channel_pic: video_data[:channel_pic])
+end
+puts "SoundComm B40 Headset links created"
 
 #Sport Open Earbuds
 # noisecanceling_links = ["https://www.youtube.com/watch?v=ieQ8icsc6dk", "https://www.youtube.com/watch?v=YOeCRKffHhg", "https://www.youtube.com/watch?v=rfknxc3_wjs"];
@@ -196,7 +197,7 @@ noisecanceling_links.each do |noisecanceling_link|
 end
 puts "Noise Cancelling 700 links created"
 
-puts "creating widget accesses"
+puts "creating widget accesses widget4"
 32.times do
   start_at = Faker::Time.between_dates(from: Date.today - 7, to: Date.today, period: :all)
   close_at = start_at + rand(5..120).seconds
@@ -204,10 +205,25 @@ puts "creating widget accesses"
   WidgetAccess.create(open_at: start_at, close_at: close_at, session_time: session_time, widget_id: Widget.first.id)
 end
 
-puts "creating content accesses"
-  26.times do
-    random_youtube = Youtube.all.sample
-    click_at = Faker::Date.between(from: 7.days.ago, to: Date.today)
-    ContentAccess.create(click_at: click_at, source: random_youtube.title, source_id: random_youtube.id, widget_id: Widget.first.id)
-  end
+puts "creating content accesses widget4"
+26.times do
+  random_youtube = Youtube.where(widget_id: Widget.first.id).sample
+  click_at = Faker::Date.between(from: 7.days.ago, to: Date.today)
+  ContentAccess.create(click_at: click_at, source: random_youtube.title, source_id: random_youtube.id, widget_id: Widget.first.id)
+end
+
+puts "creating widget accesses widget4"
+47.times do
+  start_at = Faker::Time.between_dates(from: Date.today - 7, to: Date.today, period: :all)
+  close_at = start_at + rand(5..120).seconds
+  session_time = close_at.to_i - start_at.to_i
+  WidgetAccess.create(open_at: start_at, close_at: close_at, session_time: session_time, widget_id: Widget.all[1].id)
+end
+
+puts "creating content accesses widget4"
+39.times do
+  random_youtube = Youtube.where(widget_id: Widget.all[1].id).sample
+  click_at = Faker::Date.between(from: 7.days.ago, to: Date.today)
+  ContentAccess.create(click_at: click_at, source: random_youtube.title, source_id: random_youtube.id, widget_id: Widget.all[1].id)
+end
 puts "done"

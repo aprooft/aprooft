@@ -79,9 +79,15 @@ class WidgetsController < ApplicationController
 
   def analytics
     @user_widgets = Widget.where(user_id: current_user.id)
+    @global_sessions = global_sessions(@user_widgets)
     @widget_sessions = @widget.widget_accesses.count
+    @global_clicks = global_clicks(@user_widgets)
     @widget_clicks = @widget.content_accesses.count
-    @total_time = seconds_to_units(total_time())
+    @clicks_per_widget = @global_clicks.fdiv(Widget.all.count)
+    @global_time = seconds_to_units(global_time(@user_widgets))
+    @widget_time = seconds_to_units(widget_time(@widget))
+    average_time = global_time(@user_widgets).fdiv(Widget.all.count)
+    @time_per_widget =seconds_to_units(average_time)
     authorize @widget
   end
 
@@ -107,12 +113,18 @@ class WidgetsController < ApplicationController
 
   private
 
-  def total_time
-    widget = set_widget()
-    total_time = []
-    widget.widget_accesses.each do |widget_access|
-      total_time << widget_access.close_at - widget_access.open_at
-    end
+  def global_sessions(user_widgets)
+    global_sessions = user_widgets.map { |user_widget| user_widget.widget_accesses.count }
+    global_sessions.sum
+  end
+
+  def global_time(user_widgets)
+    global_time = user_widgets.map { |user_widget| widget_time(user_widget)}
+    global_time.sum
+  end
+
+  def widget_time(widget)
+    total_time = widget.widget_accesses.map { |widget_access| widget_access.session_time }
     total_time.sum
   end
 
@@ -123,6 +135,11 @@ class WidgetsController < ApplicationController
         result[0,0] = result.shift.divmod(unitsize)
         result
       }
+  end
+
+  def global_clicks(user_widgets)
+   global_clicks = user_widgets.map { |user_widget| user_widget.content_accesses.count }
+   global_clicks.sum
   end
 
   def widget_params
