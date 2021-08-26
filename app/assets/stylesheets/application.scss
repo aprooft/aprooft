@@ -8,6 +8,7 @@
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import 'aos/dist/aos.css';
 
 // Your CSS partials
 @import "components/index";
@@ -16,6 +17,8 @@
 @import "components/add_button";
 @import "components/form-container";
 @import "components/button";
+@import "components/homepage";
+@import "components/footer";
 @import "pages/index";
 @import "widgets/index";
 
@@ -24,3 +27,8 @@ body {
   background-color: #F0F8FF;
 }
 
+.background {
+
+  background-color: #11101D;
+
+}

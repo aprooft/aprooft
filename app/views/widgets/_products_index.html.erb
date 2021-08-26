@@ -15,6 +15,7 @@
     </div>
   </div>
   <div class="your-products-wrapper">
+
     <div class="your-products-title">
       <h1> Your products</h1>
       <%= link_to new_widget_url do %>
@@ -27,10 +28,12 @@
         </div>
       <% end %>
     </div>
+    <% end %>
+
     <div class="widgets-all-list">
       <% @widgets.where(user_id: current_user.id).each do |product| %>
         <%= link_to edit_widget_path(product[:id]) do %>
-          <div class="product-card fade-in">
+          <div class="product-card position-relative fade-in">
             <% if product.product_pic.present?%>
               <%= cl_image_tag product.product_pic.key  %>
             <% else %>
@@ -42,7 +45,7 @@
           </div>
         <% end %>
       <% end %>
-    </div>
+   </div>
   </div>
 </div>
 

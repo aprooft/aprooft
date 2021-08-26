@@ -14,10 +14,18 @@
 
 .product-card img {
   /*fixed*/
+  object-fit: scale-down;
   width: 100%;
   min-height: 100px;
   flex-grow: 1;
+}
+
+.product-card a {
+  /*fixed*/
   object-fit: scale-down;
+  width: 100%;
+  min-height: 100px;
+  flex-grow: 1;
 }
 
 .product-card-info {
