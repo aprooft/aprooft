@@ -1,4 +1,5 @@
 import { h, render, Fragment } from "preact";
+import { Youtube } from 'preact-feather';
 
 export default function YoutubeSlider(props) {
     const data = props.data;
@@ -9,11 +10,21 @@ export default function YoutubeSlider(props) {
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src={data[0].thumbnail} class="slider-img" />
+                        <a href={`https://www.youtube.com/watch?v=${data[0].video_id}`} target='_blank'>
+                            <img src={data[0].thumbnail} class="slider-img" />
+                            <div class="slider-info-playicon">
+                                <Youtube size={72} opacity={0.85} />
+                            </div>
+                        </a>
                     </div>
                     {data.slice(1).map(youtubedata =>
                         <div class="carousel-item">
-                            <img src={youtubedata.thumbnail} class="slider-img" />
+                            <a href={`https://www.youtube.com/watch?v=${youtubedata.video_id}`} target='_blank'>
+                                <img src={youtubedata.thumbnail} class="slider-img" />
+                                <div class="slider-info-playicon">
+                                    <Youtube size={72} opacity={0.85} />
+                                </div>
+                            </a>
                         </div>
                     )}
                 </div>

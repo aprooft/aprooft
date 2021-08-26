@@ -1,3 +1,27 @@
+*::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 8px;
+  background-color: lightgray;
+}
+
+*::-webkit-scrollbar
+{
+  width: 12px;
+  background-color: lightgray;
+  border-radius: 8px;
+}
+
+*::-webkit-scrollbar-thumb
+{
+  border-radius: 8px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #EAEEF3;
+}
+
+
 .widget-dev {
     border-radius: 12px;
     flex-grow: 1;
@@ -41,7 +65,7 @@
 .widget-nav-btn {
     height: 100%;
     width: 80px;
-    margin-left: 35px;
+    margin-left: 30px;
     display: flex;
     justify-content: center;
     align-items: center;

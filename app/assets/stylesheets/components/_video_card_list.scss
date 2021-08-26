@@ -1,3 +1,7 @@
+.youtube-list-wrapper a {
+    text-decoration: none;
+}
+
 .video-card-list {
     overflow: hidden;
     height: 100px;
@@ -11,6 +15,10 @@
     margin-bottom: 15px;
     border-radius: 5px;
     cursor: pointer;
+
+    & a {
+        text-decoration: none;
+    }
 
     .video-card-list-thumbnail {
         align-items: center;

@@ -90,7 +90,7 @@ export default function EditWidget() {
                     setDisplay("preview");
                     setLoading(false);
                 }
-                );
+            );
         })
     }
 

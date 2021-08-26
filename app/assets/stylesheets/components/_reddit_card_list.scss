@@ -1,3 +1,7 @@
+.reddit-list-wrapper a {
+    text-decoration: none;
+}
+
 .reddit-card-list {
     overflow: hidden;
     height: 160px;
@@ -12,6 +16,9 @@
     margin-bottom: 15px;
     border-radius: 5px;
     cursor: pointer;
+    & a {
+        text-decoration: none;
+    }
 }
 
 .reddit-card-list-left {
@@ -58,6 +65,7 @@
 .reddit-list-comments {
     display: flex;
     opacity: .5;
+    align-items: center;
     & p {
         margin-bottom: 0;
     }

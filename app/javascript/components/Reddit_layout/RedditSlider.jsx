@@ -5,10 +5,12 @@ export default function RedditSlider(props) {
 
     // TODO
     return (
-        <div class="reddit-slider-wrapper"> 
-            { data.map( redditdata =>
-                <p>{redditdata.thread_id}</p>
+        <div class="reddit-slider-wrapper">
+            {data.map(redditdata =>
+                <a href={`https://www.reddit.com/r/${redditdata.subreddit}/comments/${redditdata.thread_id}`} target="_blank">
+                    <p>{redditdata.thread_id}</p>
+                </a>
             )}
-        </div>  
+        </div>
     )
 }

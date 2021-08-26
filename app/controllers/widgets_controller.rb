@@ -7,8 +7,9 @@ $fonts = { "arial" => "Arial", "verdana" => "Verdana" }
 
 
 class WidgetsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: %i[update preview]
-  before_action :set_widget, only: %i[update edit preview show]
+  skip_before_action :authenticate_user!, only: %i[widgetAccess widgetAccessUpdate]
+  skip_before_action :verify_authenticity_token, only: %i[update preview setStyle widgetAccess contentAccess widgetAccessUpdate] 
+  before_action :set_widget, only: %i[update edit preview show setStyle widgetAccess contentAccess widgetAccessUpdate]
 
   def index
     # @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
@@ -58,21 +59,54 @@ class WidgetsController < ApplicationController
                   }
   end
 
+  def setStyle
+    new_styles = params["styles"]
+    exist_styles = @widget.style
+    merge_styles = new_styles.reverse_merge!(exist_styles)
+    @widget.update(style: merge_styles)
+  end  
+
   def update
-    yturls = params["youtube-link"].reject{ |link| link=="" }
-    rdurls = params["reddit-link"].reject{ |link| link=="" }
-    yturls.each do |link|
-      youtube = Youtube.new(fetchYoutubeApi(link))
-      youtube.widget = @widget
-      youtube.save
-    end
-    rdurls.each do |link|
-      reddit = Reddit.new(fetchRedditApi(link))
-      reddit.widget = @widget
-      reddit.save
-    end
+    unless params["youtube-link"] === nil then
+      yturls = params["youtube-link"].reject{ |link| link=="" }
+      yturls.each do |link|
+        youtube = Youtube.new(fetchYoutubeApi(link))
+        youtube.widget = @widget
+        youtube.save
+      end
+    end   
+    unless params["reddit-link"] === nil then 
+      rdurls = params["reddit-link"].reject{ |link| link=="" }
+      rdurls.each do |link|
+        reddit = Reddit.new(fetchRedditApi(link))
+        reddit.widget = @widget
+        reddit.save
+      end
+    end  
     redirect_to edit_widget_path(@widget)
   end
+
+  def widgetAccess
+    skip_authorization
+    @widget_access = WidgetAccess.new
+    @widget_access.widget = @widget
+    @widget_access.open_at = DateTime.now
+    if @widget_access.save
+      render json: { id: @widget_access.id }
+    end 
+  end
+
+  def widgetAccessUpdate
+    skip_authorization
+    @widget_access = WidgetAccess.find(params["_json"])
+    if @widget_access.update(close_at: DateTime.now)
+      render json: @widget_access
+    end 
+  end
+  
+  def contentAccess
+
+  end  
 
   private
 

@@ -2,6 +2,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 15px;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .reddit-card-grid {
@@ -29,6 +33,7 @@
 .upvotes-grid-wrapper {
   display: flex;
   opacity: .5;
+  align-items: center;
   & svg {
     margin-right: 5px;
     height: 16px;
@@ -43,6 +48,7 @@
 .reddit-grid-comments {
   display: flex;
   opacity: .5;
+  align-items: center;
   & svg {
     margin-right: 5px;
     height: 16px;

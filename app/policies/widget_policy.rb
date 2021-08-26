@@ -22,8 +22,26 @@ class WidgetPolicy < ApplicationPolicy
     true
   end  
 
+<<<<<<< HEAD
   def destroy?
      true
   end
 
+=======
+  def setStyle?
+    true
+  end  
+
+  def  widgetAccess?
+    true
+  end 
+  
+  def  widgetAccessUpdate?
+    true
+  end 
+  
+  def contentAccess?
+    true
+  end  
+>>>>>>> c0947365e452b7cc91bc00eb492c8937c1c9f690
 end
