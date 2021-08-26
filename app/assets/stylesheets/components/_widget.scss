@@ -66,6 +66,7 @@
     bottom: 0px;
     right: 0px;
     width: var(--widget-width);
+    max-width: 100vw;
     height: var(--widget-height);
     background-color: var(--widget-background-color);
     transition: height 0.5s ease;
