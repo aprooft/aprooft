@@ -33,6 +33,7 @@
 
 .widget-button:hover {
     width: var(--widget-width);
+    max-width: 100vw;
     padding: 12px;
     justify-content: flex-start;
     small {
@@ -68,6 +69,7 @@
     width: var(--widget-width);
     max-width: 100vw;
     height: var(--widget-height);
+    max-height: 100vh;
     background-color: var(--widget-background-color);
     transition: height 0.5s ease;
     border-radius: 12px;
