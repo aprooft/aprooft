@@ -104,7 +104,6 @@ const sideBar = () => {
       contentElement(key).classList.add("active");
     } else {
       styleOptionsWrapper.classList.remove("active");
-      console.log(contentElement(key).classList)
       contentElement(key).classList.remove("active");
     }
   }

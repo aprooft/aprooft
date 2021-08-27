@@ -86,9 +86,9 @@
 .content-dev {
     overflow-y: auto;
     width: 88%;
-    margin: 32px auto;
+    margin: 22px auto;
     flex-grow: 1;
-    height: 380px;
+    height: calc(var(--widget-height) - 170px);
     .input-box {
         height: 75px;
         display: flex;

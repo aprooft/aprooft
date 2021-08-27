@@ -105,7 +105,7 @@ export default function WidgetContent({ url, widgetId }) {
             </If>
             <div class={widgetBoxClasses}>
                 <WidgetBox tab={tab} setTab={setTab} loading={false}>
-                    <div style="display:flex;justify-content:flex-end;margin-right:10px">
+                    <div style="display:flex;justify-content:flex-end;width:calc(var(--widget-width) - 8px)">
                         <span style={closebtnstyles}><XCircle size={22} opacity={0.8} onClick={hideWidget} /></span>
                     </div>
                     <div class="preview-content" style="margin-top: -24px;">
