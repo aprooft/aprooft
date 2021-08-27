@@ -106,6 +106,7 @@ class WidgetsController < ApplicationController
     @global_time = seconds_to_units(global_time(@user_widgets))
     average_time = global_time(@user_widgets).fdiv(Widget.all.count)
     @time_per_widget = seconds_to_units(average_time)
+    @most_clicks = most_clicks(@user_widgets)
   end
 
   def widgetAccess
@@ -157,6 +158,10 @@ class WidgetsController < ApplicationController
   def global_clicks(user_widgets)
    global_clicks = user_widgets.map { |user_widget| user_widget.content_accesses.count }
    global_clicks.sum
+  end
+
+  def most_clicks(user_widgets)
+    most_clicks = user_widgets.map { |user_widget| { product_title: user_widget.product_title, clicks: user_widget.content_accesses.count } }
   end
 
   def widget_params

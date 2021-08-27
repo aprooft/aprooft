@@ -1,1 +1,30 @@
-<p>Hello</p>
+<div class="widgets-stats-wrapper">
+  <div class="widgets-session-time-wrapper">
+    <div class="widgets-session-time">
+      <p>Most time:</p>
+      <h4> 00:00:00</h4>
+    </div>
+    <div class="widgets-session-time-chart">
+      <%= column_chart WidgetAccess.group(:widget_id).sum(:session_time), ytitle: "Time per widget" %>
+    </div>
+  </div>
+  <div class="widgets-session-wrapper">
+    <div class="widgets-session">
+      <p>Most sessions:</p>
+      <h4> sessions</h4>
+    </div>
+    <div class="widgets-session-chart">
+      <%= column_chart WidgetAccess.group(:widget_id).count, ytitle: "Number of Sessions"%>
+    </div>
+  </div>
+  <div class="widgets-clicks-wrapper">
+    <div class="widgets-clicks">
+      <p>Most clicks:</p>
+      <h4> clicks</h4>
+    </div>
+    <div class="widgets-clicks-chart">
+      <%= column_chart ContentAccess.group(:widget_id).count %>
+      <%= pie_chart ContentAccess.group(:source).count %>
+    </div>
+  </div>
+</div>
