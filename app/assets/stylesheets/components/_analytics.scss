@@ -84,3 +84,29 @@
   background-color: #DBDFE2;
   border: none;
 }
+
+.widgets-stats-wrapper {
+  padding: 24px;
+}
+
+.widgets-clicks-chart,
+.widgets-clicks,
+.widgets-session,
+.widgets-session-time {
+  display: flex;
+}
+
+.widgets-clicks,
+.widgets-session,
+.widgets-session-time {
+  align-items: baseline;
+  p {
+    margin-right: 8px;
+  }
+}
+
+.widgets-session-time-wrapper,
+.widgets-session-wrapper,
+.widgets-clicks-wrapper {
+  padding: 16px;
+}

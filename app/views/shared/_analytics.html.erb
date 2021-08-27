@@ -34,47 +34,18 @@
         </div>
       </div>
     </div>
-          <div class="session-number-wrapper">
-            <div id="select-widget">
-              <%= form_with url: "analytics", method: :get do |form| %>
-                <%= form.select :product, Widget.where(user: current_user).collect { |product| [product.product_title, product.product_id] }.unshift(["All", "all"]), include_blank: true %>
-                <%= form.submit "Submit", style: "display: none" %>
-              <% end %>
-            </div>
-          </div>
+    <div class="session-number-wrapper">
+      <div id="select-widget">
+        <%= form_with url: "analytics", method: :get do |form| %>
+          <%= form.select :product, Widget.where(user: current_user).collect { |product| [product.product_title, product.product_id] }.unshift(["All", "all"]), include_blank: true %>
+          <%= form.submit "Submit", style: "display: none" %>
+        <% end %>
+      </div>
+    </div>
     <% if @product != "all" %>
-    <div class="widget-stats-wrapper">
-          <div class="total-session-time-wrapper">
-            <div class="total-session-time">
-              <p>Total time:</p>
-              <h4><%= @widget_time %></h4>
-            </div>
-            <div class="session-time-chart">
-              <%= column_chart WidgetAccess.group_by_day(:open_at).sum(:session_time), ytitle: "Time per day" %>
-            </div>
-          </div>
-          <div class="total-session-time-wrapper">
-            <div class="total-session-time">
-              <p>Total number of sessions:</p>
-              <h4><%= @widget_sessions %> sessions</h4>
-            </div>
-            <div class="session-time-chart">
-              <%= area_chart WidgetAccess.group_by_day(:open_at).count, ytitle: "Number of Sessions"%>
-            </div>
-          </div>
-          <div class="total-clicks-wrapper">
-            <div class="total-clicks">
-              <p>Total clicks:</p>
-              <h4><%= @widget_clicks %> clicks</h4>
-            </div>
-            <div class="clicks-chart">
-              <%= area_chart ContentAccess.group_by_day(:click_at).count, ytitle: "Number of Clicks" %>
-            </div>
-          </div>
-        </div>
+      <%= render "shared/widget_stats" %>
     <% else %>
-      <%= render "shared/global" %>
+      <%= render "shared/global_stats" %>
     <% end %>
-
   </div>
 </div>
