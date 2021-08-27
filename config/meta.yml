@@ -1,0 +1,5 @@
+meta_product_name: "Aprooft"
+meta_title: "Aprooft - Let your customers sell your products."
+meta_description: "Aprooft help you embed positive community contents on the product pages through a widget. Let existing customers convince potential customers to buy."
+meta_image: "seal.png" # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards
