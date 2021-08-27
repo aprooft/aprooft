@@ -1,21 +1,21 @@
-*::-webkit-scrollbar-track
+.content-dev::-webkit-scrollbar-track
 {
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
   box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  border-radius: 8px;
+  border-radius: 5px;
   background-color: lightgray;
 }
 
-*::-webkit-scrollbar
+.content-dev::-webkit-scrollbar
 {
-  width: 12px;
+  width: 5px;
   background-color: lightgray;
-  border-radius: 8px;
+  border-radius: 3px;
 }
 
-*::-webkit-scrollbar-thumb
+.content-dev::-webkit-scrollbar-thumb
 {
-  border-radius: 8px;
+  border-radius: 3px;
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
   box-shadow: inset 0 0 6px rgba(0,0,0,.3);
   background-color: #EAEEF3;
@@ -31,7 +31,7 @@
 
 .topbar-dev {
     width: 100%;
-    height:100px;
+    height:80px;
     background-color: var(--widget-topbar-color);
     border-radius: 8px 8px 0 0;
     display: flex;
@@ -78,15 +78,15 @@
 }
 
 .widget-nav-btn.active {
-    background: linear-gradient(0deg, var(--widget-topbar-color) 30%, var(--widget-highlight-color) 90%);
-    border-bottom: 10px solid var(--widget-highlight-color);
+    // background: linear-gradient(0deg, var(--widget-topbar-color) 30%, var(--widget-highlight-color) 90%);
+    border-bottom: 4px solid var(--widget-highlight-color);
     cursor: pointer;
 }
 
 .content-dev {
     overflow-y: auto;
     width: 88%;
-    margin: 30px auto;
+    margin: 32px auto;
     flex-grow: 1;
     height: 380px;
     .input-box {

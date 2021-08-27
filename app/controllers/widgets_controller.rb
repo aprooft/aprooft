@@ -41,6 +41,13 @@ class WidgetsController < ApplicationController
     authorize @widget
   end
 
+  def destroy
+    @widget = Widget.find(params[:id])
+    @widget.destroy
+    redirect_to widgets_path
+    authorize @widget
+  end
+
   def edit; end
 
   def preview
@@ -134,7 +141,7 @@ class WidgetsController < ApplicationController
   end
 
   def widget_time(widget)
-    total_time = widget.widget_accesses.map { |widget_access| widget_access.session_time }
+    total_time = widget.widget_accesses.map { |widget_access| widget_access.session_time }.reject{ |time| time.nil? }
     total_time.sum
   end
 

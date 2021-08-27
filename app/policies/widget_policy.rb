@@ -22,6 +22,10 @@ class WidgetPolicy < ApplicationPolicy
     true
   end
 
+  def destroy?
+     true
+  end
+  
   def setStyle?
     true
   end
@@ -41,4 +45,5 @@ class WidgetPolicy < ApplicationPolicy
   def contentAccess?
     true
   end
+
 end
