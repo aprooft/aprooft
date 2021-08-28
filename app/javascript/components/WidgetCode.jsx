@@ -19,7 +19,7 @@ export default function WidgetCode(props) {
 
     return (
         <div class="widget-code-box"> 
-            <span style="padding-right: 10px"><Copy color="red" size={28} /></span><span style="color: red; font-size: 20px">Copy paste this script inside your product page html right above the closing &lt;/body&gt; tag.</span>
+            <span style="padding-right: 10px"><Copy size={28} /></span><span style="font-size: 20px">Copy paste this script inside your product page html right above the closing &lt;/body&gt; tag.</span>
             <hr />
             <pre>
                 <code dangerouslySetInnerHTML={{ __html: highlighted }} />
