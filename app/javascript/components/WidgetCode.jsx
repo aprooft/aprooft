@@ -4,7 +4,7 @@ import { useState } from 'preact/hooks';
 import Prism from 'prismjs';
 import PrismJSX from "prismjs/components/prism-jsx";
 import "prismjs/themes/prism-solarizedlight.css";
-import { Copy } from "preact-feather";
+// import { Copy } from "preact-feather";
 import * as clipboard from "clipboard-polyfill/text";
 import If from "./If";
 
@@ -24,20 +24,25 @@ export default function WidgetCode(props) {
     function copy() {
         clipboard.writeText(code);
         setCopied(true);
+        setTimeout(()=>{setCopied(false)}, 1000)
     }
 
     return (
-        <div class="widget-code-box"> 
-            < If condition = {!copied} >
-                <span onClick={copy} style="padding-right: 10px"><Copy size={28} /></span><span style="font-size: 20px">Copy paste this script inside your product page html right above the closing &lt;/body&gt; tag.</span>
-            </If>
-            < If condition = {copied} >
-                <span style="font-size: 20px">Copied!</span>
-            </If>  
+        <div style="width:510px;"> 
+            <span style="font-size: 20px">Copy paste this script inside your product page html right above the closing &lt;/body&gt; tag.</span>
             <hr />
             <pre>
                 <code dangerouslySetInnerHTML={{ __html: highlighted }} />
-            </pre>  
+            </pre> 
+            <div style="text-align: left; margin-top: 80px">
+                < If condition = {!copied} >
+                    <button class="submit-dev-btn" onClick={copy}>Copy</button>
+                </If>
+                < If condition = {copied} >
+                <button class="submit-dev-btn">Copied!</button>
+                    <br /> <br />
+                </If>  
+            </div>   
         </div>
     )
 }    
