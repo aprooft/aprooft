@@ -92,9 +92,20 @@ class WidgetsController < ApplicationController
 
     if params[:product].present? && params[:product] != "all"
       @user_widget = Widget.where(user: current_user, product_id: params[:product])
-      @widget_sessions = @user_widget.first.widget_accesses.count
-      @widget_clicks = @user_widget.first.content_accesses.count
+      @widget_sessions = @user_widget.first.widget_accesses
+      @widget_clicks = @user_widget.first.content_accesses
       @widget_time = seconds_to_units(widget_time(@user_widget.first))
+
+      if params[:start_date].present?
+        @widget_sessions = @widget_sessions.where("open_at >= ?", params[:start_date])
+        @widget_clicks = @widget_clicks.where("click_at >= ?", params[:start_date])
+      end
+
+      if params[:end_date].present?
+        @widget_sessions = @widget_sessions.where("open_at <= ?", params[:end_date])
+        @widget_clicks = @widget_clicks.where("click_at <= ?", params[:end_date])
+      end
+
     end
 
     @global_sessions = global_sessions(@user_widgets)

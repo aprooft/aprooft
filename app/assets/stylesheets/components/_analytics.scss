@@ -110,3 +110,46 @@
 .widgets-clicks-wrapper {
   padding: 16px;
 }
+
+.clicks-youtube-reddit-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  h4 {
+    text-align: center;
+  }
+}
+
+.youtube-clicks-chart,
+.reddit-clicks-chart {
+  width: 50%;
+}
+
+.total-clicks-wrapper .clicks-chart {
+  margin-bottom: 24px;
+}
+
+.date-range {
+  color: white;
+  height: 50px;
+  width: 20%;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+  background: #3a84de;
+  border: none;
+}
+
+.date-range:hover {
+    background: #2762aa;
+    color: white;
+    text-decoration: none;
+}
+
+#start_date,
+#end_date {
+  padding: 8px;
+  border-radius: 12px;
+  font-size: 18px;
+  background-color: #DBDFE2;
+  border: none;
+}

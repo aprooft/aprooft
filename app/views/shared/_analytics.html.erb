@@ -6,12 +6,14 @@
           <div class="global-session-number">
             <h3><%= @global_sessions %></h3>
             <p>Total sessions</p>
+            <p><%= WidgetAccess.sessions_compared_to_last_week %>%</p>
           </div>
         </div>
         <div class="global-session-time-wrapper">
           <div class="global-session-time">
             <h3><%= @global_time %> </h3>
             <p>Total time</p>
+            <p><%= WidgetAccess.time_compared_to_last_week %>%</p>
           </div>
         </div>
         <div class="average-session-time-wrapper">
@@ -24,6 +26,7 @@
           <div class="global-clicks">
             <h3><%= @global_clicks %></h3>
             <p>Total clicks</p>
+            <p><%= ContentAccess.clicks_compared_to_last_week %>%</p>
           </div>
         </div>
         <div class="average-clicks-wrapper">
@@ -36,9 +39,19 @@
     </div>
     <div class="session-number-wrapper">
       <div id="select-widget">
-        <%= form_with url: "analytics", method: :get do |form| %>
+        <%= form_with url: "", method: :get do |form| %>
           <%= form.select :product, Widget.where(user: current_user).collect { |product| [product.product_title, product.product_id] }.unshift(["All", "all"]), selected: @product%>
           <%= form.submit "Submit", style: "display: none" %>
+        <% end %>
+      </div>
+      <div id="select-date">
+        <%= form_with url: "", method: :get do %>
+            <%= hidden_field_tag :product, params[:product] %>
+            <%= label_tag :start_date, "Start Date" %>
+            <%= date_field_tag :start_date, params[:start_date] %>
+            <%= label_tag :end_date, "End Date" %>
+            <%= date_field_tag :end_date, params[:end_date] %>
+            <%= submit_tag "Search", class: "date-range" %>
         <% end %>
       </div>
     </div>
