@@ -37,15 +37,15 @@
     <div class="session-number-wrapper">
       <div id="select-widget">
         <%= form_with url: "analytics", method: :get do |form| %>
-          <%= form.select :product, Widget.where(user: current_user).collect { |product| [product.product_title, product.product_id] }.unshift(["All", "all"]), include_blank: true %>
+          <%= form.select :product, Widget.where(user: current_user).collect { |product| [product.product_title, product.product_id] }.unshift(["All", "all"]), selected: @product%>
           <%= form.submit "Submit", style: "display: none" %>
         <% end %>
       </div>
     </div>
-    <% if @product != "all" %>
-      <%= render "shared/widget_stats" %>
-    <% else %>
+    <% if @product.nil? || @product == "all" %>
       <%= render "shared/global_stats" %>
+    <% else %>
+      <%= render "shared/widget_stats" %>
     <% end %>
   </div>
 </div>
