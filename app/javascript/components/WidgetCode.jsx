@@ -3,6 +3,7 @@ import Prism from 'prismjs';
 import PrismJSX from "prismjs/components/prism-jsx";
 import "prismjs/themes/prism-solarizedlight.css";
 import { Copy } from "preact-feather";
+import * as clipboard from "clipboard-polyfill/text";
 
 export default function WidgetCode(props) {
     const code = `<script>
@@ -17,9 +18,16 @@ export default function WidgetCode(props) {
 
     let highlighted = Prism.highlight(code, Prism.languages.html, "html");
 
+    function copy() {
+        clipboard.writeText(code).then(
+            () => { console.log(code) },
+            () => { console.log("error!"); }
+        );
+    }
+
     return (
         <div class="widget-code-box"> 
-            <span style="padding-right: 10px"><Copy size={28} /></span><span style="font-size: 20px">Copy paste this script inside your product page html right above the closing &lt;/body&gt; tag.</span>
+            <span onClick={copy} style="padding-right: 10px"><Copy size={28} /></span><span style="font-size: 20px">Copy paste this script inside your product page html right above the closing &lt;/body&gt; tag.</span>
             <hr />
             <pre>
                 <code dangerouslySetInnerHTML={{ __html: highlighted }} />
