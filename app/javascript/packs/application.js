@@ -9,6 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import iro from '@jaames/iro';
 import "chartkick/chart.js"
+import 'aos/dist/aos.css';
 
 Rails.start()
 Turbolinks.start()
