@@ -95,6 +95,13 @@ class WidgetsController < ApplicationController
       @widget_sessions = @user_widget.first.widget_accesses.count
       @widget_clicks = @user_widget.first.content_accesses.count
       @widget_time = seconds_to_units(widget_time(@user_widget.first))
+      @content_accesses_per_day = @user_widget.first.content_accesses.group_by_day(:click_at, last: 7, current: false).count
+      @widget_sessions_per_day = @user_widget.first.widget_accesses.group_by_day(:open_at, last: 7, current: false).count
+      @widget_session_time_per_day = @user_widget.first.widget_accesses.group_by_day(:open_at, last: 7, current: false).sum(:session_time)
+    else
+      @content_accesses_per_day = ContentAccess.group_by_day(:click_at, last: 7, current: false).count
+      @widget_sessions_per_day = WidgetAccess.group_by_day(:open_at, last: 7, current: false).count
+      @widget_session_time_per_day = WidgetAccess.group_by_day(:open_at, last: 7, current: false).sum(:session_time)
     end
 
     @global_sessions = global_sessions(@user_widgets)
