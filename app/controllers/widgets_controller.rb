@@ -88,16 +88,13 @@ class WidgetsController < ApplicationController
   def analytics
     skip_authorization
     @product = params[:product]
-    if params[:product] === "all"
-      @user_widgets = Widget.where(user: current_user)
-    elsif params[:product].present?
-      @user_widgets = Widget.where(user: current_user)
+    @user_widgets = Widget.where(user: current_user)
+
+    if params[:product].present? && params[:product] != "all"
       @user_widget = Widget.where(user: current_user, product_id: params[:product])
       @widget_sessions = @user_widget.first.widget_accesses.count
       @widget_clicks = @user_widget.first.content_accesses.count
       @widget_time = seconds_to_units(widget_time(@user_widget.first))
-    else
-      @user_widgets = Widget.where(user: current_user)
     end
 
     @global_sessions = global_sessions(@user_widgets)

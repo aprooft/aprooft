@@ -1,11 +1,21 @@
 <div class="widgets-stats-wrapper">
   <div class="widgets-session-time-wrapper">
+    <div class="widgets-clicks-wrapper">
+      <div class="widgets-clicks">
+        <p>Most clicks:</p>
+        <h4><%= @most_clicks %></h4>
+      </div>
+      <div class="widgets-clicks-chart">
+        <%= column_chart ContentAccess.joins(:widget).group(:product_title).count, ytitle: "Number of Clicks" %>
+        <%= pie_chart ContentAccess.group(:source).count %>
+      </div>
+    </div>
     <div class="widgets-session-time">
       <p>Most time:</p>
       <h4><%= @most_time %></h4>
     </div>
     <div class="widgets-session-time-chart">
-      <%= bar_chart WidgetAccess.group(:widget_id).sum(:session_time), xtitle: "Time per widget" %>
+      <%= bar_chart WidgetAccess.joins(:widget).group(:product_title).sum(:session_time), xtitle: "Time per widget" %>
     </div>
   </div>
   <div class="widgets-session-wrapper">
@@ -14,17 +24,8 @@
       <h4><%= @most_sessions %> </h4>
     </div>
     <div class="widgets-session-chart">
-      <%= bar_chart WidgetAccess.group(:widget_id).count, xtitle: "Number of Sessions"%>
+      <%= bar_chart WidgetAccess.joins(:widget).group(:product_title).count, xtitle: "Number of Sessions"%>
     </div>
   </div>
-  <div class="widgets-clicks-wrapper">
-    <div class="widgets-clicks">
-      <p>Most clicks:</p>
-      <h4><%= @most_clicks %></h4>
-    </div>
-    <div class="widgets-clicks-chart">
-      <%= column_chart ContentAccess.group(:widget_id).count, ytitle: "Number of Clicks" %>
-      <%= pie_chart ContentAccess.group(:source).count %>
-    </div>
-  </div>
+
 </div>

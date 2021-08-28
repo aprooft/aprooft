@@ -18,8 +18,18 @@ const sideBar = () => {
   const fontSizeSlider = document.getElementById("font-size-slider");
   const fontSizeValue = document.getElementById("font-size-value");
 
+  const initialState = () => {
+    if (window.location.pathname === "/widgets") {
+      navBtns[0].classList.add("focus")
+    } else {
+      navBtns[2].classList.add("focus")
+    }
+  }
+
+  initialState();
+
+
   fontSizeSlider.addEventListener("input", e => {
-    // demoText.style.fontSize = `${e.target.value}px`;
     fontSizeValue.innerText = `${e.target.value}px`;
   });
 
@@ -41,9 +51,9 @@ const sideBar = () => {
 
   navBtns.forEach((navBtn) => {
     navBtn.addEventListener("click", (e) => {
+      navBtns.forEach((navBtn) => { navBtn.classList.remove("focus") })
       styleOptionsWrapper.classList.remove("active");
       sidebar.classList.add("active");
-      navBtns.forEach((navBtn) => { navBtn.classList.remove("focus") })
       e.currentTarget.classList.toggle("focus");
     })
   })
