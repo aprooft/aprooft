@@ -5,7 +5,7 @@
       <h4><%= @widget_time %></h4>
     </div>
     <div class="session-time-chart">
-      <%= column_chart WidgetAccess.group_by_day(:open_at).sum(:session_time), ytitle: "Time per day" %>
+      <%= column_chart WidgetAccess.group_by_day(:open_at).sum(:session_time), label: "Seconds", ytitle: "Time per day" %>
     </div>
   </div>
   <div class="total-session-time-wrapper">
@@ -14,7 +14,7 @@
       <h4><%= @widget_sessions %> sessions</h4>
     </div>
     <div class="session-time-chart">
-      <%= area_chart WidgetAccess.group_by_day(:open_at).count, ytitle: "Number of Sessions"%>
+      <%= area_chart WidgetAccess.group_by_day(:open_at).count, label: "Sessions" ytitle: "Number of Sessions"%>
     </div>
   </div>
   <div class="total-clicks-wrapper">
@@ -23,7 +23,7 @@
       <h4><%= @widget_clicks %> clicks</h4>
     </div>
     <div class="clicks-chart">
-      <%= area_chart ContentAccess.group_by_day(:click_at).count, ytitle: "Number of Clicks" %>
+      <%= area_chart ContentAccess.group_by_day(:click_at).count, label: "Clicks", ytitle: "Number of Clicks" %>
     </div>
   </div>
 </div>
