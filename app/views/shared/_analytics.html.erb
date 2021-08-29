@@ -6,15 +6,36 @@
           <div class="global-session-number">
             <h3><%= @global_sessions %></h3>
             <p>Total sessions</p>
-            <p><%= WidgetAccess.sessions_compared_to_last_week %>%</p>
           </div>
+          <% if WidgetAccess.sessions_compared_to_last_week.negative? %>
+            <div class="decrease">
+              <i class='bx bx-trending-down'></i>
+              <p><%= WidgetAccess.sessions_compared_to_last_week %>%</p>
+            </div>
+          <% else %>
+            <div class="increase">
+              <i class='bx bx-trending-up'></i>
+              <p><%= WidgetAccess.sessions_compared_to_last_week %>%</p>
+            </div>
+          <% end %>
         </div>
         <div class="global-session-time-wrapper">
           <div class="global-session-time">
             <h3><%= @global_time %> </h3>
             <p>Total time</p>
-            <p><%= WidgetAccess.time_compared_to_last_week %>%</p>
+            <p></p>
           </div>
+          <% if WidgetAccess.time_compared_to_last_week.negative? %>
+            <div class="decrease">
+              <i class='bx bx-trending-down'></i>
+              <p><%= WidgetAccess.time_compared_to_last_week %>%</p>
+            </div>
+          <% else %>
+            <div class="increase">
+              <i class='bx bx-trending-up'></i>
+              <p><%= WidgetAccess.time_compared_to_last_week %>%</p>
+            </div>
+          <% end %>
         </div>
         <div class="average-session-time-wrapper">
           <div class="average-session-time">
@@ -26,8 +47,18 @@
           <div class="global-clicks">
             <h3><%= @global_clicks %></h3>
             <p>Total clicks</p>
-            <p><%= ContentAccess.clicks_compared_to_last_week %>%</p>
           </div>
+          <% if ContentAccess.clicks_compared_to_last_week.negative? %>
+            <div class="decrease">
+              <i class='bx bx-trending-down'></i>
+              <p><%= ContentAccess.clicks_compared_to_last_week %>%</p>
+            </div>
+          <% else %>
+            <div class="increase">
+              <i class='bx bx-trending-up'></i>
+              <p><%= ContentAccess.clicks_compared_to_last_week %>%</p>
+            </div>
+          <% end %>
         </div>
         <div class="average-clicks-wrapper">
           <div class="average-clicks">
@@ -44,6 +75,7 @@
           <%= form.submit "Submit", style: "display: none" %>
         <% end %>
       </div>
+      <% unless !params[:product].present? || params[:product] === "all" %>
       <div id="select-date">
         <%= form_with url: "", method: :get do %>
             <%= hidden_field_tag :product, params[:product] %>
@@ -54,6 +86,7 @@
             <%= submit_tag "Search", class: "date-range" %>
         <% end %>
       </div>
+      <% end %>
     </div>
     <% if @product.nil? || @product == "all" %>
       <%= render "shared/global_stats" %>
