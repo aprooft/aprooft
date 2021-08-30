@@ -42,6 +42,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   // Create a new color picker instance
   // https://iro.js.org/guide.html#getting-started
+
   var colorPicker = new iro.ColorPicker(".colorPicker", {
     // color picker options
     // Option guide: https://iro.js.org/guide.html#color-picker-options
