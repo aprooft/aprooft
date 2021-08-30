@@ -34,7 +34,7 @@ export default function WidgetCode(props) {
             <pre>
                 <code dangerouslySetInnerHTML={{ __html: highlighted }} />
             </pre> 
-            <div style="text-align: center; margin-top: 80px">
+            <div style="text-align: left; margin-top: 80px">
                 < If condition = {!copied} >
                     <button class="submit-dev-btn-lg" onClick={copy}>Copy</button>
                 </If>
