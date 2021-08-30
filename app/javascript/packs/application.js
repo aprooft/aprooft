@@ -10,6 +10,7 @@ import "channels"
 import iro from '@jaames/iro';
 import "chartkick/chart.js"
 import 'aos/dist/aos.css';
+import '@fortawesome/fontawesome-free/css/all.css'
 
 Rails.start()
 Turbolinks.start()
