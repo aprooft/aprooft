@@ -158,9 +158,11 @@
         <div class="cta-text">
           Bring social proofing to your website
         </div>
-        <div class="cta-btn">
-          Start now
-        </div>
+        <%= link_to widgets_path do %>
+          <div class="cta-btn">
+            Start now
+          </div>
+        <% end %>
       </div>
     </div>
 
@@ -304,5 +306,21 @@
         <div class="mockup-shadow"></div>
       </div>
     </div>
+    <div class="last-cta-wrapper">
+      <div class="last-cta">
+        <div class="last-cta-text">
+          <h2>Are you convinced?</h2>
+        </div>
+        <%= link_to widgets_path do %>
+          <div class="cta-triangles">
+            <div class="cta-dark-triangle"></div>
+            <div class="cta-blue-triangle">
+              <p>Start Now</p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
+<%= render  "footer" %>
