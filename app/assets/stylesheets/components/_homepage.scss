@@ -317,17 +317,32 @@
 
 //3 steps part
 .step-one,
-.step-two
+.step-two,
 .step-three {
   height: 100vh;
   display: flex;
   align-items: center;
 }
 
-.triangles-left {
+.mockup-right,
+.mockup-left {
+  flex-grow: 1;
+  width: 100%;
+ .mockup {
+   display: flex;
+   justify-content: center;
+ }
+}
+
+.mockup img {
+  width: 75%;
+}
+
+.triangles-left,
+.triangles-right {
   position: relative;
   height: 100%;
-  width: 24%;
+  width: 30%;
 }
 
 .left-blue-shape {
@@ -367,7 +382,7 @@
 .right-blue-shape {
   height: 100%;
   width: 100%;
-  // clip-path: polygon(0 0, 100% 40%, 15% 100%, 0 95%);
+  clip-path: polygon(100% 0, 0 40%, 90% 100%, 100% 90%);
   background-color: #1E7BD0;
 }
 
@@ -375,11 +390,27 @@
   position: absolute;
   height: 95%;
   width: 100%;
-  // clip-path: polygon(0 0, 0% 100%, 100% 50%);
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
   background-color: #11101D;
   top: 3%;
   display: flex;
   align-items: center;
+  h2, h3 {
+    color: aliceblue;
+  }
+  h2 {
+    font-size: 64px;
+    font-weight: bold;
+    text-align: center;
+    padding-left: 64px;
+    width: 100%;
+  }
+  h3 {
+    font-size: 40px;
+    font-weight: bold;
+    padding-left: 48px;
+    width: 100%;
+  }
 }
 
 .step-one-text {
@@ -389,4 +420,33 @@
 
 .mockup-mac img {
   width: 500px;
+}
+
+.mockup {
+  flex-grow: 1;
+}
+
+.styles-overview-wrapper {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blue-trapezoid {
+  width: 950px;
+  height: 600px;
+  clip-path: polygon(5% 5%, 100% 0, 95% 95%, 0 100%);
+  background-color: #1E7BD0;
+}
+
+.dark-trapezoid {
+    position: absolute;
+    width: 950px;
+    height: 600px;
+    transform: rotate(-8deg);
+    clip-path: polygon(0 0, 95% 5%, 100% 100%, 5% 95%);
+    background: #11101D;
+    top: 10%;
 }
