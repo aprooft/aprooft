@@ -9,6 +9,8 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import iro from '@jaames/iro';
 import "chartkick/chart.js"
+import 'aos/dist/aos.css';
+import '@fortawesome/fontawesome-free/css/all.css'
 
 Rails.start()
 Turbolinks.start()
@@ -41,6 +43,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   // Create a new color picker instance
   // https://iro.js.org/guide.html#getting-started
+
   var colorPicker = new iro.ColorPicker(".colorPicker", {
     // color picker options
     // Option guide: https://iro.js.org/guide.html#color-picker-options
