@@ -104,13 +104,6 @@ class WidgetsController < ApplicationController
         @widget_sessions = @widget_sessions.where("open_at <= ?", params[:end_date])
         @widget_clicks = @widget_clicks.where("click_at <= ?", params[:end_date])
       end
-      #   @content_accesses_per_day = @user_widget.first.content_accesses.group_by_day(:click_at, last: 7, current: false).count
-      #   @widget_sessions_per_day = @user_widget.first.widget_accesses.group_by_day(:open_at, last: 7, current: false).count
-      #   @widget_session_time_per_day = @user_widget.first.widget_accesses.group_by_day(:open_at, last: 7, current: false).sum(:session_time)
-      # else
-      #   @content_accesses_per_day = ContentAccess.group_by_day(:click_at, last: 7, current: false).count
-      #   @widget_sessions_per_day = WidgetAccess.group_by_day(:open_at, last: 7, current: false).count
-      #   @widget_session_time_per_day = WidgetAccess.group_by_day(:open_at, last: 7, current: false).sum(:session_time)
     end
 
     @global_sessions = global_sessions(@user_widgets)
@@ -166,7 +159,6 @@ class WidgetsController < ApplicationController
   end
 
   def seconds_to_units(seconds)
-    # '%d days, %d hours, %d minutes, %d seconds' %
     '%d:%d:%d' %
       [60,60].reverse.inject([seconds]) {|result, unitsize|
         result[0,0] = result.shift.divmod(unitsize)

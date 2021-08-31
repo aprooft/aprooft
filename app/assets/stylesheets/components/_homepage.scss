@@ -449,4 +449,64 @@
     clip-path: polygon(0 0, 95% 5%, 100% 100%, 5% 95%);
     background: #11101D;
     top: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.widget-options {
+  height: 80%;
+  width: 80%;
+  transform: rotate(8deg);
+  color: aliceblue;
+  padding-top: 56px;
+}
+
+.options-row-3 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.options-row-2 {
+  display: flex;
+  justify-content: center;
+}
+
+.options-row-3 .style-option {
+  width: 30%;
+}
+
+.options-row-2 .style-option {
+  width: 31%;
+}
+
+.style-option-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  p {
+    margin-bottom: 0;
+    font-size: 32px;
+  }
+}
+
+.style-option-description {
+  font-size: 18px;
+}
+
+.style-option-icon {
+  width: 70px;
+  height: 70px;
+  margin-right: 16px;
+  background-color: #1D1B31;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#style-option-color {
+  padding-right: 40px;
 }
