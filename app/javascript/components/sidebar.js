@@ -19,10 +19,10 @@ const sideBar = () => {
   const fontSizeValue = document.getElementById("font-size-value");
 
   const initialState = () => {
-    if (window.location.pathname === "/widgets") {
-      navBtns[0].classList.add("focus")
-    } else {
+    if (window.location.pathname === "/analytics") {
       navBtns[2].classList.add("focus")
+    } else {
+      navBtns[0].classList.add("focus")
     }
   }
 
