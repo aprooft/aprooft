@@ -15,11 +15,15 @@
     <div class="name">Aprooft</div>
   </div>
   <div class="links-wrapper">
-    <div class="sign-in">
-      Sign In
-    </div>
-    <div class="register">
-      Register
-    </div>
+    <%= link_to widgets_path do %>
+      <div class="sign-in">
+        Sign In
+      </div>
+    <% end %>
+    <%= link_to new_user_registration_path do %>
+      <div class="register">
+        Register
+      </div>
+    <% end %>
   </div>
 </div>

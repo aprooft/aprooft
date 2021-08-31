@@ -1,3 +1,5 @@
+import { checkStyleCondition } from "./check_style_condition"
+
 const sideBar = () => {
   const sidebar = document.querySelector('.sidebar');
   const styleBar = document.querySelector(".stylebar-wrapper");
@@ -61,6 +63,7 @@ const sideBar = () => {
   hamburgerMenu.addEventListener("click", () => {
     sidebar.classList.toggle("active");
     styleOptionsWrapper.classList.remove("active");
+    
     if (styleBar.classList.contains("active")) {
       styleBar.classList.remove("active");
     }
@@ -69,8 +72,20 @@ const sideBar = () => {
 
   stylesBtn.addEventListener("click", () => {
     productViewWrapper && productViewWrapper.classList.remove("active");
-    sidebar.classList.add("active");
-    styleBar.classList.toggle("active");
+
+    const condition = checkStyleCondition();
+    if (condition) {
+      sidebar.classList.add("active");
+      styleBar.classList.toggle("active");
+    } else {
+      if (confirm("Please choose a product first")) {
+        window.location.pathname="/widgets";
+      }
+      else {
+        // sidebar.classList.remove("active");
+        navBtns[1].classList.remove("focus");
+      }
+    }
   })
 
   productsBtn.addEventListener("click", () => {
