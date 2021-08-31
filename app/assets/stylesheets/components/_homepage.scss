@@ -1,227 +1,512 @@
-.banner {
-  background-size: cover;
-  background-position: center;
-  padding: 150px 0;
-  background-color: #EFF8FF;
-  position: relative;
-  margin-bottom: 195px;
-  padding: 204px;
-  padding-bottom: 310px;
-  height: 460px;
+// .banner {
+//   background-size: cover;
+//   background-position: center;
+//   padding: 150px 0;
+//   background-color: #EFF8FF;
+//   position: relative;
+//   margin-bottom: 195px;
+//   padding: 204px;
+//   padding-bottom: 310px;
+//   height: 460px;
 
 
+// }
+
+// .banner2 {
+
+//   background-size: cover;
+//   background-position: center;
+//   padding: 150px 0;
+//   background-color: #FF9E1C;
+//   transform: rotate(-21deg);
+//   width: 170%;
+//   position: absolute;
+//   top: -236px;
+//   left: -180px;
+// }
+
+// .bannertext1 {
+
+//     left: -100px;
+//     top: -80px;
+//     padding-right: 830px;
+// }
+
+// .bannertext2 {
+//     left: 871px;
+//     bottom: -290px;
+//     width: 420px;
+
+// }
+
+// .bannertitle {
+
+//     z-index: 1;
+//     transform: rotate(-21deg);
+//     right: 144px;
+//     top: 36px;
+// }
+
+// .bannertitle h1 {
+//   color: #11101D
+// }
+
+// .banner h1 {
+//   margin: 0;
+//   color: #11101D;
+//   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+//   font-size: 32px;
+//   font-weight: bold;
+// }
+
+// .banner p {
+//   font-size: 20px;
+//   color: #11101D;
+//   opacity: .7;
+//   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+// }
+
+
+// .text-boxleft {
+//   background-image: url(https://i.ibb.co/rFzgLnw/aprooft-background.png);
+//   background-repeat: no-repeat;
+//   background-size: contain;
+//   width: 100%;
+//   height: 1075px;
+
+// }
+
+// .text-boxleft2 {
+//   background-image: url(https://i.ibb.co/rFzgLnw/aprooft-background.png);
+//   background-repeat: no-repeat;
+//   background-size: contain;
+//   width: 100%;
+//   height: 1075px;
+
+// }
+
+// .img-boxright {
+//   background-image: url(https://i.ibb.co/18sx1yX/Take-a-Survey.png);
+//   background-repeat: no-repeat;
+//   background-size: contain;
+//   width: 100%;
+//   height: 754px;
+//   left: 473px;
+//   top: -593px;
+
+// }
+
+
+// .img-boxright2 {
+//   background-image: url(https://i.ibb.co/njN2cdc/Stock-broker.png);
+//   background-repeat: no-repeat;
+//   background-size: contain;
+//   width: 100%;
+//   height: 754px;
+//   left: 473px;
+//   top: -593px;
+
+// }
+
+// .img-box2 {
+//   background-image: url(https://i.ibb.co/RHcXFyJ/Get-personalised-product-recommendations.png);
+//   background-repeat: no-repeat;
+//   background-size: contain;
+//   width: 100%;
+//   height: 754px;
+//   right: 30px;
+//   top: -593px;
+// }
+
+// .text-boxright {
+//   background-image: url(https://i.ibb.co/JvmtC3r/textboxright.png);
+//   background-repeat: no-repeat;
+//   background-size: contain;
+//   width: 100%;
+//   height: 1075px;
+//   margin-right: 0px;
+//   margin-left: 712px;
+
+// }
+
+// .specbox {
+
+//   display: flex;
+//   flex-wrap: wrap;
+//   background-image: url(https://i.ibb.co/4t1zMHZ/specbox.png);
+//   background-repeat: no-repeat;
+//   background-size: contain;
+//   width: 100%;
+//   height: 813px;
+//   margin-top: 100px;
+//   padding: 120px;
+//   padding-left: 121px;
+// }
+
+
+// .spec {
+
+//   height: 234px;
+//   width: 300px;
+//   border-radius: 12px;
+//   margin: 20px;
+// }
+
+// .spectitle {
+//     display: flex;
+//     align-items: flex-end;
+// }
+
+// .spectitle h1 {
+
+//     font-weight: 600;
+//     font-size: 3rem;
+//     margin-left: 15px;
+// }
+
+
+// .spectext {
+
+// color:#11101D;
+// font-size: 1.8rem;
+// }
+
+// .specicon {
+
+//     background: rgba(17, 16, 29, 1);
+//     border-radius: 12px;
+// }
+
+// .img-width {
+
+//   width: 70%;
+// }
+
+// .subtextleft {
+
+//     top: 525px;
+//     width: 390px;
+//     margin-left: 44px;
+// }
+
+// .subtextleft2 {
+
+//     top: 525px;
+//     width: 390px;
+//     margin-left: 44px;
+// }
+
+
+// .subtextright {
+
+//     top: 501px;
+//     width: 390px;
+//     left: 297px;
+//     text-align: right;
+// }
+
+
+// .homepage-container {
+//     width: 100%;
+//     overflow-x: hidden;
+//     margin-right: auto;
+//     margin-left: auto;
+//     max-width: 1440px;
+
+// }
+
+
+// .flexhp {
+//     display: flex;
+//     align-items: center;
+// }
+
+//first part
+.landing-page {
+  background: aliceblue;
+  font-family: "Poppins", sans-serif;
 }
 
-.banner2 {
-
-  background-size: cover;
-  background-position: center;
-  padding: 150px 0;
-  background-color: #FF9E1C;
-  transform: rotate(-21deg);
-  width: 170%;
-  position: absolute;
-  top: -236px;
-  left: -180px;
+.banner-wrapper {
+  height: 100vh;
 }
 
-.bannertext1 {
-
-    left: -100px;
-    top: -80px;
-    padding-right: 830px;
+.landing-banner {
+  clip-path: polygon(0 0, 0% 100%, 100% 0);
+  background-color: #11101D;
+  height: 100vh;
+  z-index: -2;
 }
 
-.bannertext2 {
-    left: 871px;
-    bottom: -290px;
-    width: 420px;
-
-}
-
-.bannertitle {
-
-    z-index: 1;
-    transform: rotate(-21deg);
-    right: 144px;
-    top: 36px;
-}
-
-.bannertitle h1 {
-  color: #11101D
-}
-
-.banner h1 {
-  margin: 0;
-  color: #11101D;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
-  font-weight: bold;
-}
-
-.banner p {
-  font-size: 20px;
-  color: #11101D;
-  opacity: .7;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-}
-
-
-.text-boxleft {
-  background-image: url(https://i.ibb.co/rFzgLnw/aprooft-background.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 100%;
-  height: 1075px;
-
-}
-
-.text-boxleft2 {
-  background-image: url(https://i.ibb.co/rFzgLnw/aprooft-background.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 100%;
-  height: 1075px;
-
-}
-
-.img-boxright {
-  background-image: url(https://i.ibb.co/18sx1yX/Take-a-Survey.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 100%;
-  height: 754px;
-  left: 473px;
-  top: -593px;
-
-}
-
-
-.img-boxright2 {
-  background-image: url(https://i.ibb.co/njN2cdc/Stock-broker.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 100%;
-  height: 754px;
-  left: 473px;
-  top: -593px;
-
-}
-
-.img-box2 {
-  background-image: url(https://i.ibb.co/RHcXFyJ/Get-personalised-product-recommendations.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 100%;
-  height: 754px;
-  right: 30px;
-  top: -593px;
-}
-
-.text-boxright {
-  background-image: url(https://i.ibb.co/JvmtC3r/textboxright.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 100%;
-  height: 1075px;
-  margin-right: 0px;
-  margin-left: 712px;
-
-}
-
-.specbox {
-
+.cta-wrapper {
   display: flex;
-  flex-wrap: wrap;
-  background-image: url(https://i.ibb.co/4t1zMHZ/specbox.png);
-  background-repeat: no-repeat;
-  background-size: contain;
+  flex-direction: column;
+  justify-content: start;
+  padding: 110px 0 0 110px;
+}
+
+.cta-text {
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 72px;
+  color: #F0F8FF;
+  width: 520px;
+  height: 140px;
+  margin-bottom: 32px;
+}
+
+.cta-btn {
+  width: 180px;
+  background: #1E7BD0;
+  border-radius: 8px;
+  font-size: 26px;
+  line-height: 54px;
+  color: #F0F8FF;
+  text-align: center;
+  padding: 8px 0;
+}
+
+.picture-wrapper {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  top: 8%;
+  align-items: center;
+}
+
+.picture-wrapper img {
+  width: 575px;
+  height: 430px;
+  margin-bottom: 90px;
+}
+
+
+.triangle-wrapper {
+  position: relative;
+  width: 80%;
+}
+
+.blue-triangle {
+  transform: rotate(20deg);
   width: 100%;
-  height: 813px;
-  margin-top: 100px;
-  padding: 120px;
-  padding-left: 121px;
+  height: 230px;
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  background-color: #1E7BD0;
 }
 
-
-.spec {
-
-  height: 234px;
-  width: 300px;
-  border-radius: 12px;
-  margin: 20px;
+.dark-triangle {
+  width: 100%;
+  height: 230px;
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  background-color: #11101D;
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  display: flex;
+  justify-content: center;
+  padding-top: 32px;
+  h3 {
+    font-size: 2.75rem;
+    color: aliceblue;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
 }
 
-.spectitle {
-    display: flex;
-    align-items: flex-end;
+//3 steps part
+.step-one,
+.step-two,
+.step-three {
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
-.spectitle h1 {
-
-    font-weight: 600;
-    font-size: 3rem;
-    margin-left: 15px;
+.mockup-right,
+.mockup-left {
+  flex-grow: 1;
+  width: 100%;
+ .mockup {
+   display: flex;
+   justify-content: center;
+ }
 }
 
-
-.spectext {
-
-color:#11101D;
-font-size: 1.8rem;
+.mockup img {
+  width: 75%;
 }
 
-.specicon {
-
-    background: rgba(17, 16, 29, 1);
-    border-radius: 12px;
+.triangles-left,
+.triangles-right {
+  position: relative;
+  height: 100%;
+  width: 30%;
 }
 
-.img-width {
-
-  width: 70%;
+.left-blue-shape {
+  height: 100%;
+  width: 100%;
+  clip-path: polygon(0 0, 100% 40%, 15% 100%, 0 95%);
+  background-color: #1E7BD0;
 }
 
-.subtextleft {
-
-    top: 525px;
-    width: 390px;
-    margin-left: 44px;
-}
-
-.subtextleft2 {
-
-    top: 525px;
-    width: 390px;
-    margin-left: 44px;
-}
-
-
-.subtextright {
-
-    top: 501px;
-    width: 390px;
-    left: 297px;
-    text-align: right;
-}
-
-
-.homepage-container {
+.left-dark-triangle {
+  position: absolute;
+  height: 95%;
+  width: 100%;
+  clip-path: polygon(0 0, 0% 100%, 100% 50%);
+  background-color: #11101D;
+  top: 3%;
+  display: flex;
+  align-items: center;
+  h2, h3 {
+    color: aliceblue;
+  }
+  h2 {
+    font-size: 64px;
+    font-weight: bold;
+    text-align: center;
+    padding-right: 64px;
     width: 100%;
-    overflow-x: hidden;
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 1440px;
-
+  }
+  h3 {
+    font-size: 40px;
+    font-weight: bold;
+    padding-left: 24px;
+    width: 100%;
+  }
 }
 
+.right-blue-shape {
+  height: 100%;
+  width: 100%;
+  clip-path: polygon(100% 0, 0 40%, 90% 100%, 100% 90%);
+  background-color: #1E7BD0;
+}
 
-.flexhp {
+.right-dark-triangle {
+  position: absolute;
+  height: 95%;
+  width: 100%;
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  background-color: #11101D;
+  top: 3%;
+  display: flex;
+  align-items: center;
+  h2, h3 {
+    color: aliceblue;
+  }
+  h2 {
+    font-size: 64px;
+    font-weight: bold;
+    text-align: center;
+    padding-left: 64px;
+    width: 100%;
+  }
+  h3 {
+    font-size: 40px;
+    font-weight: bold;
+    padding-left: 48px;
+    width: 100%;
+  }
+}
+
+.step-one-text {
+  width: 100%;
+  padding-bottom: 72px;
+}
+
+.mockup-mac img {
+  width: 500px;
+}
+
+.mockup {
+  flex-grow: 1;
+}
+
+.styles-overview-wrapper {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blue-trapezoid {
+  width: 950px;
+  height: 600px;
+  clip-path: polygon(5% 5%, 100% 0, 95% 95%, 0 100%);
+  background-color: #1E7BD0;
+}
+
+.dark-trapezoid {
+    position: absolute;
+    width: 950px;
+    height: 600px;
+    transform: rotate(-8deg);
+    clip-path: polygon(0 0, 95% 5%, 100% 100%, 5% 95%);
+    background: #11101D;
+    top: 10%;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
+.widget-options {
+  height: 80%;
+  width: 80%;
+  transform: rotate(8deg);
+  color: aliceblue;
+  padding-top: 56px;
+}
 
+.options-row-3 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
 
+.options-row-2 {
+  display: flex;
+  justify-content: center;
+}
 
+.options-row-3 .style-option {
+  width: 30%;
+}
 
+.options-row-2 .style-option {
+  width: 31%;
+}
+
+.style-option-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  p {
+    margin-bottom: 0;
+    font-size: 32px;
+  }
+}
+
+.style-option-description {
+  font-size: 18px;
+}
+
+.style-option-icon {
+  width: 70px;
+  height: 70px;
+  margin-right: 16px;
+  background-color: #1D1B31;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#style-option-color {
+  padding-right: 40px;
+}

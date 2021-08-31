@@ -1,16 +1,16 @@
+include ActiveSupport::NumberHelper
 require 'json'
 require 'open-uri'
 require 'net/http'
-include ActiveSupport::NumberHelper
 # need to look at this
 $fonts = { "arial" => "Arial", "verdana" => "Verdana" }
 
-
 class WidgetsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[widgetAccess widgetAccessUpdate]
-  skip_before_action :verify_authenticity_token, only: %i[update preview setStyle widgetAccess contentAccess widgetAccessUpdate]
+  skip_before_action :verify_authenticity_token,
+                     only: %i[update preview setStyle widgetAccess contentAccess widgetAccessUpdate]
   before_action :set_widget, only: %i[update edit preview show setStyle widgetAccess contentAccess widgetAccessUpdate]
-  after_action :verify_authorized, only: %i{analytics}
+  after_action :verify_authorized, only: %i[analytics]
 
   def index
     # @fonts = { "arial" => "'Arial', sans-serif", "verdana" => "'Verdana', sans-serif" }
@@ -51,11 +51,10 @@ class WidgetsController < ApplicationController
   def edit; end
 
   def preview
-    youtube_links_result = params["youtube_links"].reject{ |link| link=="" }
-    reddit_links_result = params["reddit_links"].reject{ |link| link=="" }
-    render json: {youtubes: youtube_links_result.map{ |link| fetchYoutubeApi(link)},
-                  reddits: reddit_links_result.map{ |link| fetchRedditApi(link) }
-                  }
+    youtube_links_result = params["youtube_links"].reject { |link| link == "" }
+    reddit_links_result = params["reddit_links"].reject { |link| link == "" }
+    render json: { youtubes: youtube_links_result.map { |link| fetchYoutubeApi(link) },
+                   reddits: reddit_links_result.map { |link| fetchRedditApi(link) } }
   end
 
   def setStyle
@@ -66,16 +65,16 @@ class WidgetsController < ApplicationController
   end
 
   def update
-    unless params["youtube-link"] === nil then
-      yturls = params["youtube-link"].reject{ |link| link=="" }
+    unless params["youtube-link"].nil?
+      yturls = params["youtube-link"].reject { |link| link == "" }
       yturls.each do |link|
         youtube = Youtube.new(fetchYoutubeApi(link))
         youtube.widget = @widget
         youtube.save
       end
     end
-    unless params["reddit-link"] === nil then
-      rdurls = params["reddit-link"].reject{ |link| link=="" }
+    unless params["reddit-link"].nil?
+      rdurls = params["reddit-link"].reject { |link| link == "" }
       rdurls.each do |link|
         reddit = Reddit.new(fetchRedditApi(link))
         reddit.widget = @widget
@@ -92,16 +91,19 @@ class WidgetsController < ApplicationController
 
     if params[:product].present? && params[:product] != "all"
       @user_widget = Widget.where(user: current_user, product_id: params[:product])
-      @widget_sessions = @user_widget.first.widget_accesses.count
-      @widget_clicks = @user_widget.first.content_accesses.count
+      @widget_sessions = @user_widget.first.widget_accesses
+      @widget_clicks = @user_widget.first.content_accesses
       @widget_time = seconds_to_units(widget_time(@user_widget.first))
-      @content_accesses_per_day = @user_widget.first.content_accesses.group_by_day(:click_at, last: 7, current: false).count
-      @widget_sessions_per_day = @user_widget.first.widget_accesses.group_by_day(:open_at, last: 7, current: false).count
-      @widget_session_time_per_day = @user_widget.first.widget_accesses.group_by_day(:open_at, last: 7, current: false).sum(:session_time)
-    else
-      @content_accesses_per_day = ContentAccess.group_by_day(:click_at, last: 7, current: false).count
-      @widget_sessions_per_day = WidgetAccess.group_by_day(:open_at, last: 7, current: false).count
-      @widget_session_time_per_day = WidgetAccess.group_by_day(:open_at, last: 7, current: false).sum(:session_time)
+
+      if params[:start_date].present?
+        @widget_sessions = @widget_sessions.where("open_at >= ?", params[:start_date])
+        @widget_clicks = @widget_clicks.where("click_at >= ?", params[:start_date])
+      end
+
+      if params[:end_date].present?
+        @widget_sessions = @widget_sessions.where("open_at <= ?", params[:end_date])
+        @widget_clicks = @widget_clicks.where("click_at <= ?", params[:end_date])
+      end
     end
 
     @global_sessions = global_sessions(@user_widgets)
@@ -120,17 +122,13 @@ class WidgetsController < ApplicationController
     @widget_access = WidgetAccess.new
     @widget_access.widget = @widget
     @widget_access.open_at = DateTime.now
-    if @widget_access.save
-      render json: { id: @widget_access.id }
-    end
+    render json: { id: @widget_access.id } if @widget_access.save
   end
 
   def widgetAccessUpdate
     skip_authorization
     @widget_access = WidgetAccess.find(params["_json"])
-    if @widget_access.update(close_at: DateTime.now)
-      render json: @widget_access
-    end
+    render json: @widget_access if @widget_access.update(close_at: DateTime.now)
   end
 
   def contentAccess; end
@@ -143,23 +141,24 @@ class WidgetsController < ApplicationController
   end
 
   def most_time(user_widgets)
-    temp = user_widgets.map { |user_widget| { product_title: user_widget.product_title, session_time: widget_time(user_widget) }}
-    most_time = temp.max_by{ |obj| obj[:session_time] }
+    temp = user_widgets.map do |user_widget|
+      { product_title: user_widget.product_title, session_time: widget_time(user_widget) }
+    end
+    most_time = temp.max_by { |obj| obj[:session_time] }
     most_time[:product_title]
   end
 
   def global_time(user_widgets)
-    global_time = user_widgets.map { |user_widget| widget_time(user_widget)}
+    global_time = user_widgets.map { |user_widget| widget_time(user_widget) }
     global_time.sum
   end
 
   def widget_time(widget)
-    total_time = widget.widget_accesses.map { |widget_access| widget_access.session_time }.reject{ |time| time.nil? }
+    total_time = widget.widget_accesses.map { |widget_access| widget_access.session_time }.reject { |time| time.nil? }
     total_time.sum
   end
 
   def seconds_to_units(seconds)
-    # '%d days, %d hours, %d minutes, %d seconds' %
     '%d:%d:%d' %
       [60,60].reverse.inject([seconds]) {|result, unitsize|
         result[0,0] = result.shift.divmod(unitsize)
@@ -168,19 +167,23 @@ class WidgetsController < ApplicationController
   end
 
   def global_clicks(user_widgets)
-   global_clicks = user_widgets.map { |user_widget| user_widget.content_accesses.count }
-   global_clicks.sum
+    global_clicks = user_widgets.map { |user_widget| user_widget.content_accesses.count }
+    global_clicks.sum
   end
 
   def most_clicks(user_widgets)
-    temp = user_widgets.map { |user_widget| { product_title: user_widget.product_title, clicks: user_widget.content_accesses.count } }
-    most_clicks = temp.max_by{ |obj| obj[:clicks] }
+    temp = user_widgets.map do |user_widget|
+      { product_title: user_widget.product_title, clicks: user_widget.content_accesses.count }
+    end
+    most_clicks = temp.max_by { |obj| obj[:clicks] }
     most_clicks[:product_title]
   end
 
   def most_sessions(user_widgets)
-    temp = user_widgets.map { |user_widget| { product_title: user_widget.product_title, sessions: user_widget.widget_accesses.count } }
-    most_sessions = temp.max_by{ |obj| obj[:sessions] }
+    temp = user_widgets.map do |user_widget|
+      { product_title: user_widget.product_title, sessions: user_widget.widget_accesses.count }
+    end
+    most_sessions = temp.max_by { |obj| obj[:sessions] }
     most_sessions[:product_title]
   end
 
@@ -210,22 +213,26 @@ class WidgetsController < ApplicationController
       title: youtube["snippet"]["title"],
       video_id: youtube["id"],
       thumbnail: youtube["snippet"]["thumbnails"]["high"]["url"],
-      like_count: number_to_human(youtube["statistics"]["likeCount"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
-      dislike_count: number_to_human(youtube["statistics"]["dislikeCount"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
+      like_count: number_to_human(youtube["statistics"]["likeCount"].to_i, format: '%n%u', precision: 2,
+                                                                           units: { thousand: 'K', million: 'M', billion: 'B' }),
+      dislike_count: number_to_human(youtube["statistics"]["dislikeCount"].to_i, format: '%n%u', precision: 2,
+                                                                                 units: { thousand: 'K', million: 'M', billion: 'B' }),
       channel_name: youtube["snippet"]["channelTitle"],
       channel_id: youtube["snippet"]["channelId"],
-      view_count: number_to_human(youtube["statistics"]["viewCount"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
+      view_count: number_to_human(youtube["statistics"]["viewCount"].to_i, format: '%n%u', precision: 2,
+                                                                           units: { thousand: 'K', million: 'M', billion: 'B' }),
       description: youtube["snippet"]["description"]
     }
 
     channel_id = video_result[:channel_id]
     channel_url = "https://www.googleapis.com/youtube/v3/channels?part=snippet&fields=items%2Fsnippet%2Fthumbnails%2Fdefault&id=#{channel_id}&key=#{ENV['GOOGLE_API_KEY']}"
-    video_result[:channel_pic] = JSON.parse(URI.open(channel_url).read)["items"][0]["snippet"]["thumbnails"]["default"]["url"]
+    video_result[:channel_pic] =
+      JSON.parse(URI.open(channel_url).read)["items"][0]["snippet"]["thumbnails"]["default"]["url"]
     return video_result.except(:channel_id)
   end
 
   def reddit_id(reddit_url)
-    regex = /(?:reddit.com.*\/comments\/)([\w\d_-]*)/
+    regex = %r{(?:reddit.com.*/comments/)([\w\d_-]*)}
     match = regex.match(reddit_url)
     match[1] if match && !match[1].empty?
   end
@@ -241,16 +248,18 @@ class WidgetsController < ApplicationController
     response = https.request(request)
     result = JSON.parse(response.read_body)
     reddit = result["data"]["children"][0]["data"]
-    comment_result = {
+    {
       thread_id: reddit["id"],
       thread_title: reddit["title"],
-      ups: number_to_human(reddit["ups"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
+      ups: number_to_human(reddit["ups"].to_i, format: '%n%u', precision: 2,
+                                               units: { thousand: 'K', million: 'M', billion: 'B' }),
       link_flair_text: reddit["link_flair_text"],
       created: time_ago(reddit["created"]),
       author: reddit["author"],
-      num_comments: number_to_human(reddit["num_comments"].to_i, :format => '%n%u', :precision => 2, :units => { :thousand => 'K', :million => 'M', :billion => 'B' }),
+      num_comments: number_to_human(reddit["num_comments"].to_i, format: '%n%u', precision: 2,
+                                                                 units: { thousand: 'K', million: 'M', billion: 'B' }),
       subreddit: reddit["subreddit"],
-      thumbnail: reddit["thumbnail"],
+      thumbnail: reddit["thumbnail"]
     }
   end
 
@@ -259,10 +268,9 @@ class WidgetsController < ApplicationController
     if days_ago.to_i == 1
       difference_in_sec = Time.now - Time.at(timestamp)
       difference_in_h = (difference_in_sec / 3600).to_i.to_s
-      difference_in_h + " hours"
+      "#{difference_in_h} hours"
     else
-      days_ago.to_s + " days"
+      "#{days_ago} days"
     end
   end
-
 end
