@@ -35,6 +35,7 @@ AOS.init({
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { sideBar } from "../components/sidebar"
+import { checkStyleCondition } from "../components/check_style_condition"
 import { widgetStyling } from "../components/widget_styling"
 import { changeWidget } from "../components/analytics"
 
@@ -67,7 +68,10 @@ document.addEventListener('turbolinks:load', () => {
   });
 
   sideBar();
-  widgetStyling();
+  const condition = checkStyleCondition();
+  if (condition) {
+    widgetStyling();
+  }
   changeWidget();
 });
 

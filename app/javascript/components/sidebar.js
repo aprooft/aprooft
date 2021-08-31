@@ -61,6 +61,7 @@ const sideBar = () => {
   hamburgerMenu.addEventListener("click", () => {
     sidebar.classList.toggle("active");
     styleOptionsWrapper.classList.remove("active");
+    
     if (styleBar.classList.contains("active")) {
       styleBar.classList.remove("active");
     }
@@ -69,6 +70,13 @@ const sideBar = () => {
 
   stylesBtn.addEventListener("click", () => {
     productViewWrapper && productViewWrapper.classList.remove("active");
+
+    const condition = checkStyleCondition();
+    if (condition) {
+      widgetStyling();
+    }
+
+
     sidebar.classList.add("active");
     styleBar.classList.toggle("active");
   })
