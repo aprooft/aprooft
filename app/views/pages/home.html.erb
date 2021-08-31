@@ -1,14 +1,14 @@
-<div class="background">
+<%# <div class="background">
 <div class="homepage-container">
   <div class="flexhp" data-aos="fade-right" data-aos-duration="400" data-aos-delay="500" data-aos-once="false">
-  <a href="#"><i class="bx bxs-widget fa-10x coloring"></i></a>
-  <h1 class="logo-name coloring">Aprooft</h1>
+    <a href="#"><i class="bx bxs-widget fa-10x coloring"></i></a>
+    <h1 class="logo-name coloring">Aprooft</h1>
   </div>
   <div class="position-relative" >
-  <div class="flexhp bannertitle position-absolute" >
-  <i class="bx bxs-widget fa-10x coloring" style="color: #11101D; font-size: 21rem;" data-aos-easing="ease" data-aos="fade-up-right" data-aos-duration="1000" data-aos-delay="700" data-aos-once="true"></i>
-  <h1 class="logo-name coloring " style="font-size: 15rem;" data-aos-easing="ease" data-aos="fade-up-right" data-aos-duration="1000" data-aos-delay="700" data-aos-once="false"><strong>Aprooft</strong></h1>
-  </div>
+    <div class="flexhp bannertitle position-absolute" >
+      <i class="bx bxs-widget fa-10x coloring" style="color: #11101D; font-size: 21rem;" data-aos-easing="ease" data-aos="fade-up-right" data-aos-duration="1000" data-aos-delay="700" data-aos-once="true"></i>
+      <h1 class="logo-name coloring " style="font-size: 15rem;" data-aos-easing="ease" data-aos="fade-up-right" data-aos-duration="1000" data-aos-delay="700" data-aos-once="false"><strong>Aprooft</strong></h1>
+    </div>
   </div>
 
 <div class="banner" data-aos-easing="ease" data-aos="fade-up" data-aos-duration="500" data-aos-once="true">
@@ -22,7 +22,6 @@
     </div>
     <div class="position-absolute bannertext2">
     <h2 style="color: #11101D;" data-aos-easing="ease" data-aos="fade-left" data-aos-duration="500" data-aos-delay="500" data-aos-once="true">centralize and display verified reviews from all around the internet and boost your E-rep </h2>
-  <%= link_to "Start now", widgets_path, class: "btn btn-primary" %>
     </div>
   </div>
 </div>
@@ -141,4 +140,169 @@
     Made with <i class="fas fa-heart"></i> by team Aprooft
   </div>
 </div>
+</div> %>
+<%= render  "navbar" %>
+<div class="landing-page">
+  <div class="banner-wrapper">
+      <div class="picture-wrapper">
+        <%= image_tag "landing_page_pic.png"%>
+        <div class="triangle-wrapper">
+          <div class="blue-triangle"></div>
+          <div class="dark-triangle">
+            <h3>How it works</h3>
+          </div>
+        </div>
+      </div>
+    <div class="landing-banner">
+      <div class="cta-wrapper">
+        <div class="cta-text">
+          Bring social proofing to your website
+        </div>
+        <div class="cta-btn">
+          Start now
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="main-steps">
+    <div class="step-one">
+      <div class="triangles-left">
+        <div class="left-blue-shape"></div>
+        <div class="left-dark-triangle">
+          <div class="step-one-text">
+            <h2>1.</h2>
+            <h3>Create a widget</h3>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-right">
+        <div class="mockup">
+          <%= image_tag "mockup_mac"%>
+        </div>
+        <div class="mockup-shadow"></div>
+      </div>
+    </div>
+    <div class="styles-overview-wrapper">
+      <div class="styles-overview">
+        <div class="blue-trapezoid"></div>
+        <div class="dark-trapezoid">
+          <div class="widget-options">
+            <div class="options-row-3">
+              <div class="style-option">
+                <div class="style-option-title">
+                <div class="style-option-icon">
+                  <svg width="64" height="64" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M26.6665 2.66675H5.33317C3.8665 2.66675 2.6665 3.86675 2.6665 5.33342V26.6668C2.6665 28.1334 3.8665 29.3334 5.33317 29.3334H26.6665C28.1332 29.3334 29.3332 28.1334 29.3332 26.6668V5.33342C29.3332 3.86675 28.1332 2.66675 26.6665 2.66675ZM10.6665 26.6668H5.33317V21.3334H10.6665V26.6668ZM10.6665 18.6667H5.33317V13.3334H10.6665V18.6667ZM10.6665 10.6667H5.33317V5.33342H10.6665V10.6667ZM18.6665 26.6668H13.3332V21.3334H18.6665V26.6668ZM18.6665 18.6667H13.3332V13.3334H18.6665V18.6667ZM18.6665 10.6667H13.3332V5.33342H18.6665V10.6667ZM26.6665 26.6668H21.3332V21.3334H26.6665V26.6668ZM26.6665 18.6667H21.3332V13.3334H26.6665V18.6667ZM26.6665 10.6667H21.3332V5.33342H26.6665V10.6667Z" fill="#F0F8FF"/>
+                  </svg>
+                </div>
+                <p>Layout</p>
+                </div>
+                <div class="style-option-description">
+                  Choose the way you display content among many appealing styles.
+                </div>
+              </div>
+              <div class="style-option">
+                <div class="style-option-title">
+                  <div class="style-option-icon">
+                    <svg width="64" height="52.36" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M26.6667 16H29.3333V18.6667H26.6667V16ZM26.6667 10.6667H29.3333V13.3333H26.6667V10.6667ZM29.3333 21.3333H26.6667V24C28 24 29.3333 22.6667 29.3333 21.3333ZM16 0H18.6667V2.66667H16V0ZM26.6667 5.33333H29.3333V8H26.6667V5.33333ZM26.6667 0V2.66667H29.3333C29.3333 1.33333 28 0 26.6667 0ZM0 5.33333H2.66667V8H0V5.33333ZM21.3333 0H24V2.66667H21.3333V0ZM21.3333 21.3333H24V24H21.3333V21.3333ZM2.66667 0C1.33333 0 0 1.33333 0 2.66667H2.66667V0ZM10.6667 0H13.3333V2.66667H10.6667V0ZM5.33333 0H8V2.66667H5.33333V0ZM0 10.6667V21.3333C0 22.8 1.2 24 2.66667 24H18.6667V10.6667H0ZM2.66667 21.3333L6 17.0533L8.38667 19.92L11.72 15.6267L16 21.3333H2.66667Z" fill="#F0F8FF"/>
+                    </svg>
+                  </div>
+                  <p>Size</p>
+                </div>
+                <div class="style-option-description">
+                  Change the size of the widget to fit your vision.
+                </div>
+              </div>
+              <div class="style-option">
+                <div class="style-option-title">
+                <div class="style-option-icon">
+                  <svg width="64" height="64" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5.33325V9.33325H18.6667V25.3333H22.6667V9.33325H29.3333V5.33325H12ZM4 15.9999H8V25.3333H12V15.9999H16V11.9999H4V15.9999Z" fill="#F0F8FF"/>
+                  </svg>
+                </div>
+                <p>Font</p>
+                </div>
+                <div class="style-option-description">
+                  Set the fonts just right to make it more readable for your users.
+                </div>
+              </div>
+            </div>
+            <div class="options-row-2">
+              <div class="style-option" id="style-option-color" >
+                <div class="style-option-title">
+                <div class="style-option-icon">
+                  <svg width="64" height="64" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0)">
+                      <path d="M23.6668 9.33325L18.6668 4.33325L5.3335 17.6666V22.6666H10.3335L23.6668 9.33325ZM27.6135 5.38658C28.1335 4.86658 28.1335 4.02658 27.6135 3.50658L24.4935 0.386582C23.9735 -0.133418 23.1335 -0.133418 22.6135 0.386582L20.0002 2.99992L25.0002 7.99992L27.6135 5.38658Z" fill="#F0F8FF"/>
+                      <path d="M0 26.6667H32V32.0001H0V26.6667Z" fill="#F0F8FF" fill-opacity="0.6"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0">
+                        <rect width="32" height="32" fill="white"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+                <p>Color</p>
+                </div>
+                <div class="style-option-description">
+                  Customize the colors of the widget to match your website.
+                </div>
+              </div>
+              <div class="style-option">
+                <div class="style-option-title">
+                  <div class="style-option-icon">
+                    <svg width="64" height="64" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M22.0799 11.92L10.1599 0L8.27992 1.88L11.4532 5.05333L4.58658 11.92C3.79992 12.7067 3.79992 13.9733 4.58658 14.7467L11.9199 22.08C12.3066 22.4667 12.8266 22.6667 13.3333 22.6667C13.8399 22.6667 14.3599 22.4667 14.7466 22.08L22.0799 14.7467C22.8666 13.9733 22.8666 12.7067 22.0799 11.92ZM6.94658 13.3333L13.3333 6.94667L19.7199 13.3333H6.94658ZM25.3333 15.3333C25.3333 15.3333 22.6666 18.2267 22.6666 20C22.6666 21.4667 23.8666 22.6667 25.3333 22.6667C26.7999 22.6667 27.9999 21.4667 27.9999 20C27.9999 18.2267 25.3333 15.3333 25.3333 15.3333Z" fill="#F0F8FF"/>
+                      <path d="M0 26.6667H32V32.0001H0V26.6667Z" fill="#F0F8FF" fill-opacity="0.6"/>
+                    </svg>
+                  </div>
+                  <p>Background</p>
+                </div>
+                <div class="style-option-description">
+                  Customize the background colors, <br> make it really yours.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="step-two">
+      <div class="mockup-left">
+        <div class="mockup">
+          <%= image_tag "mockup_mac"%>
+        </div>
+        <div class="mockup-shadow"></div>
+      </div>
+      <div class="triangles-right">
+        <div class="right-blue-shape"></div>
+        <div class="right-dark-triangle">
+          <div class="step-one-text">
+            <h2>2.</h2>
+            <h3>Generate code</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="step-three">
+      <div class="triangles-left">
+        <div class="left-blue-shape"></div>
+        <div class="left-dark-triangle">
+          <div class="step-one-text">
+            <h2>3.</h2>
+            <h3>Check analytics</h3>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-right">
+        <div class="mockup">
+          <%= image_tag "mockup_mac"%>
+        </div>
+        <div class="mockup-shadow"></div>
+      </div>
+    </div>
+  </div>
 </div>
