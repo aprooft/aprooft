@@ -78,7 +78,13 @@ const sideBar = () => {
       sidebar.classList.add("active");
       styleBar.classList.toggle("active");
     } else {
-      alert("Go to products page and select a product first.");
+      if (confirm("Please choose a product first")) {
+        window.location.pathname="/widgets";
+      }
+      else {
+        // sidebar.classList.remove("active");
+        navBtns[1].classList.remove("focus");
+      }
     }
   })
 
