@@ -220,6 +220,8 @@
 //     display: flex;
 //     align-items: center;
 // }
+
+//first part
 .landing-page {
   background: aliceblue;
   font-family: "Poppins", sans-serif;
@@ -236,7 +238,6 @@
   z-index: -2;
 }
 
-/* YouTube-Ads-Graphic-removebg-preview 1 */
 .cta-wrapper {
   display: flex;
   flex-direction: column;
@@ -268,34 +269,36 @@
 .picture-wrapper {
   display: flex;
   flex-direction: column;
-  margin-bottom: 80px;
   position: absolute;
   z-index: 10;
   left: 50%;
+  top: 8%;
+  align-items: center;
 }
 
 .picture-wrapper img {
   width: 575px;
-height: 430px;
-  margin-bottom: 130px;
+  height: 430px;
+  margin-bottom: 90px;
 }
 
 
 .triangle-wrapper {
   position: relative;
+  width: 80%;
 }
 
 .blue-triangle {
   transform: rotate(20deg);
-  width: 620px;
-  height: 330px;
+  width: 100%;
+  height: 230px;
   clip-path: polygon(50% 100%, 0 0, 100% 0);
   background-color: #1E7BD0;
 }
 
 .dark-triangle {
-  width: 620px;
-  height: 330px;
+  width: 100%;
+  height: 230px;
   clip-path: polygon(50% 100%, 0 0, 100% 0);
   background-color: #11101D;
   position: absolute;
@@ -303,11 +306,87 @@ height: 430px;
   top: 0%;
   display: flex;
   justify-content: center;
-  padding-top: 100px;
+  padding-top: 32px;
   h3 {
     font-size: 2.75rem;
     color: aliceblue;
     font-weight: bold;
     margin-bottom: 0;
   }
+}
+
+//3 steps part
+.step-one,
+.step-two
+.step-three {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.triangles-left {
+  position: relative;
+  height: 100%;
+  width: 24%;
+}
+
+.left-blue-shape {
+  height: 100%;
+  width: 100%;
+  clip-path: polygon(0 0, 100% 40%, 15% 100%, 0 95%);
+  background-color: #1E7BD0;
+}
+
+.left-dark-triangle {
+  position: absolute;
+  height: 95%;
+  width: 100%;
+  clip-path: polygon(0 0, 0% 100%, 100% 50%);
+  background-color: #11101D;
+  top: 3%;
+  display: flex;
+  align-items: center;
+  h2, h3 {
+    color: aliceblue;
+  }
+  h2 {
+    font-size: 64px;
+    font-weight: bold;
+    text-align: center;
+    padding-right: 64px;
+    width: 100%;
+  }
+  h3 {
+    font-size: 40px;
+    font-weight: bold;
+    padding-left: 24px;
+    width: 100%;
+  }
+}
+
+.right-blue-shape {
+  height: 100%;
+  width: 100%;
+  // clip-path: polygon(0 0, 100% 40%, 15% 100%, 0 95%);
+  background-color: #1E7BD0;
+}
+
+.right-dark-triangle {
+  position: absolute;
+  height: 95%;
+  width: 100%;
+  // clip-path: polygon(0 0, 0% 100%, 100% 50%);
+  background-color: #11101D;
+  top: 3%;
+  display: flex;
+  align-items: center;
+}
+
+.step-one-text {
+  width: 100%;
+  padding-bottom: 72px;
+}
+
+.mockup-mac img {
+  width: 500px;
 }
