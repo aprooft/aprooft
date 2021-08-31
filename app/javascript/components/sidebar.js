@@ -1,3 +1,5 @@
+import { checkStyleCondition } from "./check_style_condition"
+
 const sideBar = () => {
   const sidebar = document.querySelector('.sidebar');
   const styleBar = document.querySelector(".stylebar-wrapper");
@@ -73,12 +75,11 @@ const sideBar = () => {
 
     const condition = checkStyleCondition();
     if (condition) {
-      widgetStyling();
+      sidebar.classList.add("active");
+      styleBar.classList.toggle("active");
+    } else {
+      alert("Go to products page and select a product first.");
     }
-
-
-    sidebar.classList.add("active");
-    styleBar.classList.toggle("active");
   })
 
   productsBtn.addEventListener("click", () => {
