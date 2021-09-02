@@ -10,7 +10,6 @@
       <div class="clicks-youtube-reddit-wrapper">
         <div class="youtube-clicks-chart">
             <h4>Youtube videos</h4>
-            <% raise %>
           <%= pie_chart ContentAccess.where(source: "Youtube").joins(widget: :youtubes).where(widget_id: @user_widget).group(:source_id).count.map {
             |content_access| {content_access.first.truncate(20) => content_access.last}
           }.inject(:merge)%>
