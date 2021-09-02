@@ -186,7 +186,7 @@ def time_ago(timestamp)
   end
 end
 
-puts "creating reddit links"
+puts "creating reddit links..."
 # Sleepbuds II
 noisecanceling_links = ["https://www.reddit.com/r/bose/comments/kp5uuk/bose_nc700_are_underrated_overhated/", "https://www.reddit.com/r/bose/comments/j66yqa/quick_unbiased_review_of_the_bose_nc700/", "https://www.reddit.com/r/bose/comments/oa8m63/personal_review_nc_700_vs_sony_xm4_long/"];
 noisecanceling_links.each do |noisecanceling_link|
@@ -247,7 +247,6 @@ soundcomm_links.each do |soundcomm_link|
 end
 puts "Sport Open Earbuds links created"
 
-puts "creating widget accesses widget4"
 32.times do
   start_at = Faker::Time.between_dates(from: Date.today - 7, to: Date.today, period: :all)
   close_at = start_at + rand(5..120).seconds
@@ -302,6 +301,14 @@ puts "creating widget accesses widget5"
   close_at = start_at + rand(5..120).seconds
   session_time = close_at.to_i - start_at.to_i
   WidgetAccess.create(open_at: start_at, close_at: close_at, session_time: session_time, widget_id: Widget.all[4].id)
+end
+
+puts "creating widget accesses widget6"
+500.times do
+  start_at = Faker::Time.between_dates(from: Date.today - 7, to: Date.today, period: :all)
+  close_at = start_at + rand(5..120).seconds
+  session_time = close_at.to_i - start_at.to_i
+  WidgetAccess.create(open_at: start_at, close_at: close_at, session_time: session_time, widget_id: Widget.all[5].id)
 end
 
 puts "*----------------------------------"
