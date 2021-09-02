@@ -10,13 +10,14 @@
       <div class="clicks-youtube-reddit-wrapper">
         <div class="youtube-clicks-chart">
             <h4>Youtube videos</h4>
-          <%= pie_chart ContentAccess.joins(widget: :youtubes).where(widget_id: @user_widget).group(:title).count.map {
+            <% raise %>
+          <%= pie_chart ContentAccess.where(source: "Youtube").joins(widget: :youtubes).where(widget_id: @user_widget).group(:source_id).count.map {
             |content_access| {content_access.first.truncate(20) => content_access.last}
           }.inject(:merge)%>
         </div>
         <div class="reddit-clicks-chart">
             <h4>Reddit threads</h4>
-          <%= pie_chart ContentAccess.joins(widget: :reddits).where(widget_id: @user_widget).group(:thread_title).count.map {
+          <%= pie_chart ContentAccess.where(source: "Reddit").joins(widget: :reddits).where(widget_id: @user_widget).group(:source_id).count.map {
             |content_access| {content_access.first.truncate(20) => content_access.last}
           }.inject(:merge)%>
         </div>
