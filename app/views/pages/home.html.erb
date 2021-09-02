@@ -145,8 +145,10 @@
 <div class="landing-page">
   <div class="banner-wrapper">
       <div class="picture-wrapper">
-        <%= image_tag "landing_page_pic.png"%>
-        <div class="triangle-wrapper">
+        <div data-aos-easing="ease" data-aos="fade-left" data-aos-duration="2000" data-aos-once="true">
+         <%= image_tag "landing_page_pic.png"%>
+        </div>
+        <div class="triangle-wrapper" data-aos-easing="ease" data-aos-delay="1500" data-aos="fade-up-left" data-aos-duration="700" data-aos-once="true">
           <div class="blue-triangle"></div>
           <div class="dark-triangle">
             <h3>How it works</h3>
@@ -154,12 +156,12 @@
         </div>
       </div>
     <div class="landing-banner">
-      <div class="cta-wrapper">
+      <div class="cta-wrapper" data-aos-easing="ease" data-aos="fade-right" data-aos-duration="2000" data-aos-once="true">
         <div class="cta-text">
           Bring social proofing to your website
         </div>
         <%= link_to widgets_path do %>
-          <div class="cta-btn">
+          <div class="cta-btn" >
             Start now
           </div>
         <% end %>
@@ -169,7 +171,7 @@
   </div>
   <div class="main-steps">
     <div class="step-one">
-      <div class="triangles-left">
+      <div class="triangles-left" data-aos-easing="ease" data-aos-anchor-placement="top-center" data-aos="fade-right" data-aos-duration="700" data-aos-once="true">
         <div class="left-blue-shape"></div>
         <div class="left-dark-triangle">
           <div class="step-one-text">
@@ -179,14 +181,14 @@
         </div>
       </div>
       <div class="mockup-right">
-        <div class="mockup">
+        <div class="mockup" data-aos-easing="ease" data-aos-anchor-placement="top-center" data-aos="fade-left" data-aos-duration="700" data-aos-once="true">
           <%#= image_tag "mockup_mac"%>
           <img src="https://res.cloudinary.com/ellie-xyb/image/upload/v1630423562/mockup_mac_wdhqbx.png">
         </div>
         <div class="mockup-shadow"></div>
       </div>
     </div>
-    <div class="styles-overview-wrapper">
+    <div class="styles-overview-wrapper" data-aos-easing="ease" data-aos-anchor-placement="top-center" data-aos="flip-down" data-aos-duration="1000" data-aos-once="false">
       <div class="styles-overview">
         <div class="blue-trapezoid"></div>
         <div class="dark-trapezoid">
@@ -274,14 +276,14 @@
       </div>
     </div>
     <div class="step-two">
-      <div class="mockup-left">
+      <div class="mockup-left" data-aos-easing="ease" data-aos-anchor-placement="top-center" data-aos="fade-right" data-aos-duration="700" data-aos-once="true">
         <div class="mockup">
           <%#= image_tag "mockup_mac"%>
           <img src="https://res.cloudinary.com/ellie-xyb/image/upload/v1630423562/mockup_mac_wdhqbx.png">
         </div>
         <div class="mockup-shadow"></div>
       </div>
-      <div class="triangles-right">
+      <div class="triangles-right" data-aos-easing="ease" data-aos-anchor-placement="top-center" data-aos="fade-left" data-aos-duration="700" data-aos-once="true">
         <div class="right-blue-shape"></div>
         <div class="right-dark-triangle">
           <div class="step-one-text">
@@ -292,7 +294,7 @@
       </div>
     </div>
     <div class="step-three">
-      <div class="triangles-left">
+      <div class="triangles-left" data-aos-easing="ease" data-aos-anchor-placement="top-center" data-aos="fade-right" data-aos-duration="700" data-aos-once="true">
         <div class="left-blue-shape"></div>
         <div class="left-dark-triangle">
           <div class="step-one-text">
@@ -301,7 +303,7 @@
           </div>
         </div>
       </div>
-      <div class="mockup-right">
+      <div class="mockup-right" data-aos-easing="ease" data-aos-anchor-placement="top-center" data-aos="fade-left" data-aos-duration="700" data-aos-once="true">
         <div class="mockup">
           <%#= image_tag "mockup_mac" %>
           <img src="https://res.cloudinary.com/ellie-xyb/image/upload/v1630423562/mockup_mac_wdhqbx.png">
@@ -311,11 +313,11 @@
     </div>
     <div class="last-cta-wrapper">
       <div class="last-cta">
-        <div class="last-cta-text">
+        <div class="last-cta-text" data-aos-easing="ease" data-aos-anchor-placement="top-center" data-aos="fade-right" data-aos-duration="700" data-aos-once="true">
           <h2>Are you convinced?</h2>
         </div>
         <%= link_to widgets_path do %>
-          <div class="cta-triangles">
+          <div class="cta-triangles" data-aos-easing="ease" data-aos-delay="700" data-aos-anchor-placement="top-center" data-aos="zoom-in" data-aos-duration="500" data-aos-once="true">
             <div class="cta-dark-triangle"></div>
             <div class="cta-blue-triangle">
               <p>Start Now</p>
