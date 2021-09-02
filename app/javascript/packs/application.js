@@ -37,7 +37,7 @@ AOS.init({
   throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
 });
 
-
+AOS.refreshHard();
 
 
 
