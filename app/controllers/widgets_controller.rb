@@ -87,13 +87,13 @@ class WidgetsController < ApplicationController
   def analytics
     skip_authorization
     @product = params[:product]
-    @user_widgets = Widget.where(user: current_user)
+    @user_widgets = current_user.widgets
 
     if params[:product].present? && params[:product] != "all"
-      @user_widget = Widget.where(user: current_user, product_id: params[:product])
-      @widget_sessions = @user_widget.first.widget_accesses
-      @widget_clicks = @user_widget.first.content_accesses
-      @widget_time = seconds_to_units(widget_time(@user_widget.first))
+      @user_widget = current_user.widgets.find_by(product_id: params[:product])
+      @widget_sessions = @user_widget.widget_accesses
+      @widget_clicks = @user_widget.content_accesses
+      @widget_time = seconds_to_units(widget_time(@user_widget))
 
       if params[:start_date].present?
         @widget_sessions = @widget_sessions.where("open_at >= ?", params[:start_date])
@@ -108,9 +108,9 @@ class WidgetsController < ApplicationController
 
     @global_sessions = global_sessions(@user_widgets)
     @global_clicks = global_clicks(@user_widgets)
-    @clicks_per_widget = @global_clicks.fdiv(Widget.all.count)
+    @clicks_per_widget = @global_clicks.fdiv(current_user.widgets.count)
     @global_time = seconds_to_units(global_time(@user_widgets))
-    average_time = global_time(@user_widgets).fdiv(Widget.all.count)
+    average_time = global_time(@user_widgets).fdiv(current_user.widgets.count)
     @time_per_widget = seconds_to_units(average_time)
     @most_clicks = most_clicks(@user_widgets)
     @most_sessions = most_sessions(@user_widgets)
