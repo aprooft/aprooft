@@ -10,12 +10,12 @@
           <% if WidgetAccess.sessions_compared_to_last_week.negative? %>
             <div class="decrease">
               <i class='bx bx-trending-down'></i>
-              <p><%= WidgetAccess.sessions_compared_to_last_week %>%</p>
+              <p><%= WidgetAccess.sessions_compared_to_last_week %>%*</p>
             </div>
           <% else %>
             <div class="increase">
               <i class='bx bx-trending-up'></i>
-              <p><%= WidgetAccess.sessions_compared_to_last_week %>%</p>
+              <p><%= WidgetAccess.sessions_compared_to_last_week %>%*</p>
             </div>
           <% end %>
         </div>
@@ -28,12 +28,12 @@
           <% if WidgetAccess.time_compared_to_last_week.negative? %>
             <div class="decrease">
               <i class='bx bx-trending-down'></i>
-              <p><%= WidgetAccess.time_compared_to_last_week %>%</p>
+              <p><%= WidgetAccess.time_compared_to_last_week %>%*</p>
             </div>
           <% else %>
             <div class="increase">
               <i class='bx bx-trending-up'></i>
-              <p><%= WidgetAccess.time_compared_to_last_week %>%</p>
+              <p><%= WidgetAccess.time_compared_to_last_week %>%*</p>
             </div>
           <% end %>
         </div>
@@ -51,12 +51,12 @@
           <% if ContentAccess.clicks_compared_to_last_week.negative? %>
             <div class="decrease">
               <i class='bx bx-trending-down'></i>
-              <p><%= ContentAccess.clicks_compared_to_last_week %>%</p>
+              <p><%= ContentAccess.clicks_compared_to_last_week %>%*</p>
             </div>
           <% else %>
             <div class="increase">
               <i class='bx bx-trending-up'></i>
-              <p><%= ContentAccess.clicks_compared_to_last_week %>%</p>
+              <p><%= ContentAccess.clicks_compared_to_last_week %>%*</p>
             </div>
           <% end %>
         </div>
@@ -68,6 +68,20 @@
         </div>
       </div>
     </div>
+    <div class="disclaimer">
+      <p>*Increase/Decrease compared to last week</p>
+    </div>
+    <%# <div class="worst-performer-wrapper">
+      <div class="worst-performer">
+        <div class="worst-performer-text">
+          Your widget is doing worse compared to others. Take an action!
+        </div>
+        <div class="worst-performer-cta">
+          <p>edit content</p>
+          <p>check statistics </p>
+        </div>
+      </div>
+    </div> %>
     <div class="session-number-wrapper">
       <div id="select-widget">
         <%= form_with url: "", method: :get do |form| %>
