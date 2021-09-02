@@ -320,29 +320,54 @@ end
 end
 
 puts "creating content accesses widget2"
+youtube_count = Youtube.where(widget_id: Widget.all[1].id).count
+last_youtube = Youtube.where(widget_id: Widget.all[1].id).last
 20.times do
-  random_youtube = Youtube.where(widget_id: Widget.all[1].id).sample
+  random_youtube = Youtube.where(widget_id: Widget.all[1].id).first(youtube_count-1).sample
   click_at = Faker::Date.between(from: 4.days.ago, to: Date.today)
   ContentAccess.create(click_at: click_at, source: "Youtube", source_id: random_youtube.id, widget_id: Widget.all[1].id)
 end
 
+2.times do
+  click_at = Faker::Date.between(from: 4.days.ago, to: Date.today)
+  ContentAccess.create(click_at: click_at, source: "Youtube", source_id: last_youtube.id, widget_id: Widget.all[1].id)
+end
+
 120.times do
-  random_youtube = Youtube.where(widget_id: Widget.all[1].id).sample
+  random_youtube = Youtube.where(widget_id: Widget.all[1].id).first(youtube_count-1).sample
   click_at = Faker::Date.between(from: 8.days.ago, to: 4.days.ago)
   ContentAccess.create(click_at: click_at, source: "Youtube", source_id: random_youtube.id, widget_id: Widget.all[1].id)
 end
 
+10.times do
+  click_at = Faker::Date.between(from: 8.days.ago, to: 4.days.ago)
+  ContentAccess.create(click_at: click_at, source: "Youtube", source_id: last_youtube.id, widget_id: Widget.all[1].id)
+end
+
+reddit_count = Reddit.where(widget_id: Widget.all[1].id).count
+last_reddit = Reddit.where(widget_id: Widget.all[1].id).last
+
 20.times do
-  random_reddit = Reddit.where(widget_id: Widget.all[1].id).sample
+  random_reddit = Reddit.where(widget_id: Widget.all[1].id).first(reddit_count-1).sample
   click_at = Faker::Date.between(from: 4.days.ago, to: Date.today)
   ContentAccess.create(click_at: click_at, source: "Reddit", source_id: random_reddit.id, widget_id: Widget.all[1].id)
 end
 
+6.times do
+  click_at = Faker::Date.between(from: 4.days.ago, to: Date.today)
+  ContentAccess.create(click_at: click_at, source: "Reddit", source_id: last_reddit.id, widget_id: Widget.all[1].id)
+end  
+
 120.times do
-  random_reddit = Reddit.where(widget_id: Widget.all[1].id).sample
+  random_reddit = Reddit.where(widget_id: Widget.all[1].id).first(reddit_count-1).sample
   click_at = Faker::Date.between(from: 8.days.ago, to: 4.days.ago)
   ContentAccess.create(click_at: click_at, source: "Reddit", source_id: random_reddit.id, widget_id: Widget.all[1].id)
 end
+
+36.times do
+  click_at = Faker::Date.between(from: 8.days.ago, to: 4.days.ago)
+  ContentAccess.create(click_at: click_at, source: "Reddit", source_id: last_reddit.id, widget_id: Widget.all[1].id)
+end  
 
 puts "creating content accesses widget3"
 300.times do
@@ -351,7 +376,7 @@ puts "creating content accesses widget3"
   ContentAccess.create(click_at: click_at, source: "Youtube", source_id: random_youtube.id, widget_id: Widget.all[2].id)
 end
 
-280.times do
+190.times do
   random_reddit = Reddit.where(widget_id: Widget.all[2].id).sample
   click_at = Faker::Date.between(from: 7.days.ago, to: Date.today)
   ContentAccess.create(click_at: click_at, source: "Reddit", source_id: random_reddit.id, widget_id: Widget.all[2].id)
@@ -364,7 +389,7 @@ puts "creating content accesses widget4"
   ContentAccess.create(click_at: click_at, source: "Youtube", source_id: random_youtube.id, widget_id: Widget.all[3].id)
 end
 
-500.times do
+200.times do
   random_reddit = Reddit.where(widget_id: Widget.all[3].id).sample
   click_at = Faker::Date.between(from: 7.days.ago, to: Date.today)
   ContentAccess.create(click_at: click_at, source: "Reddit", source_id: random_reddit.id, widget_id: Widget.all[3].id)
@@ -372,15 +397,28 @@ end
 
 puts "creating content accesses widget5"
 390.times do
-  random_youtube = Youtube.where(widget_id: Widget.all[1].id).sample
+  random_youtube = Youtube.where(widget_id: Widget.all[4].id).sample
   click_at = Faker::Date.between(from: 7.days.ago, to: Date.today)
   ContentAccess.create(click_at: click_at, source: "Youtube", source_id: random_youtube.id, widget_id: Widget.all[4].id)
 end
 
-310.times do
-  random_reddit = Reddit.where(widget_id: Widget.all[1].id).sample
+260.times do
+  random_reddit = Reddit.where(widget_id: Widget.all[4].id).sample
   click_at = Faker::Date.between(from: 7.days.ago, to: Date.today)
   ContentAccess.create(click_at: click_at, source: "Reddit", source_id: random_reddit.id, widget_id: Widget.all[4].id)
+end
+
+puts "creating content accesses widget6"
+300.times do
+  random_youtube = Youtube.where(widget_id: Widget.all[5].id).sample
+  click_at = Faker::Date.between(from: 7.days.ago, to: Date.today)
+  ContentAccess.create(click_at: click_at, source: "Youtube", source_id: random_youtube.id, widget_id: Widget.all[5].id)
+end
+
+180.times do
+  random_reddit = Reddit.where(widget_id: Widget.all[5].id).sample
+  click_at = Faker::Date.between(from: 7.days.ago, to: Date.today)
+  ContentAccess.create(click_at: click_at, source: "Reddit", source_id: random_reddit.id, widget_id: Widget.all[5].id)
 end
 
 puts "done"
