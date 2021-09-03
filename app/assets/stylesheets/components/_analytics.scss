@@ -15,14 +15,18 @@
 .clicks-pie-wrapper {
   background-color: white;
   border: 1px solid rgb(220, 220, 220);
-  padding: 8px;
   border-radius: 8px;
   h4 {
-    margin-bottom: 0;
-    text-align: center;
+    padding: 16px 16px 0 16px;
+    margin-bottom: 8px;
     font-weight: bold;
     opacity: .7;
   }
+}
+
+.clicks-column-wrapper {
+  margin-right: 48px;
+  flex: 50%;
 }
 
 canvas {
@@ -151,7 +155,7 @@ canvas {
   border-right: 1px solid rgb(220, 220, 220);
   border-left: 1px solid rgb(220, 220, 220);
   border-radius: 8px 8px 0 0;
-  padding: 8px 16px 0 16px;
+  padding: 16px 16px 0 16px;
   background-color: white;
   display: flex;
   align-items: baseline;
@@ -211,10 +215,10 @@ canvas {
   border: 1px solid rgb(220, 220, 220);
   width: 100%;
   h4 {
-    margin-bottom: 0;
+    margin-bottom: 8px;
     font-weight: bold;
     opacity: .7;
-    padding: 8px 8px 0 8px;
+    padding: 16px 16px 0 16px;
   }
 }
 
@@ -258,8 +262,8 @@ canvas {
     text-align: left;
     font-weight: bold;
     opacity: .7;
-    padding: 8px 16px;
-    margin-bottom: 0;
+    padding: 16px 16px 0 16px;
+    margin-bottom: 8px;
     border-radius: 8px 8px 0 0;
   }
 }
