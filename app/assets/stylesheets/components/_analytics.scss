@@ -204,15 +204,28 @@ canvas {
 }
 
 .widgets-session-time-wrapper,
-.widgets-clicks-wrapper {
+.widgets-clicks-wrapper,
+.widgets-session-wrapper {
   padding: 16px;
 }
 
-.widgets-session-time-chart,
-.widgets-session-wrapper {
+.widgets-session-time-chart {
   background-color: white;
   border-radius: 8px;
   border: 1px solid rgb(220, 220, 220);
+  width: 100%;
+  h4 {
+    margin-bottom: 8px;
+    font-weight: bold;
+    opacity: .7;
+    padding: 16px 16px 0 16px;
+  }
+}
+
+.widgets-session-chart {
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid gainsboro;
   width: 100%;
   h4 {
     margin-bottom: 8px;
@@ -236,12 +249,6 @@ canvas {
   border-left: 1px solid rgb(220, 220, 220);
   border-radius: 0 0 8px 8px;
 }
-
-
-// .widgets-session-time-wrapper,
-// .widgets-session-wrapper {
-//   padding: 8px 8px 0 8px;
-// }
 
 .clicks-youtube-reddit-wrapper {
   display: flex;
