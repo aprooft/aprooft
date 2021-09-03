@@ -82,6 +82,11 @@ canvas {
 
 .data-section-title {
   padding: 0 24px;
+  span i {
+    font-size: 26px;
+    opacity: .7;
+    vertical-align: middle;
+  }
   h2 {
     font-weight: bold;
     margin-bottom: 0;

@@ -72,7 +72,17 @@
       <p>*Increase/Decrease compared to last week</p>
     </div>
     <div class="data-section-title">
-      <h2>Your widgets performance</h2>
+      <% unless !params[:product].present? || params[:product] === "all" %>
+        <h2>Widget page
+          <%= link_to edit_widget_path(@user_widget.id) do %>
+            <span>
+              <i class='bx bx-edit-alt'></i>
+            </span>
+          <% end %>
+        </h2>
+      <% else %>
+        <h2>Your widgets performance</h2>
+      <% end %>
     </div>
     <%# <div class="worst-performer-wrapper">
       <div class="worst-performer">
