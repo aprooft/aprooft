@@ -1,11 +1,14 @@
 <div class="widget-stats-wrapper">
   <div class="total-clicks-wrapper">
-      <div class="total-clicks">
-        <p>Total clicks:</p>
-        <h4><%= @widget_clicks.count %> clicks</h4>
-      </div>
       <div class="clicks-chart">
-        <%= area_chart @widget_clicks.group_by_day(:click_at).count, label: "Clicks", ytitle: "Number of Clicks" %>
+        <div class="total-clicks">
+          <h4>Number of Clicks</h4>
+          <div class="total-clicks-count">
+            <p>Total clicks:</p>
+            <h4><%= @widget_clicks.count %> clicks</h4>
+          </div>
+        </div>
+        <%= area_chart @widget_clicks.group_by_day(:click_at).count, label: "Clicks"%>
       </div>
       <div class="clicks-youtube-reddit-wrapper">
         <div class="youtube-clicks-chart">
@@ -19,21 +22,27 @@
       </div>
     </div>
   <div class="total-session-time-wrapper">
-    <div class="total-session-time">
-      <p>Total time:</p>
-      <h4><%= @widget_time %></h4>
-    </div>
     <div class="session-time-chart">
-      <%= column_chart @widget_sessions.group_by_day(:open_at).sum(:session_time), label: "Seconds", ytitle: "Time per day" %>
+      <div class="total-session-time">
+        <h4>Time per day</h4>
+        <div class="total-time-count">
+          <p>Total time:</p>
+          <h4><%= @widget_time %></h4>
+        </div>
+      </div>
+      <%= column_chart @widget_sessions.group_by_day(:open_at).sum(:session_time), label: "Seconds"%>
     </div>
   </div>
   <div class="total-session-time-wrapper">
-    <div class="total-session-time">
-      <p>Total number of sessions:</p>
-      <h4><%= @widget_sessions.count %> sessions</h4>
-    </div>
     <div class="session-time-chart">
-      <%= area_chart @widget_sessions.group_by_day(:open_at).count, label: "Sessions", ytitle: "Number of Sessions"%>
+      <div class="total-session-time">
+        <h4>Number of Sessions</h4>
+        <div class="total-session-count">
+          <p>Total number of sessions:</p>
+          <h4><%= @widget_sessions.count %> sessions</h4>
+        </div>
+      </div>
+      <%= area_chart @widget_sessions.group_by_day(:open_at).count, label: "Sessions"%>
     </div>
   </div>
 </div>
