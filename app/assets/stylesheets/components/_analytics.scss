@@ -7,9 +7,37 @@
 }
 
 .all-stats-wrapper {
-  background: white;
+  background: aliceblue;
   box-shadow: 0 0 1px rgba(0,0,0,0.2);
 }
+
+.clicks-column-wrapper,
+.clicks-pie-wrapper {
+  background-color: white;
+  border: 1px solid rgb(220, 220, 220);
+  padding: 8px;
+  border-radius: 8px;
+  h4 {
+    margin-bottom: 0;
+    text-align: center;
+    font-weight: bold;
+    opacity: .7;
+  }
+}
+
+canvas {
+  background-color: white;
+  padding: 0px 8px 8px 8px;
+  border-radius: 0 0 8px 8px;
+}
+
+#chart1, #chart2, #chart3, #chart4 {
+  padding: 16px;
+}
+
+// .clicks-column-wrapper {
+//   flex-grow: 1;
+// }
 
 .global-stats {
   display: flex;
@@ -46,6 +74,15 @@
   text-align: right;
   font-size: 12px;
   margin-bottom: 24px;
+}
+
+.data-section-title {
+  padding: 0 24px;
+  h2 {
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
 }
 
 // .worst-performer-wrapper {
@@ -110,11 +147,28 @@
 
 .total-session-time,
 .total-clicks {
+  border-top: 1px solid rgb(220, 220, 220);
+  border-right: 1px solid rgb(220, 220, 220);
+  border-left: 1px solid rgb(220, 220, 220);
+  border-radius: 8px 8px 0 0;
+  padding: 8px 16px 0 16px;
+  background-color: white;
   display: flex;
   align-items: baseline;
-  p {
-    margin-right: 16px;
+  justify-content: space-between;
+
+  p, h4 {
+    margin-bottom: 8px;
+    opacity: .7;
   }
+  p {
+    padding-right: 8px;
+  }
+}
+
+.total-clicks > h4,
+.total-session-time > h4 {
+  font-weight: bold;
 }
 
 #select-widget select {
@@ -146,10 +200,44 @@
 }
 
 .widgets-session-time-wrapper,
-.widgets-session-wrapper,
 .widgets-clicks-wrapper {
   padding: 16px;
 }
+
+.widgets-session-time-chart,
+.widgets-session-wrapper {
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid rgb(220, 220, 220);
+  width: 100%;
+  h4 {
+    margin-bottom: 0;
+    font-weight: bold;
+    opacity: .7;
+    padding: 8px 8px 0 8px;
+  }
+}
+
+.session-time-chart > #chart-4,
+.session-time-chart > #chart-5 {
+  border-bottom: 1px solid rgb(220, 220, 220);
+  border-right: 1px solid rgb(220, 220, 220);
+  border-left: 1px solid rgb(220, 220, 220);
+  border-radius: 0 0 8px 8px;
+}
+
+.clicks-chart > #chart-1 {
+  border-bottom: 1px solid rgb(220, 220, 220);
+  border-right: 1px solid rgb(220, 220, 220);
+  border-left: 1px solid rgb(220, 220, 220);
+  border-radius: 0 0 8px 8px;
+}
+
+
+// .widgets-session-time-wrapper,
+// .widgets-session-wrapper {
+//   padding: 8px 8px 0 8px;
+// }
 
 .clicks-youtube-reddit-wrapper {
   display: flex;
@@ -162,7 +250,18 @@
 
 .youtube-clicks-chart,
 .reddit-clicks-chart {
-  width: 50%;
+  width: 45%;
+  border-radius: 8px;
+  border: 1px solid rgb(220, 220, 220);
+  background-color: white;
+  h4 {
+    text-align: left;
+    font-weight: bold;
+    opacity: .7;
+    padding: 8px 16px;
+    margin-bottom: 0;
+    border-radius: 8px 8px 0 0;
+  }
 }
 
 .total-clicks-wrapper .clicks-chart {
@@ -222,4 +321,14 @@
 
 .decrease {
   color: red;
+}
+
+.total-clicks-count,
+.total-time-count,
+.total-session-count {
+  display: flex;
+  align-items: flex-end;
+  p, h4 {
+    margin-bottom: 0;
+  }
 }
