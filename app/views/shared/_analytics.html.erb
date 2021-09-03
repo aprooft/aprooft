@@ -8,14 +8,14 @@
             <p>Total sessions</p>
           </div>
           <% if WidgetAccess.sessions_compared_to_last_week.negative? %>
-            <div class="decrease">
+            <div class="decrease" data-tooltip="Compared to last week">
               <i class='bx bx-trending-down'></i>
-              <p><%= WidgetAccess.sessions_compared_to_last_week %>%*</p>
+              <p><%= WidgetAccess.sessions_compared_to_last_week %>%</p>
             </div>
           <% else %>
-            <div class="increase">
+            <div class="increase" data-tooltip="Compared to last week">
               <i class='bx bx-trending-up'></i>
-              <p><%= WidgetAccess.sessions_compared_to_last_week %>%*</p>
+              <p><%= WidgetAccess.sessions_compared_to_last_week %>%</p>
             </div>
           <% end %>
         </div>
@@ -26,14 +26,14 @@
             <p></p>
           </div>
           <% if WidgetAccess.time_compared_to_last_week.negative? %>
-            <div class="decrease">
+            <div class="decrease" data-tooltip="Compared to last week">
               <i class='bx bx-trending-down'></i>
-              <p><%= WidgetAccess.time_compared_to_last_week %>%*</p>
+              <p><%= WidgetAccess.time_compared_to_last_week %>%</p>
             </div>
           <% else %>
-            <div class="increase">
+            <div class="increase" data-tooltip="Compared to last week">
               <i class='bx bx-trending-up'></i>
-              <p><%= WidgetAccess.time_compared_to_last_week %>%*</p>
+              <p><%= WidgetAccess.time_compared_to_last_week %>%</p>
             </div>
           <% end %>
         </div>
@@ -49,14 +49,14 @@
             <p>Total clicks</p>
           </div>
           <% if ContentAccess.clicks_compared_to_last_week.negative? %>
-            <div class="decrease">
+            <div class="decrease" data-tooltip="Compared to last week">
               <i class='bx bx-trending-down'></i>
-              <p><%= ContentAccess.clicks_compared_to_last_week %>%*</p>
+              <p><%= ContentAccess.clicks_compared_to_last_week %>%</p>
             </div>
           <% else %>
-            <div class="increase">
+            <div class="increase" data-tooltip="Compared to last week">
               <i class='bx bx-trending-up'></i>
-              <p><%= ContentAccess.clicks_compared_to_last_week %>%*</p>
+              <p><%= ContentAccess.clicks_compared_to_last_week %>%</p>
             </div>
           <% end %>
         </div>
@@ -67,9 +67,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="disclaimer">
-      <p>*Increase/Decrease compared to last week</p>
     </div>
     <div class="data-section-title">
       <% unless !params[:product].present? || params[:product] === "all" %>
